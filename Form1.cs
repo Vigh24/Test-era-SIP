@@ -1636,42 +1636,7 @@ namespace SIPSample
         }
 
 
-        private void Button20_Click(object sender, EventArgs e)
-        {
-            if (OpenFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                TextBoxPlayFile.Text = OpenFileDialog1.FileName;
-            }
-        }
-
-        private void Button21_Click(object sender, EventArgs e)
-        {
-            if (_SIPInited == false)
-            {
-                MessageBox.Show("Please initialize the SDK first.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            if (TextBoxPlayFile.Text.Length <= 0)
-            {
-                MessageBox.Show("The play file is empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            string waveFile = TextBoxPlayFile.Text;
-
-            _sdkLib.startPlayingFileToRemote(_CallSessions[_CurrentlyLine].getSessionId(), waveFile, false, 1);
-
-        }
-
-        private void Button23_Click(object sender, EventArgs e)
-        {
-            if (_SIPInited == false)
-            {
-                return;
-            }
-            _sdkLib.stopPlayingFileToRemote( _CallSessions[_CurrentlyLine].getSessionId());
-        }
+        
 
         private void button27_Click(object sender, EventArgs e)
         {
@@ -1719,12 +1684,12 @@ namespace SIPSample
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://portsip.com");
+            System.Diagnostics.Process.Start("https://eratronics.co.in/");
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("mailto:sales@portsip.com");
+            System.Diagnostics.Process.Start("mailto:info@eratronics.in");
         }
 
 
@@ -3016,7 +2981,7 @@ namespace SIPSample
             // Log current codec states
             Console.WriteLine($"Form1 - Before opening SettingsForm: G711uLawEnabled={_g711uLawEnabled}, G711aLawEnabled={_g711aLawEnabled}, G729Enabled={_g729Enabled}, iLBCEnabled={_iLBCEnabled}, GSMEnabled={_gsmEnabled}, AMREnabled={_amrEnabled}, G722Enabled={_g722Enabled}, SpeexEnabled={_speexEnabled}, AMRWBEnabled={_amrwbEnabled}, SpeexWBEnabled={_speexwbEnabled}, G7221Enabled={_g7221Enabled}, OpusEnabled={_opusEnabled}, H264Enabled={_h264Enabled}, VP8Enabled={_vp8Enabled}, VP9Enabled={_vp9Enabled}");
 
-            SettingsForm settingsForm = new SettingsForm(_sdkLib, _SIPInited, _audioCodecsForm,
+            SettingsForm settingsForm = new SettingsForm(_sdkLib, _SIPInited, _CallSessions, _CurrentlyLine, _audioCodecsForm,
                 _g711uLawEnabled, _g711aLawEnabled, _g729Enabled, _iLBCEnabled, _gsmEnabled,
                 _amrEnabled, _g722Enabled, _speexEnabled, _amrwbEnabled, _speexwbEnabled,
                 _g7221Enabled, _opusEnabled, _h264Enabled, _vp8Enabled, _vp9Enabled);
@@ -3041,6 +3006,11 @@ namespace SIPSample
             _h264Enabled = settingsForm.H264Enabled;
             _vp8Enabled = settingsForm.VP8Enabled;
             _vp9Enabled = settingsForm.VP9Enabled;
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

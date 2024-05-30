@@ -227,4 +227,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Content Include="DARE_LOGO-wo bg.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DARE_LOGO-wo bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\DARE_LOGO-wo bg.ico" />
+  </ItemGroup>
 </Project>

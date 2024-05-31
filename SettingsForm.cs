@@ -9,8 +9,6 @@ namespace SIPSample
         private PortSIPLib _sdkLib;
         private bool _SIPInited;
         private AudioCodecsForm _audioCodecsForm;
-        private Session[] _CallSessions;
-        private int _CurrentlyLine;
 
         public bool G711uLawEnabled { get; private set; }
         public bool G711aLawEnabled { get; private set; }
@@ -28,16 +26,14 @@ namespace SIPSample
         public bool VP8Enabled { get; private set; }
         public bool VP9Enabled { get; private set; }
 
-        public SettingsForm(PortSIPLib sdkLib, bool sipInited, Session[] callSessions, int currentlyLine, AudioCodecsForm audioCodecsForm,
-    bool g711uLawEnabled, bool g711aLawEnabled, bool g729Enabled, bool iLBCEnabled, bool gsmEnabled,
-    bool amrEnabled, bool g722Enabled, bool speexEnabled, bool amrwbEnabled, bool speexwbEnabled,
-    bool g7221Enabled, bool opusEnabled, bool h264Enabled, bool vp8Enabled, bool vp9Enabled)
+        public SettingsForm(PortSIPLib sdkLib, bool sipInited, AudioCodecsForm audioCodecsForm,
+            bool g711uLawEnabled, bool g711aLawEnabled, bool g729Enabled, bool iLBCEnabled, bool gsmEnabled,
+            bool amrEnabled, bool g722Enabled, bool speexEnabled, bool amrwbEnabled, bool speexwbEnabled,
+            bool g7221Enabled, bool opusEnabled, bool h264Enabled, bool vp8Enabled, bool vp9Enabled)
         {
             InitializeComponent();
             _sdkLib = sdkLib;
             _SIPInited = sipInited;
-            _CallSessions = callSessions;
-            _CurrentlyLine = currentlyLine;
             _audioCodecsForm = audioCodecsForm;
 
             G711uLawEnabled = g711uLawEnabled;
@@ -102,12 +98,6 @@ namespace SIPSample
                 // Log updated codec states
                 Console.WriteLine($"SettingsForm - After closing AudioCodecsForm: G711uLawEnabled={G711uLawEnabled}, G711aLawEnabled={G711aLawEnabled}, G729Enabled={G729Enabled}, iLBCEnabled={iLBCEnabled}, GSMEnabled={GSMEnabled}, AMREnabled={AMREnabled}, G722Enabled={G722Enabled}, SpeexEnabled={SpeexEnabled}, AMRWBEnabled={AMRWBEnabled}, SpeexWBEnabled={SpeexWBEnabled}, G7221Enabled={G7221Enabled}, OpusEnabled={OpusEnabled}, H264Enabled={H264Enabled}, VP8Enabled={VP8Enabled}, VP9Enabled={VP9Enabled}");
             }
-        }
-
-        private void ButtonPlayAudio_Click(object sender, EventArgs e)
-        {
-            AudioPlaybackForm audioPlaybackForm = new AudioPlaybackForm(_sdkLib, _SIPInited, _CallSessions, _CurrentlyLine);
-            audioPlaybackForm.Show();
         }
     }
 }

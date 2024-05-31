@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,7 +57,6 @@
             this.TextBoxUserName = new System.Windows.Forms.TextBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ButtonSettings = new System.Windows.Forms.Button();
             this.checkBoxAnswerVideo = new System.Windows.Forms.CheckBox();
             this.checkBoxMakeVideo = new System.Windows.Forms.CheckBox();
             this.checkBoxPRACK = new System.Windows.Forms.CheckBox();
@@ -138,6 +135,12 @@
             this.checkBoxForwardCallForBusy = new System.Windows.Forms.CheckBox();
             this.textBoxForwardTo = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.Button23 = new System.Windows.Forms.Button();
+            this.Button21 = new System.Windows.Forms.Button();
+            this.Button20 = new System.Windows.Forms.Button();
+            this.TextBoxPlayFile = new System.Windows.Forms.TextBox();
+            this.Label27 = new System.Windows.Forms.Label();
             this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -145,7 +148,7 @@
             this.ButtonStartSharing = new System.Windows.Forms.Button();
             this.ComboboxScreenLst = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ButtonSettings = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -156,13 +159,14 @@
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox11.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(335, 9);
+            this.linkLabel2.Location = new System.Drawing.Point(743, 9);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(125, 13);
             this.linkLabel2.TabIndex = 36;
@@ -467,16 +471,6 @@
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             // 
-            // ButtonSettings
-            // 
-            this.ButtonSettings.Location = new System.Drawing.Point(319, 138);
-            this.ButtonSettings.Name = "ButtonSettings";
-            this.ButtonSettings.Size = new System.Drawing.Size(114, 23);
-            this.ButtonSettings.TabIndex = 129;
-            this.ButtonSettings.Text = "Settings";
-            this.ButtonSettings.UseVisualStyleBackColor = true;
-            this.ButtonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
-            // 
             // checkBoxAnswerVideo
             // 
             this.checkBoxAnswerVideo.AutoSize = true;
@@ -488,7 +482,6 @@
             this.checkBoxAnswerVideo.TabIndex = 128;
             this.checkBoxAnswerVideo.Text = "Answer video call";
             this.checkBoxAnswerVideo.UseVisualStyleBackColor = true;
-            this.checkBoxAnswerVideo.Visible = false;
             // 
             // checkBoxMakeVideo
             // 
@@ -501,7 +494,6 @@
             this.checkBoxMakeVideo.TabIndex = 127;
             this.checkBoxMakeVideo.Text = "Make video call";
             this.checkBoxMakeVideo.UseVisualStyleBackColor = true;
-            this.checkBoxMakeVideo.Visible = false;
             // 
             // checkBoxPRACK
             // 
@@ -512,7 +504,6 @@
             this.checkBoxPRACK.TabIndex = 126;
             this.checkBoxPRACK.Text = "PRACK";
             this.checkBoxPRACK.UseVisualStyleBackColor = true;
-            this.checkBoxPRACK.Visible = false;
             this.checkBoxPRACK.CheckedChanged += new System.EventHandler(this.checkBoxPRACK_CheckedChanged);
             // 
             // CheckBoxConf
@@ -556,7 +547,6 @@
             this.CheckBoxSDP.TabIndex = 122;
             this.CheckBoxSDP.Text = "Make call without SDP";
             this.CheckBoxSDP.UseVisualStyleBackColor = true;
-            this.CheckBoxSDP.Visible = false;
             // 
             // button24
             // 
@@ -921,7 +911,6 @@
             this.groupBox4.Size = new System.Drawing.Size(445, 226);
             this.groupBox4.TabIndex = 40;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Visible = false;
             // 
             // Label21
             // 
@@ -1289,6 +1278,67 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "Forward call to:";
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.Button23);
+            this.groupBox9.Controls.Add(this.Button21);
+            this.groupBox9.Controls.Add(this.Button20);
+            this.groupBox9.Controls.Add(this.TextBoxPlayFile);
+            this.groupBox9.Controls.Add(this.Label27);
+            this.groupBox9.Location = new System.Drawing.Point(479, 490);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(203, 118);
+            this.groupBox9.TabIndex = 48;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Play audio file(Wave)";
+            // 
+            // Button23
+            // 
+            this.Button23.Location = new System.Drawing.Point(108, 86);
+            this.Button23.Name = "Button23";
+            this.Button23.Size = new System.Drawing.Size(75, 22);
+            this.Button23.TabIndex = 12;
+            this.Button23.Text = "Stop";
+            this.Button23.UseVisualStyleBackColor = true;
+            this.Button23.Click += new System.EventHandler(this.Button23_Click);
+            // 
+            // Button21
+            // 
+            this.Button21.Location = new System.Drawing.Point(12, 86);
+            this.Button21.Name = "Button21";
+            this.Button21.Size = new System.Drawing.Size(75, 22);
+            this.Button21.TabIndex = 11;
+            this.Button21.Text = "Start";
+            this.Button21.UseVisualStyleBackColor = true;
+            this.Button21.Click += new System.EventHandler(this.Button21_Click);
+            // 
+            // Button20
+            // 
+            this.Button20.Location = new System.Drawing.Point(83, 18);
+            this.Button20.Name = "Button20";
+            this.Button20.Size = new System.Drawing.Size(69, 22);
+            this.Button20.TabIndex = 10;
+            this.Button20.Text = "...";
+            this.Button20.UseVisualStyleBackColor = true;
+            this.Button20.Click += new System.EventHandler(this.Button20_Click);
+            // 
+            // TextBoxPlayFile
+            // 
+            this.TextBoxPlayFile.Location = new System.Drawing.Point(6, 50);
+            this.TextBoxPlayFile.Name = "TextBoxPlayFile";
+            this.TextBoxPlayFile.ReadOnly = true;
+            this.TextBoxPlayFile.Size = new System.Drawing.Size(182, 20);
+            this.TextBoxPlayFile.TabIndex = 9;
+            // 
+            // Label27
+            // 
+            this.Label27.AutoSize = true;
+            this.Label27.Location = new System.Drawing.Point(10, 22);
+            this.Label27.Name = "Label27";
+            this.Label27.Size = new System.Drawing.Size(51, 13);
+            this.Label27.TabIndex = 8;
+            this.Label27.Text = "select file";
+            // 
             // OpenFileDialog1
             // 
             this.OpenFileDialog1.DefaultExt = "wav";
@@ -1348,18 +1398,23 @@
             this.label15.TabIndex = 104;
             this.label15.Text = "Screen";
             // 
-            // notifyIcon1
+            // ButtonSettings
             // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "Eratronics Softphone";
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            this.ButtonSettings.Location = new System.Drawing.Point(319, 138);
+            this.ButtonSettings.Name = "ButtonSettings";
+            this.ButtonSettings.Size = new System.Drawing.Size(114, 23);
+            this.ButtonSettings.TabIndex = 129;
+            this.ButtonSettings.Text = "Settings";
+            this.ButtonSettings.UseVisualStyleBackColor = true;
+            this.ButtonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 366);
+            this.ClientSize = new System.Drawing.Size(920, 703);
             this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
@@ -1371,9 +1426,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Eratronics Softphone";
+            this.Text = "Eratronics Pvt. Ltd.";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
@@ -1393,6 +1448,8 @@
             this.groupBox8.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
@@ -1497,6 +1554,12 @@
         private System.Windows.Forms.CheckBox checkBoxForwardCallForBusy;
         private System.Windows.Forms.TextBox textBoxForwardTo;
         private System.Windows.Forms.Label label16;
+        internal System.Windows.Forms.GroupBox groupBox9;
+        internal System.Windows.Forms.Button Button23;
+        internal System.Windows.Forms.Button Button21;
+        internal System.Windows.Forms.Button Button20;
+        internal System.Windows.Forms.TextBox TextBoxPlayFile;
+        internal System.Windows.Forms.Label Label27;
         internal System.Windows.Forms.OpenFileDialog OpenFileDialog1;
         internal System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog1;
         internal System.Windows.Forms.Button Button18;
@@ -1517,7 +1580,6 @@
         internal System.Windows.Forms.ComboBox ComboboxScreenLst;
         internal System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button ButtonSettings;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

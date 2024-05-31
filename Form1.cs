@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using PortSIP;
+using System.Drawing;
 
 
 
@@ -46,6 +47,8 @@ namespace SIPSample
 
         private PortSIPLib _sdkLib;
         private videoScreen _fmVideoScreen;
+        private NotifyIcon notifyIcon;
+        private ContextMenuStrip contextMenuStrip;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -389,14 +392,10 @@ namespace SIPSample
         }
 
 
-
-
-        
-
-
         public Form1()
         {
             InitializeComponent();
+            InitializeNotifyIcon();
             _fmVideoScreen = new videoScreen();
             _fmVideoScreen.Show();
             _fmVideoScreen.Hide();
@@ -410,6 +409,50 @@ namespace SIPSample
 
         }
 
+        private void InitializeNotifyIcon()
+        {
+            notifyIcon = new NotifyIcon();
+            notifyIcon.Icon = Properties.Resources.DARE_LOGO_wo_bg; // Set your icon here
+            notifyIcon.Text = "Eratronics Softphone";
+            notifyIcon.Visible = false;
+            notifyIcon.DoubleClick += NotifyIcon_DoubleClick;
+
+            // Create context menu for the notify icon
+            contextMenuStrip = new ContextMenuStrip();
+            ToolStripMenuItem exitMenuItem = new ToolStripMenuItem("Exit");
+            exitMenuItem.Click += ExitMenuItem_Click;
+            contextMenuStrip.Items.Add(exitMenuItem);
+
+            notifyIcon.ContextMenuStrip = contextMenuStrip;
+        }
+
+        private void NotifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
+        }
+
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            notifyIcon.Visible = false;
+            Application.Exit();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                this.Hide();
+                notifyIcon.Visible = true;
+                notifyIcon.ShowBalloonTip(1000, "Eratronics Softphone", "The application is still running in the system tray.", ToolTipIcon.Info);
+            }
+            else
+            {
+                base.OnFormClosing(e);
+            }
+        }
 
         private void deRegisterFromServer()
         {

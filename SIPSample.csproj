@@ -225,6 +225,15 @@
     <Content Include="DARE_LOGO-wo bg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\WhatsApp Image 2024-06-03 at 1.31.14 PM.jpeg" />
+    <None Include="Resources\WhatsApp Image 2024-06-03 at 1.25.35 PM.jpeg" />
+    <None Include="Resources\call_red_big.png" />
+    <None Include="Resources\call_green_big.png" />
+    <None Include="Resources\WhatsApp Image 2024-05-31 at 2.47.41 PM.jpeg" />
+    <None Include="Resources\WhatsApp Image 2024-05-31 at 2.42.09 PM.jpeg" />
+    <None Include="Resources\WhatsApp Image 2024-05-31 at 2.19.07 PM.jpeg" />
+    <None Include="Resources\plasma-dialer.png" />
+    <None Include="Resources\Firefly 20240531125711.png" />
     <None Include="Resources\DARE_LOGO-wo bg.ico" />
   </ItemGroup>
 </Project>

@@ -21,9 +21,9 @@
             // 
             // ButtonAudioCodecs
             // 
-            this.ButtonAudioCodecs.Location = new System.Drawing.Point(150, 100); // Adjust the location as needed
+            this.ButtonAudioCodecs.Location = new System.Drawing.Point(12, 40);
             this.ButtonAudioCodecs.Name = "ButtonAudioCodecs";
-            this.ButtonAudioCodecs.Size = new System.Drawing.Size(100, 30); // Adjust the size as needed
+            this.ButtonAudioCodecs.Size = new System.Drawing.Size(100, 30);
             this.ButtonAudioCodecs.TabIndex = 0;
             this.ButtonAudioCodecs.Text = "Audio Codecs";
             this.ButtonAudioCodecs.UseVisualStyleBackColor = true;
@@ -31,11 +31,12 @@
             // 
             // SettingsForm
             // 
-            this.ClientSize = new System.Drawing.Size(400, 300); // Adjust the size as needed
+            this.ClientSize = new System.Drawing.Size(210, 115);
             this.Controls.Add(this.ButtonAudioCodecs);
             this.Name = "SettingsForm";
             this.Text = "Settings";
             this.ResumeLayout(false);
+
         }
     }
 }

@@ -13,6 +13,7 @@ using System.Drawing;
 
 
 
+
 namespace SIPSample
 {
     public partial class Form1 : Form, SIPCallbackEvents
@@ -41,6 +42,7 @@ namespace SIPSample
         private bool _h264Enabled;
         private bool _vp8Enabled;
         private bool _vp9Enabled;
+        private bool isExpanded = false; // Track the current state
         private int _CurrentlyLine = LINE_BASE;
         private AudioCodecsForm _audioCodecsForm;
 
@@ -395,6 +397,12 @@ namespace SIPSample
         public Form1()
         {
             InitializeComponent();
+            // Resize and reposition the TextBoxPhoneNumber
+            TextBoxPhoneNumber.Dock = DockStyle.None;
+            TextBoxPhoneNumber.Location = new Point(10, 10); // Set the desired location
+            TextBoxPhoneNumber.Size = new Size(200, 30); // Set the desired size (width, height)
+            TextBoxPhoneNumber.Multiline = true; // Enable multiline to adjust height
+
             InitializeNotifyIcon();
             _fmVideoScreen = new videoScreen();
             _fmVideoScreen.Show();
@@ -563,9 +571,30 @@ namespace SIPSample
 
 
             ComboBoxLines.SelectedIndex = 0;
+
+            // Resize and reposition the TextBoxPhoneNumber
+            TextBoxPhoneNumber.Dock = DockStyle.None;
+            TextBoxPhoneNumber.Location = new Point(10, 10); // Set the desired location
+            TextBoxPhoneNumber.Size = new Size(200, 30); // Set the desired size (width, height)
+            TextBoxPhoneNumber.Multiline = true; // Enable multiline to adjust height
         }
 
+        private void ToggleSizeButton_Click(object sender, EventArgs e)
+        {
+            if (isExpanded)
+            {
+                // Set to the smaller size
+                this.Size = new Size(300, 467);
+            }
+            else
+            {
+                // Set to the larger size
+                this.Size = new Size(957, 467);
+            }
 
+            // Toggle the state
+            isExpanded = !isExpanded;
+        }
 
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -2864,7 +2893,7 @@ namespace SIPSample
             /*
                 !!! IMPORTANT !!!
 
-                Don't call any PortSIP SDK API functions in here directly. If you want to call the PortSIP API functions or 
+                                                                                                                                                                                Don't call any PortSIP SDK API functions in here directly. If you want to call the PortSIP API functions or 
                 other code which will spend long time, you should post a message to main thread(main window) or other thread,
                 let the thread to call SDK API functions or other code.
 

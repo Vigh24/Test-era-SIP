@@ -6,6 +6,7 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.Button ToggleSizeButton; // Add this line
 
         /// <summary>
         /// Clean up any resources being used.
@@ -149,6 +150,7 @@
             this.ButtonStartSharing = new System.Windows.Forms.Button();
             this.ComboboxScreenLst = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.ToggleSizeButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).BeginInit();
@@ -165,6 +167,7 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
+            this.linkLabel2.LinkColor = System.Drawing.Color.Cyan;
             this.linkLabel2.Location = new System.Drawing.Point(476, 405);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(125, 13);
@@ -177,6 +180,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkColor = System.Drawing.Color.Cyan;
             this.linkLabel1.Location = new System.Drawing.Point(778, 405);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(139, 13);
@@ -243,6 +247,7 @@
             // ComboBoxTransport
             // 
             this.ComboBoxTransport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxTransport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxTransport.FormattingEnabled = true;
             this.ComboBoxTransport.Location = new System.Drawing.Point(72, 133);
             this.ComboBoxTransport.Name = "ComboBoxTransport";
@@ -261,6 +266,7 @@
             // ComboBoxSRTP
             // 
             this.ComboBoxSRTP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxSRTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxSRTP.FormattingEnabled = true;
             this.ComboBoxSRTP.Location = new System.Drawing.Point(181, 132);
             this.ComboBoxSRTP.Name = "ComboBoxSRTP";
@@ -318,6 +324,7 @@
             // 
             // Button2
             // 
+            this.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button2.Location = new System.Drawing.Point(358, 140);
             this.Button2.Name = "Button2";
             this.Button2.Size = new System.Drawing.Size(75, 22);
@@ -328,6 +335,7 @@
             // 
             // Button1
             // 
+            this.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button1.Location = new System.Drawing.Point(277, 141);
             this.Button1.Name = "Button1";
             this.Button1.Size = new System.Drawing.Size(75, 22);
@@ -436,7 +444,8 @@
             // 
             // ButtonSettings
             // 
-            this.ButtonSettings.Location = new System.Drawing.Point(169, 384);
+            this.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonSettings.Location = new System.Drawing.Point(174, 395);
             this.ButtonSettings.Name = "ButtonSettings";
             this.ButtonSettings.Size = new System.Drawing.Size(55, 23);
             this.ButtonSettings.TabIndex = 129;
@@ -485,7 +494,7 @@
             // CheckBoxConf
             // 
             this.CheckBoxConf.AutoSize = true;
-            this.CheckBoxConf.Location = new System.Drawing.Point(96, 324);
+            this.CheckBoxConf.Location = new System.Drawing.Point(47, 341);
             this.CheckBoxConf.Name = "CheckBoxConf";
             this.CheckBoxConf.Size = new System.Drawing.Size(81, 17);
             this.CheckBoxConf.TabIndex = 125;
@@ -496,7 +505,7 @@
             // CheckBoxAA
             // 
             this.CheckBoxAA.AutoSize = true;
-            this.CheckBoxAA.Location = new System.Drawing.Point(152, 301);
+            this.CheckBoxAA.Location = new System.Drawing.Point(163, 312);
             this.CheckBoxAA.Name = "CheckBoxAA";
             this.CheckBoxAA.Size = new System.Drawing.Size(86, 17);
             this.CheckBoxAA.TabIndex = 124;
@@ -506,7 +515,7 @@
             // CheckBoxDND
             // 
             this.CheckBoxDND.AutoSize = true;
-            this.CheckBoxDND.Location = new System.Drawing.Point(36, 301);
+            this.CheckBoxDND.Location = new System.Drawing.Point(47, 312);
             this.CheckBoxDND.Name = "CheckBoxDND";
             this.CheckBoxDND.Size = new System.Drawing.Size(92, 17);
             this.CheckBoxDND.TabIndex = 123;
@@ -527,7 +536,8 @@
             // 
             // button24
             // 
-            this.button24.Location = new System.Drawing.Point(48, 384);
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button24.Location = new System.Drawing.Point(53, 395);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(115, 23);
             this.button24.TabIndex = 120;
@@ -537,7 +547,8 @@
             // 
             // Button16
             // 
-            this.Button16.Location = new System.Drawing.Point(108, 358);
+            this.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button16.Location = new System.Drawing.Point(113, 369);
             this.Button16.Name = "Button16";
             this.Button16.Size = new System.Drawing.Size(55, 23);
             this.Button16.TabIndex = 119;
@@ -547,7 +558,8 @@
             // 
             // ButtonAnswer
             // 
-            this.ButtonAnswer.Location = new System.Drawing.Point(49, 265);
+            this.ButtonAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonAnswer.Location = new System.Drawing.Point(49, 275);
             this.ButtonAnswer.Name = "ButtonAnswer";
             this.ButtonAnswer.Size = new System.Drawing.Size(55, 23);
             this.ButtonAnswer.TabIndex = 114;
@@ -557,7 +569,8 @@
             // 
             // ButtonTransfer
             // 
-            this.ButtonTransfer.Location = new System.Drawing.Point(169, 358);
+            this.ButtonTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonTransfer.Location = new System.Drawing.Point(174, 369);
             this.ButtonTransfer.Name = "ButtonTransfer";
             this.ButtonTransfer.Size = new System.Drawing.Size(55, 23);
             this.ButtonTransfer.TabIndex = 113;
@@ -567,7 +580,8 @@
             // 
             // ButtonHold
             // 
-            this.ButtonHold.Location = new System.Drawing.Point(48, 358);
+            this.ButtonHold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonHold.Location = new System.Drawing.Point(53, 369);
             this.ButtonHold.Name = "ButtonHold";
             this.ButtonHold.Size = new System.Drawing.Size(55, 23);
             this.ButtonHold.TabIndex = 112;
@@ -587,7 +601,9 @@
             // 
             // ButtonReject
             // 
-            this.ButtonReject.Location = new System.Drawing.Point(185, 267);
+            this.ButtonReject.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ButtonReject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonReject.Location = new System.Drawing.Point(185, 277);
             this.ButtonReject.Name = "ButtonReject";
             this.ButtonReject.Size = new System.Drawing.Size(55, 23);
             this.ButtonReject.TabIndex = 110;
@@ -598,8 +614,9 @@
             // ButtonHangUp
             // 
             this.ButtonHangUp.BackColor = System.Drawing.Color.Crimson;
+            this.ButtonHangUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHangUp.Image = global::SIPSample.Properties.Resources.call_red_big;
-            this.ButtonHangUp.Location = new System.Drawing.Point(185, 210);
+            this.ButtonHangUp.Location = new System.Drawing.Point(185, 220);
             this.ButtonHangUp.Name = "ButtonHangUp";
             this.ButtonHangUp.Size = new System.Drawing.Size(55, 45);
             this.ButtonHangUp.TabIndex = 109;
@@ -609,8 +626,9 @@
             // ButtonDial
             // 
             this.ButtonDial.BackColor = System.Drawing.Color.ForestGreen;
+            this.ButtonDial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDial.Image = global::SIPSample.Properties.Resources.call_green_big;
-            this.ButtonDial.Location = new System.Drawing.Point(48, 210);
+            this.ButtonDial.Location = new System.Drawing.Point(48, 220);
             this.ButtonDial.Name = "ButtonDial";
             this.ButtonDial.Size = new System.Drawing.Size(55, 45);
             this.ButtonDial.TabIndex = 108;
@@ -777,10 +795,18 @@
             // 
             // TextBoxPhoneNumber
             // 
-            this.TextBoxPhoneNumber.Location = new System.Drawing.Point(48, 27);
+            this.TextBoxPhoneNumber.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.TextBoxPhoneNumber.BackColor = System.Drawing.Color.AliceBlue;
+            this.TextBoxPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TextBoxPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPhoneNumber.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.TextBoxPhoneNumber.Location = new System.Drawing.Point(48, 26);
+            this.TextBoxPhoneNumber.MaxLength = 200000;
+            this.TextBoxPhoneNumber.Multiline = true;
             this.TextBoxPhoneNumber.Name = "TextBoxPhoneNumber";
-            this.TextBoxPhoneNumber.Size = new System.Drawing.Size(192, 20);
+            this.TextBoxPhoneNumber.Size = new System.Drawing.Size(190, 30);
             this.TextBoxPhoneNumber.TabIndex = 95;
+            this.TextBoxPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox3
             // 
@@ -1053,6 +1079,7 @@
             // 
             // Button22
             // 
+            this.Button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button22.Location = new System.Drawing.Point(837, 39);
             this.Button22.Name = "Button22";
             this.Button22.Size = new System.Drawing.Size(87, 23);
@@ -1421,13 +1448,25 @@
             this.label15.TabIndex = 104;
             this.label15.Text = "Screen";
             // 
+            // ToggleSizeButton
+            // 
+            this.ToggleSizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ToggleSizeButton.Location = new System.Drawing.Point(174, 340);
+            this.ToggleSizeButton.Name = "ToggleSizeButton";
+            this.ToggleSizeButton.Size = new System.Drawing.Size(55, 23);
+            this.ToggleSizeButton.TabIndex = 1;
+            this.ToggleSizeButton.Text = "Toggle Size";
+            this.ToggleSizeButton.UseVisualStyleBackColor = true;
+            this.ToggleSizeButton.Click += new System.EventHandler(this.ToggleSizeButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(291, 428);
+            this.ClientSize = new System.Drawing.Size(941, 428);
+            this.Controls.Add(this.ToggleSizeButton);
             this.Controls.Add(this.ButtonSettings);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.checkBoxAnswerVideo);
@@ -1470,7 +1509,9 @@
             this.Controls.Add(this.Button6);
             this.Controls.Add(this.Button10);
             this.Controls.Add(this.Button11);
+            this.ForeColor = System.Drawing.Color.PaleTurquoise;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Eratronics Softphone";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

@@ -95,24 +95,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\PortSIP\PortSIPLib.cs">
-      <Link>PortSIP\PortSIPLib.cs</Link>
-    </Compile>
-    <Compile Include="..\PortSIP\PortSIPNativeMethods.cs">
-      <Link>PortSIP\PortSIPNativeMethods.cs</Link>
-    </Compile>
-    <Compile Include="..\PortSIP\PortSIPTypes.cs">
-      <Link>PortSIP\PortSIPTypes.cs</Link>
-    </Compile>
-    <Compile Include="..\PortSIP\PortSIP_Errors.cs">
-      <Link>PortSIP\PortSIP_Errors.cs</Link>
-    </Compile>
-    <Compile Include="..\PortSIP\Session.cs">
-      <Link>PortSIP\Session.cs</Link>
-    </Compile>
-    <Compile Include="..\PortSIP\SIPCallbackEvents.cs">
-      <Link>PortSIP\SIPCallbackEvents.cs</Link>
-    </Compile>
     <Compile Include="AudioCodecsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +119,12 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
+    <Compile Include="PortSIP\PortSIPLib.cs" />
+    <Compile Include="PortSIP\PortSIPNativeMethods.cs" />
+    <Compile Include="PortSIP\PortSIPTypes.cs" />
+    <Compile Include="PortSIP\PortSIP_Errors.cs" />
+    <Compile Include="PortSIP\Session.cs" />
+    <Compile Include="PortSIP\SIPCallbackEvents.cs" />
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>

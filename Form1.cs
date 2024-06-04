@@ -399,8 +399,6 @@ namespace SIPSample
             InitializeComponent();
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
-            TextBoxPhoneNumber.Location = new Point(10, 10); // Set the desired location
-            TextBoxPhoneNumber.Size = new Size(200, 30); // Set the desired size (width, height)
             TextBoxPhoneNumber.Multiline = true; // Enable multiline to adjust height
 
             InitializeNotifyIcon();
@@ -574,8 +572,6 @@ namespace SIPSample
 
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
-            TextBoxPhoneNumber.Location = new Point(10, 10); // Set the desired location
-            TextBoxPhoneNumber.Size = new Size(200, 30); // Set the desired size (width, height)
             TextBoxPhoneNumber.Multiline = true; // Enable multiline to adjust height
         }
 
@@ -584,12 +580,12 @@ namespace SIPSample
             if (isExpanded)
             {
                 // Set to the smaller size
-                this.Size = new Size(300, 467);
+                this.Size = new Size(318, 530);
             }
             else
             {
                 // Set to the larger size
-                this.Size = new Size(957, 467);
+                this.Size = new Size(957, 530);
             }
 
             // Toggle the state

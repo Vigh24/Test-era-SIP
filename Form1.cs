@@ -3114,5 +3114,10 @@ namespace SIPSample
             _vp8Enabled = settingsForm.VP8Enabled;
             _vp9Enabled = settingsForm.VP9Enabled;
         }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

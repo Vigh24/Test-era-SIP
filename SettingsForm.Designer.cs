@@ -22,8 +22,7 @@
             // 
             // ButtonAudioCodecs
             // 
-            this.ButtonAudioCodecs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonAudioCodecs.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.ButtonAudioCodecs.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ButtonAudioCodecs.Location = new System.Drawing.Point(12, 40);
             this.ButtonAudioCodecs.Name = "ButtonAudioCodecs";
             this.ButtonAudioCodecs.Size = new System.Drawing.Size(100, 30);
@@ -34,7 +33,7 @@
             // 
             // SettingsForm
             // 
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(210, 115);
             this.Controls.Add(this.ButtonAudioCodecs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

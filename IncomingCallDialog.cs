@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace SIPSample
 {
-    // IncomingCallDialog.cs
     public partial class IncomingCallDialog : Form
     {
         public IncomingCallDialog()
@@ -20,6 +19,11 @@ namespace SIPSample
 
         public event EventHandler AnswerClicked;
         public event EventHandler RejectClicked;
+
+        public void SetCallerDetails(string callerDisplayName, string caller)
+        {
+            lblCallerDetails.Text = $"Incoming call from {callerDisplayName} ({caller})";
+        }
 
         private void btnAnswer_Click(object sender, EventArgs e)
         {

@@ -1903,7 +1903,7 @@ namespace SIPSample
             this.Invoke((MethodInvoker)delegate
             {
                 IncomingCallDialog dialog = new IncomingCallDialog();
-                dialog.Text = $"Incoming call from {callerDisplayName} ({caller})";
+                dialog.SetCallerDetails(callerDisplayName, caller);
                 dialog.AnswerClicked += (sender, args) =>
                 {
                     _CallSessions[index].setRecvCallState(false);

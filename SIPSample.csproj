@@ -139,6 +139,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="IncomingCallDialog.resx">
+      <DependentUpon>IncomingCallDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>

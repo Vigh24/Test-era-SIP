@@ -107,18 +107,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
-    </Compile>
     <Compile Include="PortSIP\PortSIPLib.cs" />
     <Compile Include="PortSIP\PortSIPNativeMethods.cs" />
     <Compile Include="PortSIP\PortSIPTypes.cs" />
@@ -228,6 +216,7 @@
     <Content Include="DARE_LOGO-wo bg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\WhatsApp Image 2024-06-05 at 11.37.50 AM.jpeg" />
     <None Include="Resources\WhatsApp Image 2024-06-03 at 1.31.14 PM.jpeg" />
     <None Include="Resources\WhatsApp Image 2024-06-03 at 1.25.35 PM.jpeg" />
     <None Include="Resources\call_red_big.png" />

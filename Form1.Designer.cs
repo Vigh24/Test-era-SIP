@@ -151,6 +151,7 @@
             this.ComboboxScreenLst = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.ToggleSizeButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).BeginInit();
@@ -162,6 +163,7 @@
             this.groupBox11.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // linkLabel2
@@ -461,12 +463,13 @@
             // ButtonSettings
             // 
             this.ButtonSettings.ForeColor = System.Drawing.Color.Black;
-            this.ButtonSettings.Location = new System.Drawing.Point(173, 358);
+            this.ButtonSettings.Location = new System.Drawing.Point(152, 329);
             this.ButtonSettings.Name = "ButtonSettings";
             this.ButtonSettings.Size = new System.Drawing.Size(55, 23);
             this.ButtonSettings.TabIndex = 129;
             this.ButtonSettings.Text = "Codecs";
             this.ButtonSettings.UseVisualStyleBackColor = true;
+            this.ButtonSettings.Visible = false;
             this.ButtonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             // 
             // checkBoxAnswerVideo
@@ -514,7 +517,7 @@
             // 
             this.CheckBoxConf.AutoSize = true;
             this.CheckBoxConf.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxConf.Location = new System.Drawing.Point(108, 335);
+            this.CheckBoxConf.Location = new System.Drawing.Point(125, 284);
             this.CheckBoxConf.Name = "CheckBoxConf";
             this.CheckBoxConf.Size = new System.Drawing.Size(81, 17);
             this.CheckBoxConf.TabIndex = 125;
@@ -526,7 +529,7 @@
             // 
             this.CheckBoxAA.AutoSize = true;
             this.CheckBoxAA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxAA.Location = new System.Drawing.Point(17, 335);
+            this.CheckBoxAA.Location = new System.Drawing.Point(15, 281);
             this.CheckBoxAA.Name = "CheckBoxAA";
             this.CheckBoxAA.Size = new System.Drawing.Size(86, 17);
             this.CheckBoxAA.TabIndex = 124;
@@ -537,7 +540,7 @@
             // 
             this.CheckBoxDND.AutoSize = true;
             this.CheckBoxDND.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxDND.Location = new System.Drawing.Point(195, 335);
+            this.CheckBoxDND.Location = new System.Drawing.Point(70, 307);
             this.CheckBoxDND.Name = "CheckBoxDND";
             this.CheckBoxDND.Size = new System.Drawing.Size(92, 17);
             this.CheckBoxDND.TabIndex = 123;
@@ -560,7 +563,7 @@
             // button24
             // 
             this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button24.Location = new System.Drawing.Point(52, 358);
+            this.button24.Location = new System.Drawing.Point(31, 329);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(115, 23);
             this.button24.TabIndex = 120;
@@ -571,7 +574,7 @@
             // Button16
             // 
             this.Button16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Button16.Location = new System.Drawing.Point(112, 384);
+            this.Button16.Location = new System.Drawing.Point(91, 355);
             this.Button16.Name = "Button16";
             this.Button16.Size = new System.Drawing.Size(55, 23);
             this.Button16.TabIndex = 119;
@@ -583,7 +586,7 @@
             // 
             this.ButtonAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonAnswer.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.ButtonAnswer.Location = new System.Drawing.Point(38, 294);
+            this.ButtonAnswer.Location = new System.Drawing.Point(10, 242);
             this.ButtonAnswer.Name = "ButtonAnswer";
             this.ButtonAnswer.Size = new System.Drawing.Size(105, 30);
             this.ButtonAnswer.TabIndex = 114;
@@ -594,7 +597,7 @@
             // ButtonTransfer
             // 
             this.ButtonTransfer.ForeColor = System.Drawing.Color.Black;
-            this.ButtonTransfer.Location = new System.Drawing.Point(173, 384);
+            this.ButtonTransfer.Location = new System.Drawing.Point(152, 355);
             this.ButtonTransfer.Name = "ButtonTransfer";
             this.ButtonTransfer.Size = new System.Drawing.Size(55, 23);
             this.ButtonTransfer.TabIndex = 113;
@@ -605,7 +608,7 @@
             // ButtonHold
             // 
             this.ButtonHold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ButtonHold.Location = new System.Drawing.Point(52, 384);
+            this.ButtonHold.Location = new System.Drawing.Point(31, 355);
             this.ButtonHold.Name = "ButtonHold";
             this.ButtonHold.Size = new System.Drawing.Size(55, 23);
             this.ButtonHold.TabIndex = 112;
@@ -629,7 +632,7 @@
             this.ButtonReject.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ButtonReject.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonReject.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.ButtonReject.Location = new System.Drawing.Point(142, 294);
+            this.ButtonReject.Location = new System.Drawing.Point(114, 242);
             this.ButtonReject.Name = "ButtonReject";
             this.ButtonReject.Size = new System.Drawing.Size(104, 30);
             this.ButtonReject.TabIndex = 110;
@@ -642,7 +645,7 @@
             this.ButtonHangUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ButtonHangUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonHangUp.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.ButtonHangUp.Location = new System.Drawing.Point(142, 264);
+            this.ButtonHangUp.Location = new System.Drawing.Point(114, 212);
             this.ButtonHangUp.Name = "ButtonHangUp";
             this.ButtonHangUp.Size = new System.Drawing.Size(104, 30);
             this.ButtonHangUp.TabIndex = 108;
@@ -655,7 +658,7 @@
             this.ButtonDial.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ButtonDial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonDial.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.ButtonDial.Location = new System.Drawing.Point(38, 264);
+            this.ButtonDial.Location = new System.Drawing.Point(10, 212);
             this.ButtonDial.Name = "ButtonDial";
             this.ButtonDial.Size = new System.Drawing.Size(105, 30);
             this.ButtonDial.TabIndex = 108;
@@ -668,9 +671,9 @@
             this.Button12.FlatAppearance.BorderSize = 0;
             this.Button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button12.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button12.Location = new System.Drawing.Point(197, 223);
+            this.Button12.Location = new System.Drawing.Point(148, 177);
             this.Button12.Name = "Button12";
-            this.Button12.Size = new System.Drawing.Size(90, 40);
+            this.Button12.Size = new System.Drawing.Size(70, 35);
             this.Button12.TabIndex = 107;
             this.Button12.Text = "#";
             this.Button12.UseVisualStyleBackColor = true;
@@ -681,9 +684,9 @@
             this.Button13.FlatAppearance.BorderSize = 0;
             this.Button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button13.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button13.Location = new System.Drawing.Point(105, 223);
+            this.Button13.Location = new System.Drawing.Point(79, 177);
             this.Button13.Name = "Button13";
-            this.Button13.Size = new System.Drawing.Size(90, 40);
+            this.Button13.Size = new System.Drawing.Size(70, 35);
             this.Button13.TabIndex = 106;
             this.Button13.Text = "0";
             this.Button13.UseVisualStyleBackColor = true;
@@ -694,9 +697,9 @@
             this.Button14.FlatAppearance.BorderSize = 0;
             this.Button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button14.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button14.Location = new System.Drawing.Point(14, 223);
+            this.Button14.Location = new System.Drawing.Point(10, 177);
             this.Button14.Name = "Button14";
-            this.Button14.Size = new System.Drawing.Size(90, 40);
+            this.Button14.Size = new System.Drawing.Size(70, 35);
             this.Button14.TabIndex = 105;
             this.Button14.Text = "*";
             this.Button14.UseVisualStyleBackColor = true;
@@ -707,9 +710,9 @@
             this.Button9.FlatAppearance.BorderSize = 0;
             this.Button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button9.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button9.Location = new System.Drawing.Point(197, 183);
+            this.Button9.Location = new System.Drawing.Point(148, 142);
             this.Button9.Name = "Button9";
-            this.Button9.Size = new System.Drawing.Size(90, 40);
+            this.Button9.Size = new System.Drawing.Size(70, 35);
             this.Button9.TabIndex = 104;
             this.Button9.Text = "9";
             this.Button9.UseVisualStyleBackColor = true;
@@ -720,9 +723,9 @@
             this.Button10.FlatAppearance.BorderSize = 0;
             this.Button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button10.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button10.Location = new System.Drawing.Point(105, 183);
+            this.Button10.Location = new System.Drawing.Point(79, 142);
             this.Button10.Name = "Button10";
-            this.Button10.Size = new System.Drawing.Size(90, 40);
+            this.Button10.Size = new System.Drawing.Size(70, 35);
             this.Button10.TabIndex = 103;
             this.Button10.Text = "8";
             this.Button10.UseVisualStyleBackColor = true;
@@ -733,9 +736,9 @@
             this.Button11.FlatAppearance.BorderSize = 0;
             this.Button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button11.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button11.Location = new System.Drawing.Point(14, 183);
+            this.Button11.Location = new System.Drawing.Point(10, 142);
             this.Button11.Name = "Button11";
-            this.Button11.Size = new System.Drawing.Size(90, 40);
+            this.Button11.Size = new System.Drawing.Size(70, 35);
             this.Button11.TabIndex = 102;
             this.Button11.Text = "7";
             this.Button11.UseVisualStyleBackColor = true;
@@ -746,9 +749,9 @@
             this.Button6.FlatAppearance.BorderSize = 0;
             this.Button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button6.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button6.Location = new System.Drawing.Point(197, 143);
+            this.Button6.Location = new System.Drawing.Point(148, 107);
             this.Button6.Name = "Button6";
-            this.Button6.Size = new System.Drawing.Size(90, 40);
+            this.Button6.Size = new System.Drawing.Size(70, 35);
             this.Button6.TabIndex = 101;
             this.Button6.Text = "6";
             this.Button6.UseVisualStyleBackColor = true;
@@ -759,9 +762,9 @@
             this.Button7.FlatAppearance.BorderSize = 0;
             this.Button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button7.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button7.Location = new System.Drawing.Point(105, 143);
+            this.Button7.Location = new System.Drawing.Point(79, 107);
             this.Button7.Name = "Button7";
-            this.Button7.Size = new System.Drawing.Size(90, 40);
+            this.Button7.Size = new System.Drawing.Size(70, 35);
             this.Button7.TabIndex = 100;
             this.Button7.Text = "5";
             this.Button7.UseVisualStyleBackColor = true;
@@ -772,9 +775,9 @@
             this.Button8.FlatAppearance.BorderSize = 0;
             this.Button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button8.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button8.Location = new System.Drawing.Point(14, 143);
+            this.Button8.Location = new System.Drawing.Point(10, 107);
             this.Button8.Name = "Button8";
-            this.Button8.Size = new System.Drawing.Size(90, 40);
+            this.Button8.Size = new System.Drawing.Size(70, 35);
             this.Button8.TabIndex = 99;
             this.Button8.Text = "4";
             this.Button8.UseVisualStyleBackColor = true;
@@ -785,9 +788,9 @@
             this.Button5.FlatAppearance.BorderSize = 0;
             this.Button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button5.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button5.Location = new System.Drawing.Point(197, 104);
+            this.Button5.Location = new System.Drawing.Point(148, 72);
             this.Button5.Name = "Button5";
-            this.Button5.Size = new System.Drawing.Size(90, 40);
+            this.Button5.Size = new System.Drawing.Size(70, 35);
             this.Button5.TabIndex = 98;
             this.Button5.Text = "3";
             this.Button5.UseVisualStyleBackColor = true;
@@ -798,9 +801,9 @@
             this.Button4.FlatAppearance.BorderSize = 0;
             this.Button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button4.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button4.Location = new System.Drawing.Point(105, 104);
+            this.Button4.Location = new System.Drawing.Point(79, 72);
             this.Button4.Name = "Button4";
-            this.Button4.Size = new System.Drawing.Size(90, 40);
+            this.Button4.Size = new System.Drawing.Size(70, 35);
             this.Button4.TabIndex = 97;
             this.Button4.Text = "2";
             this.Button4.UseVisualStyleBackColor = true;
@@ -811,9 +814,9 @@
             this.Button3.FlatAppearance.BorderSize = 0;
             this.Button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button3.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Button3.Location = new System.Drawing.Point(14, 104);
+            this.Button3.Location = new System.Drawing.Point(10, 72);
             this.Button3.Name = "Button3";
-            this.Button3.Size = new System.Drawing.Size(90, 40);
+            this.Button3.Size = new System.Drawing.Size(70, 35);
             this.Button3.TabIndex = 96;
             this.Button3.Text = "1";
             this.Button3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -827,11 +830,11 @@
             this.TextBoxPhoneNumber.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TextBoxPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPhoneNumber.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.TextBoxPhoneNumber.Location = new System.Drawing.Point(19, 41);
+            this.TextBoxPhoneNumber.Location = new System.Drawing.Point(12, 21);
             this.TextBoxPhoneNumber.MaxLength = 200000;
             this.TextBoxPhoneNumber.Multiline = true;
             this.TextBoxPhoneNumber.Name = "TextBoxPhoneNumber";
-            this.TextBoxPhoneNumber.Size = new System.Drawing.Size(273, 38);
+            this.TextBoxPhoneNumber.Size = new System.Drawing.Size(206, 38);
             this.TextBoxPhoneNumber.TabIndex = 95;
             this.TextBoxPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -925,45 +928,49 @@
             // 
             // TrackBarMicrophone
             // 
-            this.TrackBarMicrophone.Location = new System.Drawing.Point(82, 455);
+            this.TrackBarMicrophone.Location = new System.Drawing.Point(928, 435);
             this.TrackBarMicrophone.Maximum = 255;
             this.TrackBarMicrophone.Name = "TrackBarMicrophone";
-            this.TrackBarMicrophone.Size = new System.Drawing.Size(203, 45);
+            this.TrackBarMicrophone.Size = new System.Drawing.Size(10, 45);
             this.TrackBarMicrophone.TabIndex = 49;
             this.TrackBarMicrophone.TickFrequency = 10;
             this.TrackBarMicrophone.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.TrackBarMicrophone.Visible = false;
             this.TrackBarMicrophone.ValueChanged += new System.EventHandler(this.TrackBarMicrophone_ValueChanged);
             // 
             // Label11
             // 
             this.Label11.AutoSize = true;
             this.Label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label11.Location = new System.Drawing.Point(13, 455);
+            this.Label11.Location = new System.Drawing.Point(674, 459);
             this.Label11.Name = "Label11";
             this.Label11.Size = new System.Drawing.Size(63, 13);
             this.Label11.TabIndex = 48;
             this.Label11.Text = "Microphone";
+            this.Label11.Visible = false;
             // 
             // TrackBarSpeaker
             // 
-            this.TrackBarSpeaker.Location = new System.Drawing.Point(84, 422);
+            this.TrackBarSpeaker.Location = new System.Drawing.Point(930, 402);
             this.TrackBarSpeaker.Maximum = 255;
             this.TrackBarSpeaker.Name = "TrackBarSpeaker";
-            this.TrackBarSpeaker.Size = new System.Drawing.Size(203, 45);
+            this.TrackBarSpeaker.Size = new System.Drawing.Size(10, 45);
             this.TrackBarSpeaker.TabIndex = 47;
             this.TrackBarSpeaker.TickFrequency = 10;
             this.TrackBarSpeaker.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.TrackBarSpeaker.Visible = false;
             this.TrackBarSpeaker.ValueChanged += new System.EventHandler(this.TrackBarSpeaker_ValueChanged);
             // 
             // Label10
             // 
             this.Label10.AutoSize = true;
             this.Label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label10.Location = new System.Drawing.Point(13, 431);
+            this.Label10.Location = new System.Drawing.Point(743, 462);
             this.Label10.Name = "Label10";
             this.Label10.Size = new System.Drawing.Size(47, 13);
             this.Label10.TabIndex = 46;
             this.Label10.Text = "Speaker";
+            this.Label10.Visible = false;
             // 
             // groupBox4
             // 
@@ -1482,7 +1489,7 @@
             // ToggleSizeButton
             // 
             this.ToggleSizeButton.ForeColor = System.Drawing.Color.Black;
-            this.ToggleSizeButton.Location = new System.Drawing.Point(237, 12);
+            this.ToggleSizeButton.Location = new System.Drawing.Point(152, 329);
             this.ToggleSizeButton.Name = "ToggleSizeButton";
             this.ToggleSizeButton.Size = new System.Drawing.Size(55, 23);
             this.ToggleSizeButton.TabIndex = 1;
@@ -1490,13 +1497,23 @@
             this.ToggleSizeButton.UseVisualStyleBackColor = true;
             this.ToggleSizeButton.Click += new System.EventHandler(this.ToggleSizeButton_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SIPSample.Properties.Resources.WhatsApp_Image_2024_06_05_at_11_37_50_AM;
+            this.pictureBox1.Location = new System.Drawing.Point(8, 409);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(108, 28);
+            this.pictureBox1.TabIndex = 130;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(311, 491);
+            this.ClientSize = new System.Drawing.Size(229, 440);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ToggleSizeButton);
             this.Controls.Add(this.ButtonSettings);
             this.Controls.Add(this.groupBox6);
@@ -1571,6 +1588,7 @@
             this.groupBox9.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1698,6 +1716,7 @@
         internal System.Windows.Forms.ComboBox ComboboxScreenLst;
         internal System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button ButtonSettings;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

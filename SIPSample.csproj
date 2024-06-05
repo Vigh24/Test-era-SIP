@@ -107,6 +107,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="IncomingCallDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IncomingCallDialog.Designer.cs">
+      <DependentUpon>IncomingCallDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="PortSIP\PortSIPLib.cs" />
     <Compile Include="PortSIP\PortSIPNativeMethods.cs" />
     <Compile Include="PortSIP\PortSIPTypes.cs" />
@@ -214,6 +220,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DARE_LOGO-wo bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="portsip_media.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="portsip_sdk.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\WhatsApp Image 2024-06-05 at 11.37.50 AM.jpeg" />

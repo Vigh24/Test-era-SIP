@@ -529,7 +529,7 @@
             // 
             this.CheckBoxAA.AutoSize = true;
             this.CheckBoxAA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxAA.Location = new System.Drawing.Point(15, 281);
+            this.CheckBoxAA.Location = new System.Drawing.Point(15, 284);
             this.CheckBoxAA.Name = "CheckBoxAA";
             this.CheckBoxAA.Size = new System.Drawing.Size(86, 17);
             this.CheckBoxAA.TabIndex = 124;
@@ -834,7 +834,7 @@
             this.TextBoxPhoneNumber.MaxLength = 200000;
             this.TextBoxPhoneNumber.Multiline = true;
             this.TextBoxPhoneNumber.Name = "TextBoxPhoneNumber";
-            this.TextBoxPhoneNumber.Size = new System.Drawing.Size(206, 38);
+            this.TextBoxPhoneNumber.Size = new System.Drawing.Size(207, 38);
             this.TextBoxPhoneNumber.TabIndex = 95;
             this.TextBoxPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 

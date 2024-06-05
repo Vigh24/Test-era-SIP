@@ -573,7 +573,7 @@ namespace SIPSample
 
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
-            TextBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
+            TextBoxPhoneNumber.Size = new Size(207, 38); // Set the desired size (width, height)
             TextBoxPhoneNumber.Multiline = true; // Enable multiline to adjust height
         }
 
@@ -582,12 +582,12 @@ namespace SIPSample
             if (isExpanded)
             {
                 // Set to the smaller size
-                this.Size = new Size(327, 530);
+                this.Size = new Size(245, 479);
             }
             else
             {
                 // Set to the larger size
-                this.Size = new Size(957, 530);
+                this.Size = new Size(957, 479);
             }
 
             // Toggle the state
@@ -1864,15 +1864,15 @@ namespace SIPSample
 
 
         public Int32 onInviteIncoming(Int32 sessionId,
-                                             String callerDisplayName,
-                                             String caller,
-                                             String calleeDisplayName,
-                                             String callee,
-                                             String audioCodecNames,
-                                             String videoCodecNames,
-                                             Boolean existsAudio,
-                                             Boolean existsVideo,
-                                            StringBuilder sipMessage)
+                              String callerDisplayName,
+                              String caller,
+                              String calleeDisplayName,
+                              String callee,
+                              String audioCodecNames,
+                              String videoCodecNames,
+                              Boolean existsAudio,
+                              Boolean existsVideo,
+                              StringBuilder sipMessage)
         {
             int index = -1;
             for (int i = LINE_BASE; i < MAX_LINES; ++i)
@@ -1891,84 +1891,37 @@ namespace SIPSample
                 return 0;
             }
 
-            if (existsVideo)
-            {
-                // If more than one codecs using, then they are separated with "#",
-                // for example: "g.729#GSM#AMR", "H264#H263", you have to parse them by yourself.
-            }
-            if (existsAudio)
-            {
-                // If more than one codecs using, then they are separated with "#",
-                // for example: "g.729#GSM#AMR", "H264#H263", you have to parse them by yourself.
-            }
-
             _CallSessions[index].setSessionId(sessionId);
-            string Text = string.Empty;
-           
-            bool needIgnoreAutoAnswer = false;
-            int j = 0;
-
-            for (j = LINE_BASE; j < MAX_LINES; ++j)
-            {
-                if (_CallSessions[j].getSessionState() == true)
-                {
-                    needIgnoreAutoAnswer = true;
-                    break;
-                }
-            }
-
-            if (existsVideo)
-            {
-                ListBoxSIPLog.Invoke(new MethodInvoker(delegate
-                {
-                    _sdkLib.setRemoteVideoWindow(_CallSessions[index].getSessionId(), remoteVideoPanel.Handle);
-                }));
-            }
-
-            Boolean AA = false;
-            bool answerVideo = false;
-            ListBoxSIPLog.Invoke(new MethodInvoker(delegate
-            {
-                AA = CheckBoxAA.Checked;
-                answerVideo = checkBoxAnswerVideo.Checked;
-            }));
-
-            if (needIgnoreAutoAnswer == false && AA == true)
-            {
-                _CallSessions[index].setRecvCallState(false);
-                _CallSessions[index].setSessionState(true);
-
-
-                _sdkLib.answerCall(_CallSessions[index].getSessionId(), answerVideo);
-
-                Text = "Line " + index.ToString();
-                Text = Text + ": Answered call by Auto answer";
-
-                ListBoxSIPLog.Invoke(new MethodInvoker(delegate
-                {
-                    ListBoxSIPLog.Items.Add(Text);
-                }));
-
-                return 0;
-            }
-
-            Text = "Line " + index.ToString();
-            Text = Text + ": Call incoming from ";
-            Text = Text + callerDisplayName;
-            Text = Text + "<";
-            Text = Text + caller;
-            Text = Text + ">";
-
+            string Text = "Line " + index.ToString() + ": Call incoming from " + callerDisplayName + " <" + caller + ">";
 
             ListBoxSIPLog.Invoke(new MethodInvoker(delegate
             {
                 ListBoxSIPLog.Items.Add(Text);
             }));
 
-            //  You should write your own code to play the wav file here for alert the incoming call(incoming tone);
+            // Show the dialog box for user interaction
+            this.Invoke((MethodInvoker)delegate
+            {
+                IncomingCallDialog dialog = new IncomingCallDialog();
+                dialog.Text = $"Incoming call from {callerDisplayName} ({caller})";
+                dialog.AnswerClicked += (sender, args) =>
+                {
+                    _CallSessions[index].setRecvCallState(false);
+                    _CallSessions[index].setSessionState(true);
+                    _sdkLib.answerCall(sessionId, existsVideo);
+                    ListBoxSIPLog.Items.Add("Line " + index.ToString() + ": Answered call");
+                };
+                dialog.RejectClicked += (sender, args) =>
+                {
+                    _sdkLib.rejectCall(sessionId, 486);
+                    ListBoxSIPLog.Items.Add("Line " + index.ToString() + ": Rejected call");
+                };
+                dialog.ShowDialog();
+            });
+
+            // Optional: Play incoming call tone here if needed
 
             return 0;
-
         }
 
         public Int32 onInviteTrying(Int32 sessionId)

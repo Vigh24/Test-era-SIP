@@ -106,6 +106,14 @@ namespace SIPSample
             return localIP.ToString();
         }
 
+        private void ShowRegistrationForm()
+        {
+            PortSIPLib sdkLib = new PortSIPLib(this); // Pass 'this' as the SIPCallbackEvents instance
+            RegistrationForm regForm = new RegistrationForm(sdkLib);
+            regForm.ShowDialog();
+        }
+
+
 
         private void ButtonAudioCodecs_Click(object sender, EventArgs e)
         {
@@ -191,11 +199,11 @@ namespace SIPSample
         {
             StringBuilder deviceName = new StringBuilder();
             deviceName.Length = 1024;
-           
+
             int nums = _sdkLib.getScreenSourceCount();
             for (int i = 0; i < nums; ++i)
             {
-                _sdkLib.getScreenSourceTitle( i, deviceName, 1024);
+                _sdkLib.getScreenSourceTitle(i, deviceName, 1024);
                 ComboboxScreenLst.Items.Add(deviceName.ToString());
             }
 
@@ -211,7 +219,7 @@ namespace SIPSample
             }
 
             int num = _sdkLib.getNumOfPlayoutDevices();
-            for (int i = 0; i <num; ++i)
+            for (int i = 0; i < num; ++i)
             {
                 StringBuilder deviceName = new StringBuilder();
                 deviceName.Length = 256;
@@ -226,7 +234,7 @@ namespace SIPSample
 
 
             num = _sdkLib.getNumOfRecordingDevices();
-            for (int i = 0; i <num; ++i)
+            for (int i = 0; i < num; ++i)
             {
                 StringBuilder deviceName = new StringBuilder();
                 deviceName.Length = 256;
@@ -238,10 +246,10 @@ namespace SIPSample
 
                 ComboBoxMicrophones.SelectedIndex = 0;
             }
-            
+
 
             num = _sdkLib.getNumOfVideoCaptureDevices();
-            for (int i = 0; i < num; ++i )
+            for (int i = 0; i < num; ++i)
             {
                 StringBuilder uniqueId = new StringBuilder();
                 uniqueId.Length = 256;
@@ -263,7 +271,7 @@ namespace SIPSample
 
             volume = _sdkLib.getMicVolume();
             TrackBarMicrophone.SetRange(0, 255);
-            TrackBarMicrophone.Value = volume;  
+            TrackBarMicrophone.Value = volume;
 
         }
 
@@ -288,32 +296,32 @@ namespace SIPSample
         }
 
 
-        private void SetSRTPType()
-        {
-            if (_SIPInited == false)
-            {
-                return;
-            }
+        //private void SetSRTPType()
+        //{
+        //    if (_SIPInited == false)
+        //    {
+        //        return;
+        //    }
 
-            SRTP_POLICY SRTPPolicy = SRTP_POLICY.SRTP_POLICY_NONE;
+        //    SRTP_POLICY SRTPPolicy = SRTP_POLICY.SRTP_POLICY_NONE;
 
-            switch (ComboBoxSRTP.SelectedIndex)
-            {
-                case 0:
-                    SRTPPolicy = SRTP_POLICY.SRTP_POLICY_NONE;
-                    break;
+        //    switch (ComboBoxSRTP.SelectedIndex)
+        //    {
+        //        case 0:
+        //            SRTPPolicy = SRTP_POLICY.SRTP_POLICY_NONE;
+        //            break;
 
-                case 1:
-                    SRTPPolicy = SRTP_POLICY.SRTP_POLICY_PREFER;
-                    break;
+        //        case 1:
+        //            SRTPPolicy = SRTP_POLICY.SRTP_POLICY_PREFER;
+        //            break;
 
-                case 2:
-                    SRTPPolicy = SRTP_POLICY.SRTP_POLICY_FORCE;
-                    break;
-            }
+        //        case 2:
+        //            SRTPPolicy = SRTP_POLICY.SRTP_POLICY_FORCE;
+        //            break;
+        //    }
 
-            _sdkLib.setSrtpPolicy(SRTPPolicy, true);
-        }
+        //    _sdkLib.setSrtpPolicy(SRTPPolicy, true);
+        //}
 
 
         private void SetVideoResolution()
@@ -535,18 +543,18 @@ namespace SIPSample
             TrackBarMicrophone.SetRange(0, 255);
             TrackBarMicrophone.Value = 0;
 
-            ComboBoxTransport.Items.Add("UDP");
-            ComboBoxTransport.Items.Add("TLS");
-            ComboBoxTransport.Items.Add("TCP");
-            ComboBoxTransport.Items.Add("PERS");
+            //ComboBoxTransport.Items.Add("UDP");
+            //ComboBoxTransport.Items.Add("TLS");
+            //ComboBoxTransport.Items.Add("TCP");
+            //ComboBoxTransport.Items.Add("PERS");
 
-            ComboBoxTransport.SelectedIndex = 0;
+            //ComboBoxTransport.SelectedIndex = 0;
 
-            ComboBoxSRTP.Items.Add("None");
-            ComboBoxSRTP.Items.Add("Prefer");
-            ComboBoxSRTP.Items.Add("Force");
+            //ComboBoxSRTP.Items.Add("None");
+            //ComboBoxSRTP.Items.Add("Prefer");
+            //ComboBoxSRTP.Items.Add("Force");
 
-            ComboBoxSRTP.SelectedIndex = 0;
+            //ComboBoxSRTP.SelectedIndex = 0;
 
 
             ComboBoxVideoResolution.Items.Add("QCIF");
@@ -577,22 +585,7 @@ namespace SIPSample
             TextBoxPhoneNumber.Multiline = true; // Enable multiline to adjust height
         }
 
-        private void ToggleSizeButton_Click(object sender, EventArgs e)
-        {
-            if (isExpanded)
-            {
-                // Set to the smaller size
-                this.Size = new Size(245, 479);
-            }
-            else
-            {
-                // Set to the larger size
-                this.Size = new Size(957, 479);
-            }
 
-            // Toggle the state
-            isExpanded = !isExpanded;
-        }
 
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -600,244 +593,244 @@ namespace SIPSample
             deRegisterFromServer();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            if (_SIPInited == true)
-            {
-                MessageBox.Show("You are already logged in.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+        //private void Button1_Click(object sender, EventArgs e)
+        //{
+        //    if (_SIPInited == true)
+        //    {
+        //        MessageBox.Show("You are already logged in.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return;
+        //    }
 
 
-            if (TextBoxUserName.Text.Length <= 0)
-            {
-                MessageBox.Show("The user name does not allows empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+        //    if (TextBoxUserName.Text.Length <= 0)
+        //    {
+        //        MessageBox.Show("The user name does not allows empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return;
+        //    }
 
 
-            if (TextBoxPassword.Text.Length <= 0)
-            {
-                MessageBox.Show("The password does not allows empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+        //    if (TextBoxPassword.Text.Length <= 0)
+        //    {
+        //        MessageBox.Show("The password does not allows empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return;
+        //    }
 
-            if (TextBoxServer.Text.Length <= 0)
-            {
-                MessageBox.Show("The SIP server does not allows empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+        //    if (TextBoxServer.Text.Length <= 0)
+        //    {
+        //        MessageBox.Show("The SIP server does not allows empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return;
+        //    }
 
-            int SIPServerPort = 0;
-            if (TextBoxServerPort.Text.Length > 0)
-            {
-                SIPServerPort = int.Parse(TextBoxServerPort.Text);
-                if (SIPServerPort > 65535 || SIPServerPort <= 0)
-                {
-                    MessageBox.Show("The SIP server port is out of range.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //    int SIPServerPort = 0;
+        //    if (TextBoxServerPort.Text.Length > 0)
+        //    {
+        //        SIPServerPort = int.Parse(TextBoxServerPort.Text);
+        //        if (SIPServerPort > 65535 || SIPServerPort <= 0)
+        //        {
+        //            MessageBox.Show("The SIP server port is out of range.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                    return;
-                }
-            }
-
-
-            int StunServerPort = 0;
-            if (TextBoxStunPort.Text.Length > 0)
-            {
-                StunServerPort = int.Parse(TextBoxStunPort.Text);
-                if (StunServerPort > 65535 || StunServerPort <= 0)
-                {
-                    MessageBox.Show("The Stun server port is out of range.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                    return;
-                }
-            }
-
-            Random rd = new Random();
-            int LocalSIPPort = rd.Next(1000, 5000) + 4000; // Generate the random port for SIP
-
-            TRANSPORT_TYPE transportType = TRANSPORT_TYPE.TRANSPORT_UDP;
-            switch (ComboBoxTransport.SelectedIndex)
-            {
-                case 0:
-                    transportType = TRANSPORT_TYPE.TRANSPORT_UDP;
-                    break;
-
-                case 1:
-                    transportType = TRANSPORT_TYPE.TRANSPORT_TLS;
-                    break;
-
-                case 2:
-                    transportType = TRANSPORT_TYPE.TRANSPORT_TCP;
-                    break;
-
-                case 3:
-                    transportType = TRANSPORT_TYPE.TRANSPORT_PERS;
-                    break;
-                default:
-                    MessageBox.Show("The transport is wrong.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                    return;
-            }
+        //            return;
+        //        }
+        //    }
 
 
+        //    int StunServerPort = 0;
+        //    if (TextBoxStunPort.Text.Length > 0)
+        //    {
+        //        StunServerPort = int.Parse(TextBoxStunPort.Text);
+        //        if (StunServerPort > 65535 || StunServerPort <= 0)
+        //        {
+        //            MessageBox.Show("The Stun server port is out of range.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-            //
-            // Create the class instance of PortSIP VoIP SDK, you can create more than one instances and 
-            // each instance register to a SIP server to support multiples accounts & providers.
-            // for example:
-            /*
-            _sdkLib1 = new PortSIPLib(from1);
-            _sdkLib2 = new PortSIPLib(from2);
-            _sdkLib3 = new PortSIPLib(from3);
-            */
+        //            return;
+        //        }
+        //    }
 
+        //    Random rd = new Random();
+        //    int LocalSIPPort = rd.Next(1000, 5000) + 4000; // Generate the random port for SIP
 
-            _sdkLib = new PortSIPLib(this);
+        //    TRANSPORT_TYPE transportType = TRANSPORT_TYPE.TRANSPORT_UDP;
+        //    switch (ComboBoxTransport.SelectedIndex)
+        //    {
+        //        case 0:
+        //            transportType = TRANSPORT_TYPE.TRANSPORT_UDP;
+        //            break;
 
-            //
-            // Create and set the SIP callback handers, this MUST called before
-            // _sdkLib.initialize();
-            //
-            _sdkLib.createCallbackHandlers();
+        //        case 1:
+        //            transportType = TRANSPORT_TYPE.TRANSPORT_TLS;
+        //            break;
 
-            string logFilePath = "d:\\"; // The log file path, you can change it - the folder MUST exists
-            string agent = "PortSIP VoIP SDK";
-            string stunServer = TextBoxStunServer.Text;
+        //        case 2:
+        //            transportType = TRANSPORT_TYPE.TRANSPORT_TCP;
+        //            break;
 
-            // Initialize the SDK
-            int rt = _sdkLib.initialize(transportType,
-                // Use 0.0.0.0 for local IP then the SDK will choose an available local IP automatically.
-                // You also can specify a certain local IP to instead of "0.0.0.0", more details please read the SDK User Manual
-                 "0.0.0.0",
-                 LocalSIPPort,
-                 PORTSIP_LOG_LEVEL.PORTSIP_LOG_NONE,
-                 logFilePath,
-                 MAX_LINES,
-                 agent,
-                 0,
-                 0, 
-                 "/",
-                 "",
-                  false);
+        //        case 3:
+        //            transportType = TRANSPORT_TYPE.TRANSPORT_PERS;
+        //            break;
+        //        default:
+        //            MessageBox.Show("The transport is wrong.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-
-            if (rt != 0)
-            {
-                _sdkLib.releaseCallbackHandlers();
-                MessageBox.Show("Initialize failure.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            ListBoxSIPLog.Items.Add("Initialized.");
-            _SIPInited = true;
-
-            loadDevices();
-            initScreenSharing();
-            
-            string userName = TextBoxUserName.Text;
-            string password = TextBoxPassword.Text;
-            string sipDomain = TextBoxUserDomain.Text;
-            string displayName = TextBoxDisplayName.Text;
-            string authName = TextBoxAuthName.Text;
-            string sipServer = TextBoxServer.Text;
-
-            int outboundServerPort = 0;
-            string outboundServer = "";
-
-            // Set the SIP user information
-            rt = _sdkLib.setUser(userName,
-                                       displayName,
-                                       authName,
-                                       password,
-                                       sipDomain,
-                                       sipServer,
-                                       SIPServerPort,
-                                       stunServer,
-                                       StunServerPort,
-                                       outboundServer,
-                                       outboundServerPort);
-            if (rt != 0)
-            {
-                _sdkLib.unInitialize();
-                _sdkLib.releaseCallbackHandlers();
-                _SIPInited = false;
-
-                ListBoxSIPLog.Items.Clear();
-
-                MessageBox.Show("setUser failure.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            ListBoxSIPLog.Items.Add("Succeeded set user information.");
-
-            // Example: set the codec parameter for AMR-WB
-            /*
-             
-             _sdkLib.setAudioCodecParameter(AUDIOCODEC_TYPE.AUDIOCODEC_AMRWB, "mode-set=0; octet-align=0; robust-sorting=0");
-             
-            */
-            
+        //            return;
+        //    }
 
 
-            SetSRTPType();
 
-            string licenseKey = "PORTSIP_TEST_LICENSE";
-            rt = _sdkLib.setLicenseKey(licenseKey);
-            if (rt == PortSIP_Errors.ECoreTrialVersionLicenseKey)
-            {
-                MessageBox.Show("This sample was built base on evaluation PortSIP VoIP SDK, which allows only three minutes conversation. The conversation will be cut off automatically after three minutes, then you can't hearing anything. Feel free contact us at: sales@portsip.com to purchase the official version.");
-            }
-            else if (rt == PortSIP_Errors.ECoreWrongLicenseKey)
-            {
-                MessageBox.Show("The wrong license key was detected, please check with sales@portsip.com or support@portsip.com");
-            }
-
-            SetVideoResolution();
-            SetVideoQuality();
-
-            
-
-            InitSettings();
-            updatePrackSetting();
-
-            if (checkBoxNeedRegister.Checked)
-            {
-                rt = _sdkLib.registerServer(120, 0);
-                if (rt != 0)
-                {
-                    _sdkLib.removeUser();
-                    _SIPInited = false;
-                    _sdkLib.unInitialize();
-                    _sdkLib.releaseCallbackHandlers();
-
-                    ListBoxSIPLog.Items.Clear();
-
-                    MessageBox.Show("register to server failed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+        //    //
+        //    // Create the class instance of PortSIP VoIP SDK, you can create more than one instances and 
+        //    // each instance register to a SIP server to support multiples accounts & providers.
+        //    // for example:
+        //    /*
+        //    _sdkLib1 = new PortSIPLib(from1);
+        //    _sdkLib2 = new PortSIPLib(from2);
+        //    _sdkLib3 = new PortSIPLib(from3);
+        //    */
 
 
-                ListBoxSIPLog.Items.Add("Registering...");
-            }
-        }
+        //    _sdkLib = new PortSIPLib(this);
 
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            if (_SIPInited == false)
-            {
-                return;
-            }
+        //    //
+        //    // Create and set the SIP callback handers, this MUST called before
+        //    // _sdkLib.initialize();
+        //    //
+        //    _sdkLib.createCallbackHandlers();
 
-            deRegisterFromServer();
-        }
+        //    string logFilePath = "d:\\"; // The log file path, you can change it - the folder MUST exists
+        //    string agent = "PortSIP VoIP SDK";
+        //    string stunServer = TextBoxStunServer.Text;
+
+        //    // Initialize the SDK
+        //    int rt = _sdkLib.initialize(transportType,
+        //        // Use 0.0.0.0 for local IP then the SDK will choose an available local IP automatically.
+        //        // You also can specify a certain local IP to instead of "0.0.0.0", more details please read the SDK User Manual
+        //         "0.0.0.0",
+        //         LocalSIPPort,
+        //         PORTSIP_LOG_LEVEL.PORTSIP_LOG_NONE,
+        //         logFilePath,
+        //         MAX_LINES,
+        //         agent,
+        //         0,
+        //         0, 
+        //         "/",
+        //         "",
+        //          false);
+
+
+        //    if (rt != 0)
+        //    {
+        //        _sdkLib.releaseCallbackHandlers();
+        //        MessageBox.Show("Initialize failure.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return;
+        //    }
+
+        //    ListBoxSIPLog.Items.Add("Initialized.");
+        //    _SIPInited = true;
+
+        //    loadDevices();
+        //    initScreenSharing();
+
+        //    string userName = TextBoxUserName.Text;
+        //    string password = TextBoxPassword.Text;
+        //    string sipDomain = TextBoxUserDomain.Text;
+        //    string displayName = TextBoxDisplayName.Text;
+        //    string authName = TextBoxAuthName.Text;
+        //    string sipServer = TextBoxServer.Text;
+
+        //    int outboundServerPort = 0;
+        //    string outboundServer = "";
+
+        //    // Set the SIP user information
+        //    rt = _sdkLib.setUser(userName,
+        //                               displayName,
+        //                               authName,
+        //                               password,
+        //                               sipDomain,
+        //                               sipServer,
+        //                               SIPServerPort,
+        //                               stunServer,
+        //                               StunServerPort,
+        //                               outboundServer,
+        //                               outboundServerPort);
+        //    if (rt != 0)
+        //    {
+        //        _sdkLib.unInitialize();
+        //        _sdkLib.releaseCallbackHandlers();
+        //        _SIPInited = false;
+
+        //        ListBoxSIPLog.Items.Clear();
+
+        //        MessageBox.Show("setUser failure.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return;
+        //    }
+
+        //    ListBoxSIPLog.Items.Add("Succeeded set user information.");
+
+        //    // Example: set the codec parameter for AMR-WB
+        //    /*
+
+        //     _sdkLib.setAudioCodecParameter(AUDIOCODEC_TYPE.AUDIOCODEC_AMRWB, "mode-set=0; octet-align=0; robust-sorting=0");
+
+        //    */
+
+
+
+        //    SetSRTPType();
+
+        //    string licenseKey = "PORTSIP_TEST_LICENSE";
+        //    rt = _sdkLib.setLicenseKey(licenseKey);
+        //    if (rt == PortSIP_Errors.ECoreTrialVersionLicenseKey)
+        //    {
+        //        MessageBox.Show("This sample was built base on evaluation PortSIP VoIP SDK, which allows only three minutes conversation. The conversation will be cut off automatically after three minutes, then you can't hearing anything. Feel free contact us at: sales@portsip.com to purchase the official version.");
+        //    }
+        //    else if (rt == PortSIP_Errors.ECoreWrongLicenseKey)
+        //    {
+        //        MessageBox.Show("The wrong license key was detected, please check with sales@portsip.com or support@portsip.com");
+        //    }
+
+        //    SetVideoResolution();
+        //    SetVideoQuality();
+
+
+
+        //    InitSettings();
+        //    updatePrackSetting();
+
+        //    if (checkBoxNeedRegister.Checked)
+        //    {
+        //        rt = _sdkLib.registerServer(120, 0);
+        //        if (rt != 0)
+        //        {
+        //            _sdkLib.removeUser();
+        //            _SIPInited = false;
+        //            _sdkLib.unInitialize();
+        //            _sdkLib.releaseCallbackHandlers();
+
+        //            ListBoxSIPLog.Items.Clear();
+
+        //            MessageBox.Show("register to server failed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        }
+
+
+        //        ListBoxSIPLog.Items.Add("Registering...");
+        //    }
+        //}
+
+        //private void Button2_Click(object sender, EventArgs e)
+        //{
+        //    if (_SIPInited == false)
+        //    {
+        //        return;
+        //    }
+
+        //    deRegisterFromServer();
+        //}
 
         private void ComboBoxLines_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                ComboBoxLines.SelectedIndex = 0;
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    ComboBoxLines.SelectedIndex = 0;
+            //    return;
+            //}
 
             if (_CurrentlyLine == (ComboBoxLines.SelectedIndex + LINE_BASE))
             {
@@ -990,10 +983,10 @@ namespace SIPSample
 
         private void ButtonDial_Click(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    return;
+            //}
             if (TextBoxPhoneNumber.Text.Length <= 0)
             {
                 MessageBox.Show("The phone number is empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1009,7 +1002,7 @@ namespace SIPSample
 
             string callTo = TextBoxPhoneNumber.Text;
 
-            
+
 
             // Ensure the we have been added one audio codec at least
             if (_sdkLib.isAudioCodecEmpty() == true)
@@ -1045,10 +1038,10 @@ namespace SIPSample
 
         private void ButtonHangUp_Click(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    return;
+            //}
 
             if (_CallSessions[_CurrentlyLine].getRecvCallState() == true)
             {
@@ -1075,10 +1068,10 @@ namespace SIPSample
 
         private void ButtonAnswer_Click(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    return;
+            //}
 
             if (_CallSessions[_CurrentlyLine].getRecvCallState() == false)
             {
@@ -1114,10 +1107,10 @@ namespace SIPSample
 
         private void ButtonReject_Click(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    return;
+            //}
 
             if (_CallSessions[_CurrentlyLine].getRecvCallState() == true)
             {
@@ -1134,10 +1127,10 @@ namespace SIPSample
 
         private void ButtonHold_Click(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    return;
+            //}
 
             if (_CallSessions[_CurrentlyLine].getSessionState() == false || _CallSessions[_CurrentlyLine].getHoldState() == true)
             {
@@ -1166,10 +1159,10 @@ namespace SIPSample
 
         private void Button16_Click(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    return;
+            //}
 
             if (_CallSessions[_CurrentlyLine].getSessionState() == false || _CallSessions[_CurrentlyLine].getHoldState() == false)
             {
@@ -1198,10 +1191,10 @@ namespace SIPSample
 
         private void ButtonTransfer_Click(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    return;
+            //}
 
             if (_CallSessions[_CurrentlyLine].getSessionState() == false)
             {
@@ -1239,10 +1232,10 @@ namespace SIPSample
 
         private void button24_Click(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    return;
+            //}
 
             if (_CallSessions[_CurrentlyLine].getSessionState() == false)
             {
@@ -1279,7 +1272,7 @@ namespace SIPSample
             }
 
             int rt = _sdkLib.attendedRefer(_CallSessions[_CurrentlyLine].getSessionId(), _CallSessions[replaceLine].getSessionId(), referTo);
-            
+
             if (rt != 0)
             {
                 string Text = "Line " + _CurrentlyLine.ToString();
@@ -1296,11 +1289,11 @@ namespace SIPSample
 
         private void CheckBoxConf_CheckedChanged(object sender, EventArgs e)
         {
-            if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            {
-                CheckBoxConf.Checked = false;
-                return;
-            }
+            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
+            //{
+            //    CheckBoxConf.Checked = false;
+            //    return;
+            //}
 
             Int32 width = 352;
             Int32 height = 288;
@@ -1377,7 +1370,7 @@ namespace SIPSample
                 }
 
                 _sdkLib.destroyConference();
-                
+
                 if (_CallSessions[_CurrentlyLine].getSessionState() == true &&
                     _CallSessions[_CurrentlyLine].getHoldState() == false)
                 {
@@ -1397,7 +1390,7 @@ namespace SIPSample
 
             if (ButtonLocalVideo.Text == "Local Video")
             {
-                _sdkLib.displayLocalVideo(true,true,localVideoPanel.Handle);
+                _sdkLib.displayLocalVideo(true, true, localVideoPanel.Handle);
                 ButtonLocalVideo.Text = "Stop Local";
             }
             else
@@ -1478,15 +1471,15 @@ namespace SIPSample
         }
 
 
-        private void ComboBoxSRTP_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_SIPInited == false)
-            {
-                return;
-            }
+        //private void ComboBoxSRTP_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (_SIPInited == false)
+        //    {
+        //        return;
+        //    }
 
-            SetSRTPType();
-        }
+        //    SetSRTPType();
+        //}
 
         private void ButtonCameraOptions_Click(object sender, EventArgs e)
         {
@@ -1563,7 +1556,7 @@ namespace SIPSample
             _sdkLib.muteMicrophone(CheckBoxMute.Checked);
         }
 
-        
+
 
         private void checkBoxAEC_CheckedChanged(object sender, EventArgs e)
         {
@@ -1677,8 +1670,8 @@ namespace SIPSample
 
             //  Start recording
             int rt = _sdkLib.startRecord(_CallSessions[_CurrentlyLine].getSessionId(),
-                                        filePath, 
-                                        fileName, 
+                                        filePath,
+                                        fileName,
                                         true,
                                         1,
                                         audioRecordFileFormat,
@@ -1740,7 +1733,7 @@ namespace SIPSample
             {
                 return;
             }
-            _sdkLib.stopPlayingFileToRemote( _CallSessions[_CurrentlyLine].getSessionId());
+            _sdkLib.stopPlayingFileToRemote(_CallSessions[_CurrentlyLine].getSessionId());
         }
 
         private void button27_Click(object sender, EventArgs e)
@@ -2067,7 +2060,7 @@ namespace SIPSample
         public Int32 onInviteFailure(Int32 sessionId, String callerDisplayName,
                                              String caller,
                                              String calleeDisplayName,
-                                             String callee, 
+                                             String callee,
                                              String reason, Int32 code, StringBuilder sipMessage)
         {
             int index = findSession(sessionId);
@@ -2172,7 +2165,7 @@ namespace SIPSample
                 }
                 // This call has Screen
                 processScreenShareStarted();
-                 _CallSessions[_CurrentlyLine].setExistsScreen(true);
+                _CallSessions[_CurrentlyLine].setExistsScreen(true);
             }
             else if (existsScreen == false && _CallSessions[_CurrentlyLine].getExistsScreen() == true)
             {
@@ -2622,7 +2615,7 @@ namespace SIPSample
         }
 
 
-        public Int32 onPresenceRecvSubscribe( Int32 subscribeId,
+        public Int32 onPresenceRecvSubscribe(Int32 subscribeId,
                                                     String fromDisplayName,
                                                     String from,
                                                     String subject)
@@ -2685,7 +2678,7 @@ namespace SIPSample
 
         public Int32 onSubscriptionTerminated(Int32 subscribeId)
         {
-           return 0;
+            return 0;
         }
 
 
@@ -2704,7 +2697,7 @@ namespace SIPSample
             string text = "Received a MESSAGE message on line ";
             text += i.ToString();
 
-            if (mimeType=="text" && subMimeType=="plain")
+            if (mimeType == "text" && subMimeType == "plain")
             {
                 string mesageText = GetString(messageData);
             }
@@ -2879,7 +2872,7 @@ namespace SIPSample
             //
 
             DIRECTION_MODE type = (DIRECTION_MODE)callbackType;
-            
+
             if (type == DIRECTION_MODE.DIRECTION_SEND)
             {
                 // The callback data is from local record device of each session, use the sessionId to identifying the session.
@@ -2889,7 +2882,7 @@ namespace SIPSample
                 // The callback data is received from remote side of each session, use the sessionId to identifying the session.
             }
 
- 
+
 
 
             return 0;
@@ -2940,7 +2933,7 @@ namespace SIPSample
                                                Int32 height,
                                                [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 6)] byte[] data,
                                                Int32 dataLength)
-        { 
+        {
 
             /*
                 !!! IMPORTANT !!!
@@ -2979,7 +2972,7 @@ namespace SIPSample
 
         private void OnScreenSelect(object sender, EventArgs e)
         {
-            _sdkLib.selectScreenSource( ComboboxScreenLst.SelectedIndex);
+            _sdkLib.selectScreenSource(ComboboxScreenLst.SelectedIndex);
         }
 
         private void OnBnClickedBtnStartSharing(object sender, EventArgs e)
@@ -3006,7 +2999,7 @@ namespace SIPSample
                 _CallSessions[_CurrentlyLine].setExistsScreen(false);
 
                 _CallSessions[_CurrentlyLine].setInitiateScreen(false);
-                _sdkLib.updateCall( _CallSessions[_CurrentlyLine].getSessionId(),
+                _sdkLib.updateCall(_CallSessions[_CurrentlyLine].getSessionId(),
                     _CallSessions[_CurrentlyLine].getExistsAudio(),
                     _CallSessions[_CurrentlyLine].getExistsVideo(),
                     false);
@@ -3021,8 +3014,8 @@ namespace SIPSample
                 _sdkLib.enableScreenStreamCallback(_CallSessions[_CurrentlyLine].getSessionId(),
                         DIRECTION_MODE.DIRECTION_RECV);
             }));
-     
-           
+
+
         }
         private void processScreenShareStoped()
         {
@@ -3031,44 +3024,21 @@ namespace SIPSample
                 _fmVideoScreen.Hide();
                 _sdkLib.setScreenVideoWindow(_CallSessions[_CurrentlyLine].getSessionId(), IntPtr.Zero);
             }));
-           
+
         }
 
-        private void ButtonSettings_Click(object sender, EventArgs e)
-        {
-            // Log current codec states
-            Console.WriteLine($"Form1 - Before opening SettingsForm: G711uLawEnabled={_g711uLawEnabled}, G711aLawEnabled={_g711aLawEnabled}, G729Enabled={_g729Enabled}, iLBCEnabled={_iLBCEnabled}, GSMEnabled={_gsmEnabled}, AMREnabled={_amrEnabled}, G722Enabled={_g722Enabled}, SpeexEnabled={_speexEnabled}, AMRWBEnabled={_amrwbEnabled}, SpeexWBEnabled={_speexwbEnabled}, G7221Enabled={_g7221Enabled}, OpusEnabled={_opusEnabled}, H264Enabled={_h264Enabled}, VP8Enabled={_vp8Enabled}, VP9Enabled={_vp9Enabled}");
 
-            SettingsForm settingsForm = new SettingsForm(_sdkLib, _SIPInited, _audioCodecsForm,
-                _g711uLawEnabled, _g711aLawEnabled, _g729Enabled, _iLBCEnabled, _gsmEnabled,
-                _amrEnabled, _g722Enabled, _speexEnabled, _amrwbEnabled, _speexwbEnabled,
-                _g7221Enabled, _opusEnabled, _h264Enabled, _vp8Enabled, _vp9Enabled);
-            settingsForm.ShowDialog();
 
-            // Log updated codec states
-            Console.WriteLine($"Form1 - After closing SettingsForm: G711uLawEnabled={settingsForm.G711uLawEnabled}, G711aLawEnabled={settingsForm.G711aLawEnabled}, G729Enabled={settingsForm.G729Enabled}, iLBCEnabled={settingsForm.iLBCEnabled}, GSMEnabled={settingsForm.GSMEnabled}, AMREnabled={settingsForm.AMREnabled}, G722Enabled={settingsForm.G722Enabled}, SpeexEnabled={settingsForm.SpeexEnabled}, AMRWBEnabled={settingsForm.AMRWBEnabled}, SpeexWBEnabled={settingsForm.SpeexWBEnabled}, G7221Enabled={settingsForm.G7221Enabled}, OpusEnabled={settingsForm.OpusEnabled}, H264Enabled={settingsForm.H264Enabled}, VP8Enabled={settingsForm.VP8Enabled}, VP9Enabled={settingsForm.VP9Enabled}");
-
-            // Update the codec states after the settings form is closed
-            _g711uLawEnabled = settingsForm.G711uLawEnabled;
-            _g711aLawEnabled = settingsForm.G711aLawEnabled;
-            _g729Enabled = settingsForm.G729Enabled;
-            _iLBCEnabled = settingsForm.iLBCEnabled;
-            _gsmEnabled = settingsForm.GSMEnabled;
-            _amrEnabled = settingsForm.AMREnabled;
-            _g722Enabled = settingsForm.G722Enabled;
-            _speexEnabled = settingsForm.SpeexEnabled;
-            _amrwbEnabled = settingsForm.AMRWBEnabled;
-            _speexwbEnabled = settingsForm.SpeexWBEnabled;
-            _g7221Enabled = settingsForm.G7221Enabled;
-            _opusEnabled = settingsForm.OpusEnabled;
-            _h264Enabled = settingsForm.H264Enabled;
-            _vp8Enabled = settingsForm.VP8Enabled;
-            _vp9Enabled = settingsForm.VP9Enabled;
-        }
 
         private void groupBox3_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void ButtonSettings_Click(object sender, EventArgs e)
+        {
+            RegistrationForm regForm = new RegistrationForm(_sdkLib); // Assuming _sdkLib is accessible here
+            regForm.ShowDialog(); // Show the form as a dialog
         }
     }
 }

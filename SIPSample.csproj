@@ -119,11 +119,11 @@
     <Compile Include="PortSIP\PortSIP_Errors.cs" />
     <Compile Include="PortSIP\Session.cs" />
     <Compile Include="PortSIP\SIPCallbackEvents.cs" />
-    <Compile Include="SettingsForm.cs">
+    <Compile Include="RegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsForm.Designer.cs">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
+    <Compile Include="RegistrationForm.Designer.cs">
+      <DependentUpon>RegistrationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="videoScreen.cs">
       <SubType>Form</SubType>
@@ -142,8 +142,8 @@
     <EmbeddedResource Include="IncomingCallDialog.resx">
       <DependentUpon>IncomingCallDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="RegistrationForm.resx">
+      <DependentUpon>RegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="videoScreen.resx">
       <DependentUpon>videoScreen.cs</DependentUpon>

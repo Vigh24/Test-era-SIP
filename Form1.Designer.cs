@@ -6,7 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Button ToggleSizeButton; // Add this line
 
         /// <summary>
         /// Clean up any resources being used.
@@ -32,32 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBoxNeedRegister = new System.Windows.Forms.CheckBox();
-            this.Label22 = new System.Windows.Forms.Label();
-            this.ComboBoxTransport = new System.Windows.Forms.ComboBox();
-            this.Label23 = new System.Windows.Forms.Label();
-            this.ComboBoxSRTP = new System.Windows.Forms.ComboBox();
-            this.TextBoxUserDomain = new System.Windows.Forms.TextBox();
-            this.Label9 = new System.Windows.Forms.Label();
-            this.TextBoxAuthName = new System.Windows.Forms.TextBox();
-            this.Label5 = new System.Windows.Forms.Label();
-            this.TextBoxDisplayName = new System.Windows.Forms.TextBox();
-            this.Label6 = new System.Windows.Forms.Label();
-            this.Button2 = new System.Windows.Forms.Button();
-            this.Button1 = new System.Windows.Forms.Button();
-            this.TextBoxStunPort = new System.Windows.Forms.TextBox();
-            this.Label7 = new System.Windows.Forms.Label();
-            this.TextBoxStunServer = new System.Windows.Forms.TextBox();
-            this.Label8 = new System.Windows.Forms.Label();
-            this.TextBoxServerPort = new System.Windows.Forms.TextBox();
-            this.Label3 = new System.Windows.Forms.Label();
-            this.TextBoxServer = new System.Windows.Forms.TextBox();
-            this.Label4 = new System.Windows.Forms.Label();
-            this.TextBoxPassword = new System.Windows.Forms.TextBox();
-            this.Label2 = new System.Windows.Forms.Label();
-            this.TextBoxUserName = new System.Windows.Forms.TextBox();
-            this.Label1 = new System.Windows.Forms.Label();
             this.ButtonSettings = new System.Windows.Forms.Button();
             this.checkBoxAnswerVideo = new System.Windows.Forms.CheckBox();
             this.checkBoxMakeVideo = new System.Windows.Forms.CheckBox();
@@ -150,9 +123,7 @@
             this.ButtonStartSharing = new System.Windows.Forms.Button();
             this.ComboboxScreenLst = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.ToggleSizeButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarSpeaker)).BeginInit();
@@ -194,282 +165,12 @@
             this.linkLabel1.Visible = false;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.checkBoxNeedRegister);
-            this.groupBox1.Controls.Add(this.Label22);
-            this.groupBox1.Controls.Add(this.ComboBoxTransport);
-            this.groupBox1.Controls.Add(this.Label23);
-            this.groupBox1.Controls.Add(this.ComboBoxSRTP);
-            this.groupBox1.Controls.Add(this.TextBoxUserDomain);
-            this.groupBox1.Controls.Add(this.Label9);
-            this.groupBox1.Controls.Add(this.TextBoxAuthName);
-            this.groupBox1.Controls.Add(this.Label5);
-            this.groupBox1.Controls.Add(this.TextBoxDisplayName);
-            this.groupBox1.Controls.Add(this.Label6);
-            this.groupBox1.Controls.Add(this.Button2);
-            this.groupBox1.Controls.Add(this.Button1);
-            this.groupBox1.Controls.Add(this.TextBoxStunPort);
-            this.groupBox1.Controls.Add(this.Label7);
-            this.groupBox1.Controls.Add(this.TextBoxStunServer);
-            this.groupBox1.Controls.Add(this.Label8);
-            this.groupBox1.Controls.Add(this.TextBoxServerPort);
-            this.groupBox1.Controls.Add(this.Label3);
-            this.groupBox1.Controls.Add(this.TextBoxServer);
-            this.groupBox1.Controls.Add(this.Label4);
-            this.groupBox1.Controls.Add(this.TextBoxPassword);
-            this.groupBox1.Controls.Add(this.Label2);
-            this.groupBox1.Controls.Add(this.TextBoxUserName);
-            this.groupBox1.Controls.Add(this.Label1);
-            this.groupBox1.Location = new System.Drawing.Point(479, 65);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(445, 169);
-            this.groupBox1.TabIndex = 37;
-            this.groupBox1.TabStop = false;
-            // 
-            // checkBoxNeedRegister
-            // 
-            this.checkBoxNeedRegister.AutoSize = true;
-            this.checkBoxNeedRegister.Checked = true;
-            this.checkBoxNeedRegister.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxNeedRegister.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.checkBoxNeedRegister.Location = new System.Drawing.Point(277, 119);
-            this.checkBoxNeedRegister.Name = "checkBoxNeedRegister";
-            this.checkBoxNeedRegister.Size = new System.Drawing.Size(109, 17);
-            this.checkBoxNeedRegister.TabIndex = 125;
-            this.checkBoxNeedRegister.Text = "Register to server";
-            this.checkBoxNeedRegister.UseVisualStyleBackColor = true;
-            // 
-            // Label22
-            // 
-            this.Label22.AutoSize = true;
-            this.Label22.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label22.Location = new System.Drawing.Point(12, 138);
-            this.Label22.Name = "Label22";
-            this.Label22.Size = new System.Drawing.Size(55, 13);
-            this.Label22.TabIndex = 124;
-            this.Label22.Text = "Transport:";
-            // 
-            // ComboBoxTransport
-            // 
-            this.ComboBoxTransport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxTransport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxTransport.FormattingEnabled = true;
-            this.ComboBoxTransport.Location = new System.Drawing.Point(72, 133);
-            this.ComboBoxTransport.Name = "ComboBoxTransport";
-            this.ComboBoxTransport.Size = new System.Drawing.Size(64, 21);
-            this.ComboBoxTransport.TabIndex = 123;
-            // 
-            // Label23
-            // 
-            this.Label23.AutoSize = true;
-            this.Label23.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label23.Location = new System.Drawing.Point(142, 138);
-            this.Label23.Name = "Label23";
-            this.Label23.Size = new System.Drawing.Size(36, 13);
-            this.Label23.TabIndex = 122;
-            this.Label23.Text = "SRTP";
-            // 
-            // ComboBoxSRTP
-            // 
-            this.ComboBoxSRTP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxSRTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxSRTP.FormattingEnabled = true;
-            this.ComboBoxSRTP.Location = new System.Drawing.Point(181, 132);
-            this.ComboBoxSRTP.Name = "ComboBoxSRTP";
-            this.ComboBoxSRTP.Size = new System.Drawing.Size(63, 21);
-            this.ComboBoxSRTP.TabIndex = 121;
-            this.ComboBoxSRTP.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSRTP_SelectedIndexChanged);
-            // 
-            // TextBoxUserDomain
-            // 
-            this.TextBoxUserDomain.Location = new System.Drawing.Point(84, 52);
-            this.TextBoxUserDomain.Name = "TextBoxUserDomain";
-            this.TextBoxUserDomain.Size = new System.Drawing.Size(132, 20);
-            this.TextBoxUserDomain.TabIndex = 108;
-            // 
-            // Label9
-            // 
-            this.Label9.AutoSize = true;
-            this.Label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label9.Location = new System.Drawing.Point(11, 56);
-            this.Label9.Name = "Label9";
-            this.Label9.Size = new System.Drawing.Size(68, 13);
-            this.Label9.TabIndex = 120;
-            this.Label9.Text = "User Domain";
-            // 
-            // TextBoxAuthName
-            // 
-            this.TextBoxAuthName.Location = new System.Drawing.Point(302, 31);
-            this.TextBoxAuthName.Name = "TextBoxAuthName";
-            this.TextBoxAuthName.Size = new System.Drawing.Size(132, 20);
-            this.TextBoxAuthName.TabIndex = 106;
-            // 
-            // Label5
-            // 
-            this.Label5.AutoSize = true;
-            this.Label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label5.Location = new System.Drawing.Point(236, 36);
-            this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(60, 13);
-            this.Label5.TabIndex = 119;
-            this.Label5.Text = "Auth Name";
-            // 
-            // TextBoxDisplayName
-            // 
-            this.TextBoxDisplayName.Location = new System.Drawing.Point(84, 31);
-            this.TextBoxDisplayName.Name = "TextBoxDisplayName";
-            this.TextBoxDisplayName.Size = new System.Drawing.Size(132, 20);
-            this.TextBoxDisplayName.TabIndex = 104;
-            // 
-            // Label6
-            // 
-            this.Label6.AutoSize = true;
-            this.Label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label6.Location = new System.Drawing.Point(7, 36);
-            this.Label6.Name = "Label6";
-            this.Label6.Size = new System.Drawing.Size(72, 13);
-            this.Label6.TabIndex = 118;
-            this.Label6.Text = "Display Name";
-            // 
-            // Button2
-            // 
-            this.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Button2.Location = new System.Drawing.Point(358, 140);
-            this.Button2.Name = "Button2";
-            this.Button2.Size = new System.Drawing.Size(75, 22);
-            this.Button2.TabIndex = 117;
-            this.Button2.Text = "Offline";
-            this.Button2.UseVisualStyleBackColor = true;
-            this.Button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // Button1
-            // 
-            this.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Button1.Location = new System.Drawing.Point(277, 141);
-            this.Button1.Name = "Button1";
-            this.Button1.Size = new System.Drawing.Size(75, 22);
-            this.Button1.TabIndex = 116;
-            this.Button1.Text = "Online";
-            this.Button1.UseVisualStyleBackColor = true;
-            this.Button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // TextBoxStunPort
-            // 
-            this.TextBoxStunPort.Location = new System.Drawing.Point(302, 92);
-            this.TextBoxStunPort.Name = "TextBoxStunPort";
-            this.TextBoxStunPort.Size = new System.Drawing.Size(132, 20);
-            this.TextBoxStunPort.TabIndex = 114;
-            // 
-            // Label7
-            // 
-            this.Label7.AutoSize = true;
-            this.Label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label7.Location = new System.Drawing.Point(266, 96);
-            this.Label7.Name = "Label7";
-            this.Label7.Size = new System.Drawing.Size(26, 13);
-            this.Label7.TabIndex = 115;
-            this.Label7.Text = "Port";
-            // 
-            // TextBoxStunServer
-            // 
-            this.TextBoxStunServer.Location = new System.Drawing.Point(84, 92);
-            this.TextBoxStunServer.Name = "TextBoxStunServer";
-            this.TextBoxStunServer.Size = new System.Drawing.Size(132, 20);
-            this.TextBoxStunServer.TabIndex = 112;
-            // 
-            // Label8
-            // 
-            this.Label8.AutoSize = true;
-            this.Label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label8.Location = new System.Drawing.Point(16, 96);
-            this.Label8.Name = "Label8";
-            this.Label8.Size = new System.Drawing.Size(63, 13);
-            this.Label8.TabIndex = 113;
-            this.Label8.Text = "Stun Server";
-            // 
-            // TextBoxServerPort
-            // 
-            this.TextBoxServerPort.Location = new System.Drawing.Point(302, 73);
-            this.TextBoxServerPort.Name = "TextBoxServerPort";
-            this.TextBoxServerPort.Size = new System.Drawing.Size(132, 20);
-            this.TextBoxServerPort.TabIndex = 110;
-            this.TextBoxServerPort.Text = "5060";
-            // 
-            // Label3
-            // 
-            this.Label3.AutoSize = true;
-            this.Label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label3.Location = new System.Drawing.Point(232, 76);
-            this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(60, 13);
-            this.Label3.TabIndex = 111;
-            this.Label3.Text = "Server Port";
-            // 
-            // TextBoxServer
-            // 
-            this.TextBoxServer.Location = new System.Drawing.Point(84, 73);
-            this.TextBoxServer.Name = "TextBoxServer";
-            this.TextBoxServer.Size = new System.Drawing.Size(132, 20);
-            this.TextBoxServer.TabIndex = 109;
-            // 
-            // Label4
-            // 
-            this.Label4.AutoSize = true;
-            this.Label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label4.Location = new System.Drawing.Point(21, 76);
-            this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(58, 13);
-            this.Label4.TabIndex = 107;
-            this.Label4.Text = "SIP Server";
-            // 
-            // TextBoxPassword
-            // 
-            this.TextBoxPassword.Location = new System.Drawing.Point(302, 12);
-            this.TextBoxPassword.Name = "TextBoxPassword";
-            this.TextBoxPassword.PasswordChar = '*';
-            this.TextBoxPassword.Size = new System.Drawing.Size(132, 20);
-            this.TextBoxPassword.TabIndex = 103;
-            // 
-            // Label2
-            // 
-            this.Label2.AutoSize = true;
-            this.Label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label2.Location = new System.Drawing.Point(243, 16);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(53, 13);
-            this.Label2.TabIndex = 105;
-            this.Label2.Text = "Password";
-            // 
-            // TextBoxUserName
-            // 
-            this.TextBoxUserName.Location = new System.Drawing.Point(84, 12);
-            this.TextBoxUserName.Name = "TextBoxUserName";
-            this.TextBoxUserName.Size = new System.Drawing.Size(132, 20);
-            this.TextBoxUserName.TabIndex = 101;
-            // 
-            // Label1
-            // 
-            this.Label1.AutoSize = true;
-            this.Label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Label1.Location = new System.Drawing.Point(24, 16);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(55, 13);
-            this.Label1.TabIndex = 102;
-            this.Label1.Text = "Username";
-            // 
             // ButtonSettings
             // 
-            this.ButtonSettings.ForeColor = System.Drawing.Color.Black;
-            this.ButtonSettings.Location = new System.Drawing.Point(152, 329);
+            this.ButtonSettings.Location = new System.Drawing.Point(152, 326);
             this.ButtonSettings.Name = "ButtonSettings";
             this.ButtonSettings.Size = new System.Drawing.Size(55, 23);
-            this.ButtonSettings.TabIndex = 129;
-            this.ButtonSettings.Text = "Codecs";
-            this.ButtonSettings.UseVisualStyleBackColor = true;
-            this.ButtonSettings.Visible = false;
+            this.ButtonSettings.TabIndex = 131;
             this.ButtonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             // 
             // checkBoxAnswerVideo
@@ -1486,17 +1187,6 @@
             this.label15.TabIndex = 104;
             this.label15.Text = "Screen";
             // 
-            // ToggleSizeButton
-            // 
-            this.ToggleSizeButton.ForeColor = System.Drawing.Color.Black;
-            this.ToggleSizeButton.Location = new System.Drawing.Point(152, 329);
-            this.ToggleSizeButton.Name = "ToggleSizeButton";
-            this.ToggleSizeButton.Size = new System.Drawing.Size(55, 23);
-            this.ToggleSizeButton.TabIndex = 1;
-            this.ToggleSizeButton.Text = "Settings";
-            this.ToggleSizeButton.UseVisualStyleBackColor = true;
-            this.ToggleSizeButton.Click += new System.EventHandler(this.ToggleSizeButton_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SIPSample.Properties.Resources.WhatsApp_Image_2024_06_05_at_11_37_50_AM;
@@ -1512,9 +1202,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(229, 440);
+            this.ClientSize = new System.Drawing.Size(227, 440);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.ToggleSizeButton);
             this.Controls.Add(this.ButtonSettings);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.checkBoxAnswerVideo);
@@ -1540,7 +1229,6 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.ButtonAnswer);
             this.Controls.Add(this.ButtonTransfer);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ButtonHold);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.ButtonReject);
@@ -1569,8 +1257,6 @@
             this.Text = "Eratronics";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).EndInit();
@@ -1598,31 +1284,6 @@
 
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        internal System.Windows.Forms.Label Label22;
-        internal System.Windows.Forms.ComboBox ComboBoxTransport;
-        internal System.Windows.Forms.Label Label23;
-        internal System.Windows.Forms.ComboBox ComboBoxSRTP;
-        internal System.Windows.Forms.TextBox TextBoxUserDomain;
-        internal System.Windows.Forms.Label Label9;
-        internal System.Windows.Forms.TextBox TextBoxAuthName;
-        internal System.Windows.Forms.Label Label5;
-        internal System.Windows.Forms.TextBox TextBoxDisplayName;
-        internal System.Windows.Forms.Label Label6;
-        internal System.Windows.Forms.Button Button2;
-        internal System.Windows.Forms.Button Button1;
-        internal System.Windows.Forms.TextBox TextBoxStunPort;
-        internal System.Windows.Forms.Label Label7;
-        internal System.Windows.Forms.TextBox TextBoxStunServer;
-        internal System.Windows.Forms.Label Label8;
-        internal System.Windows.Forms.TextBox TextBoxServerPort;
-        internal System.Windows.Forms.Label Label3;
-        internal System.Windows.Forms.TextBox TextBoxServer;
-        internal System.Windows.Forms.Label Label4;
-        internal System.Windows.Forms.TextBox TextBoxPassword;
-        internal System.Windows.Forms.Label Label2;
-        internal System.Windows.Forms.TextBox TextBoxUserName;
-        internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.Button button24;
         internal System.Windows.Forms.Button Button16;
         internal System.Windows.Forms.Button ButtonAnswer;
@@ -1700,7 +1361,6 @@
         internal System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog1;
         internal System.Windows.Forms.Button Button18;
         internal System.Windows.Forms.Button Button19;
-        private System.Windows.Forms.CheckBox checkBoxNeedRegister;
         private System.Windows.Forms.CheckBox checkBoxANS;
         private System.Windows.Forms.CheckBox checkBoxPRACK;
         internal System.Windows.Forms.CheckBox CheckBoxConf;

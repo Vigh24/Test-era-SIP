@@ -18,7 +18,7 @@ namespace SIPSample
 {
     public partial class Form1 : Form, SIPCallbackEvents
     {
-
+        private PortSIPLib _sdkLib;
         private const int MAX_LINES = 9; // Maximum lines
         private const int LINE_BASE = 1;
         private RegistrationForm _registrationForm;
@@ -48,7 +48,7 @@ namespace SIPSample
         private AudioCodecsForm _audioCodecsForm;
 
 
-        private PortSIPLib _sdkLib;
+
         private videoScreen _fmVideoScreen;
         private NotifyIcon notifyIcon;
         private ContextMenuStrip contextMenuStrip;
@@ -109,9 +109,12 @@ namespace SIPSample
 
         private void ShowRegistrationForm()
         {
-            PortSIPLib sdkLib = new PortSIPLib(this); // Assuming you have an instance of PortSIPLib
-            RegistrationForm regForm = new RegistrationForm(sdkLib);
-            regForm.ShowDialog();
+            if (_registrationForm == null || _registrationForm.IsDisposed)
+            {
+                _registrationForm = new RegistrationForm(this, _sdkLib);
+            }
+            _registrationForm.Show();
+            _registrationForm.BringToFront();
         }
 
 
@@ -407,7 +410,7 @@ namespace SIPSample
         {
             InitializeComponent();
             _sdkLib = new PortSIPLib(this);
-            _registrationForm = new RegistrationForm(_sdkLib);
+            _registrationForm = new RegistrationForm(this, _sdkLib);
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
             TextBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
@@ -425,6 +428,11 @@ namespace SIPSample
             // Initialize AudioCodecsForm with required objects
             _audioCodecsForm = new AudioCodecsForm(_sdkLib, _SIPInited);
 
+        }
+
+        public void UpdateSdkLib(PortSIPLib sdkLib)
+        {
+            _sdkLib = sdkLib;
         }
 
         private void InitializeNotifyIcon()
@@ -3042,7 +3050,7 @@ namespace SIPSample
         {
             if (_registrationForm == null || _registrationForm.IsDisposed)
             {
-                _registrationForm = new RegistrationForm(_sdkLib);
+                _registrationForm = new RegistrationForm(this, _sdkLib);
             }
             _registrationForm.Show();
             _registrationForm.BringToFront();

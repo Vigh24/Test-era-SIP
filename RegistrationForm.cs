@@ -9,6 +9,14 @@ public partial class RegistrationForm : Form, SIPCallbackEvents
     private bool _SIPInited = false;
     private bool _SIPLogined = false;
 
+    // Properties to store user data
+    public string UserName { get; set; }
+    public string Password { get; set; }
+    public string ServerAddress { get; set; }
+    public int ServerPort { get; set; }
+    public string StunServer { get; set; }
+    public int StunServerPort { get; set; }
+
     public RegistrationForm(PortSIPLib sdkLib)
     {
         InitializeComponent();
@@ -20,7 +28,30 @@ public partial class RegistrationForm : Form, SIPCallbackEvents
         ComboBoxTransport.Items.Add("TCP");
         ComboBoxTransport.Items.Add("PERS");
         ComboBoxTransport.SelectedIndex = 0; // Default to UDP
+
+        // Initialize properties with default values or from configuration
+        UserName = ""; // Default or loaded from configuration
+        Password = "";
+        ServerAddress = "";
+        ServerPort = 0;
+        StunServer = "";
+        StunServerPort = 0;
+
+        this.Shown += new EventHandler(RegistrationForm_Shown);
     }
+
+    private void RegistrationForm_Shown(object sender, EventArgs e)
+    {
+        // Repopulate fields if properties have values
+        TextBoxUserName.Text = UserName;
+        TextBoxPassword.Text = Password;
+        TextBoxServer.Text = ServerAddress;
+        TextBoxServerPort.Text = ServerPort > 0 ? ServerPort.ToString() : "";
+        TextBoxStunServer.Text = StunServer;
+        TextBoxStunPort.Text = StunServerPort > 0 ? StunServerPort.ToString() : "";
+    }
+
+
 
     private void ButtonRegister_Click(object sender, EventArgs e)
     {
@@ -46,12 +77,17 @@ public partial class RegistrationForm : Form, SIPCallbackEvents
             return;
         }
 
-        int SIPServerPort = int.Parse(TextBoxServerPort.Text);
+        int SIPServerPort;
+        if (!int.TryParse(TextBoxServerPort.Text, out SIPServerPort))
+        {
+            MessageBox.Show("Invalid Server Port.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
         int StunServerPort = 0;
         if (!string.IsNullOrWhiteSpace(TextBoxStunPort.Text))
         {
-            StunServerPort = int.Parse(TextBoxStunPort.Text);
-            if (StunServerPort > 65535 || StunServerPort <= 0)
+            if (!int.TryParse(TextBoxStunPort.Text, out StunServerPort) || StunServerPort > 65535 || StunServerPort <= 0)
             {
                 MessageBox.Show("The Stun server port is out of range.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -128,6 +164,42 @@ public partial class RegistrationForm : Form, SIPCallbackEvents
         }
 
         MessageBox.Show("Registering...");
+    }
+
+    private void TextBoxUserName_TextChanged(object sender, EventArgs e)
+    {
+        UserName = TextBoxUserName.Text;
+    }
+
+    private void TextBoxPassword_TextChanged(object sender, EventArgs e)
+    {
+        Password = TextBoxPassword.Text;
+    }
+
+    private void TextBoxServer_TextChanged(object sender, EventArgs e)
+    {
+        ServerAddress = TextBoxServer.Text;
+    }
+
+    private void TextBoxServerPort_TextChanged(object sender, EventArgs e)
+    {
+        if (int.TryParse(TextBoxServerPort.Text, out int port))
+        {
+            ServerPort = port;
+        }
+    }
+
+    private void TextBoxStunServer_TextChanged(object sender, EventArgs e)
+    {
+        StunServer = TextBoxStunServer.Text;
+    }
+
+    private void TextBoxStunPort_TextChanged(object sender, EventArgs e)
+    {
+        if (int.TryParse(TextBoxStunPort.Text, out int port))
+        {
+            StunServerPort = port;
+        }
     }
 
     public int onRegisterSuccess(string statusText, int statusCode, StringBuilder sipMessage)
@@ -439,6 +511,20 @@ public partial class RegistrationForm : Form, SIPCallbackEvents
     {
         // Implementation code here
         return 0;
+    }
+
+    protected override void OnFormClosing(FormClosingEventArgs e)
+    {
+        // Prevent deregistration on form close
+        if (_SIPInited)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
+        else
+        {
+            base.OnFormClosing(e);
+        }
     }
 
     // This closes the RegistrationForm class

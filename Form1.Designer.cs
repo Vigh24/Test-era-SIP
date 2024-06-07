@@ -167,10 +167,13 @@
             // 
             // ButtonSettings
             // 
-            this.ButtonSettings.Location = new System.Drawing.Point(152, 326);
+            this.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ButtonSettings.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.ButtonSettings.Location = new System.Drawing.Point(152, 329);
             this.ButtonSettings.Name = "ButtonSettings";
             this.ButtonSettings.Size = new System.Drawing.Size(55, 23);
             this.ButtonSettings.TabIndex = 131;
+            this.ButtonSettings.Text = "Settings";
             this.ButtonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             // 
             // checkBoxAnswerVideo
@@ -1250,6 +1253,7 @@
             this.Controls.Add(this.Button10);
             this.Controls.Add(this.Button11);
             this.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";

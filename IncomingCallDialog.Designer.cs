@@ -32,6 +32,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncomingCallDialog));
             this.btnAnswer = new System.Windows.Forms.Button();
             this.btnReject = new System.Windows.Forms.Button();
             this.lblCallerDetails = new System.Windows.Forms.Label();
@@ -73,6 +74,7 @@
             this.Controls.Add(this.lblCallerDetails);
             this.Controls.Add(this.btnReject);
             this.Controls.Add(this.btnAnswer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IncomingCallDialog";
             this.Text = "Incoming Call";
             this.ResumeLayout(false);

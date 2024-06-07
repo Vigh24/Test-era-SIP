@@ -26,6 +26,7 @@
 
     private void InitializeComponent()
     {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrationForm));
             this.ComboBoxTransport = new System.Windows.Forms.ComboBox();
             this.TextBoxUserName = new System.Windows.Forms.TextBox();
             this.TextBoxPassword = new System.Windows.Forms.TextBox();
@@ -51,56 +52,56 @@
             // ComboBoxTransport
             // 
             this.ComboBoxTransport.FormattingEnabled = true;
-            this.ComboBoxTransport.Location = new System.Drawing.Point(89, 12);
+            this.ComboBoxTransport.Location = new System.Drawing.Point(307, 12);
             this.ComboBoxTransport.Name = "ComboBoxTransport";
             this.ComboBoxTransport.Size = new System.Drawing.Size(121, 21);
             this.ComboBoxTransport.TabIndex = 0;
             // 
             // TextBoxUserName
             // 
-            this.TextBoxUserName.Location = new System.Drawing.Point(89, 39);
+            this.TextBoxUserName.Location = new System.Drawing.Point(85, 17);
             this.TextBoxUserName.Name = "TextBoxUserName";
             this.TextBoxUserName.Size = new System.Drawing.Size(121, 20);
             this.TextBoxUserName.TabIndex = 1;
             // 
             // TextBoxPassword
             // 
-            this.TextBoxPassword.Location = new System.Drawing.Point(89, 65);
+            this.TextBoxPassword.Location = new System.Drawing.Point(85, 43);
             this.TextBoxPassword.Name = "TextBoxPassword";
             this.TextBoxPassword.Size = new System.Drawing.Size(121, 20);
             this.TextBoxPassword.TabIndex = 2;
             // 
             // TextBoxServer
             // 
-            this.TextBoxServer.Location = new System.Drawing.Point(89, 91);
+            this.TextBoxServer.Location = new System.Drawing.Point(85, 71);
             this.TextBoxServer.Name = "TextBoxServer";
             this.TextBoxServer.Size = new System.Drawing.Size(121, 20);
             this.TextBoxServer.TabIndex = 3;
             // 
             // TextBoxServerPort
             // 
-            this.TextBoxServerPort.Location = new System.Drawing.Point(89, 117);
+            this.TextBoxServerPort.Location = new System.Drawing.Point(307, 44);
             this.TextBoxServerPort.Name = "TextBoxServerPort";
             this.TextBoxServerPort.Size = new System.Drawing.Size(121, 20);
             this.TextBoxServerPort.TabIndex = 4;
             // 
             // TextBoxDomain
             // 
-            this.TextBoxDomain.Location = new System.Drawing.Point(89, 143);
+            this.TextBoxDomain.Location = new System.Drawing.Point(192, 339);
             this.TextBoxDomain.Name = "TextBoxDomain";
             this.TextBoxDomain.Size = new System.Drawing.Size(121, 20);
             this.TextBoxDomain.TabIndex = 5;
             // 
             // TextBoxDisplayName
             // 
-            this.TextBoxDisplayName.Location = new System.Drawing.Point(89, 169);
+            this.TextBoxDisplayName.Location = new System.Drawing.Point(307, 71);
             this.TextBoxDisplayName.Name = "TextBoxDisplayName";
             this.TextBoxDisplayName.Size = new System.Drawing.Size(121, 20);
             this.TextBoxDisplayName.TabIndex = 6;
             // 
             // TextBoxAuthName
             // 
-            this.TextBoxAuthName.Location = new System.Drawing.Point(89, 195);
+            this.TextBoxAuthName.Location = new System.Drawing.Point(85, 343);
             this.TextBoxAuthName.Name = "TextBoxAuthName";
             this.TextBoxAuthName.Size = new System.Drawing.Size(121, 20);
             this.TextBoxAuthName.TabIndex = 7;
@@ -108,14 +109,14 @@
             // ListBoxSIPLog
             // 
             this.ListBoxSIPLog.FormattingEnabled = true;
-            this.ListBoxSIPLog.Location = new System.Drawing.Point(12, 221);
+            this.ListBoxSIPLog.Location = new System.Drawing.Point(15, 136);
             this.ListBoxSIPLog.Name = "ListBoxSIPLog";
-            this.ListBoxSIPLog.Size = new System.Drawing.Size(260, 95);
+            this.ListBoxSIPLog.Size = new System.Drawing.Size(413, 43);
             this.ListBoxSIPLog.TabIndex = 8;
             // 
             // ButtonRegister
             // 
-            this.ButtonRegister.Location = new System.Drawing.Point(12, 322);
+            this.ButtonRegister.Location = new System.Drawing.Point(192, 107);
             this.ButtonRegister.Name = "ButtonRegister";
             this.ButtonRegister.Size = new System.Drawing.Size(75, 23);
             this.ButtonRegister.TabIndex = 9;
@@ -126,7 +127,7 @@
             // LabelTransport
             // 
             this.LabelTransport.AutoSize = true;
-            this.LabelTransport.Location = new System.Drawing.Point(9, 20);
+            this.LabelTransport.Location = new System.Drawing.Point(227, 20);
             this.LabelTransport.Name = "LabelTransport";
             this.LabelTransport.Size = new System.Drawing.Size(55, 13);
             this.LabelTransport.TabIndex = 10;
@@ -135,7 +136,7 @@
             // LabelUserName
             // 
             this.LabelUserName.AutoSize = true;
-            this.LabelUserName.Location = new System.Drawing.Point(9, 42);
+            this.LabelUserName.Location = new System.Drawing.Point(5, 20);
             this.LabelUserName.Name = "LabelUserName";
             this.LabelUserName.Size = new System.Drawing.Size(63, 13);
             this.LabelUserName.TabIndex = 11;
@@ -144,7 +145,7 @@
             // LabelPassword
             // 
             this.LabelPassword.AutoSize = true;
-            this.LabelPassword.Location = new System.Drawing.Point(12, 68);
+            this.LabelPassword.Location = new System.Drawing.Point(8, 46);
             this.LabelPassword.Name = "LabelPassword";
             this.LabelPassword.Size = new System.Drawing.Size(56, 13);
             this.LabelPassword.TabIndex = 12;
@@ -153,7 +154,7 @@
             // LabelServer
             // 
             this.LabelServer.AutoSize = true;
-            this.LabelServer.Location = new System.Drawing.Point(12, 90);
+            this.LabelServer.Location = new System.Drawing.Point(8, 70);
             this.LabelServer.Name = "LabelServer";
             this.LabelServer.Size = new System.Drawing.Size(41, 13);
             this.LabelServer.TabIndex = 13;
@@ -162,7 +163,7 @@
             // LabelServerPort
             // 
             this.LabelServerPort.AutoSize = true;
-            this.LabelServerPort.Location = new System.Drawing.Point(12, 116);
+            this.LabelServerPort.Location = new System.Drawing.Point(226, 47);
             this.LabelServerPort.Name = "LabelServerPort";
             this.LabelServerPort.Size = new System.Drawing.Size(63, 13);
             this.LabelServerPort.TabIndex = 14;
@@ -171,7 +172,7 @@
             // LabelDomain
             // 
             this.LabelDomain.AutoSize = true;
-            this.LabelDomain.Location = new System.Drawing.Point(12, 142);
+            this.LabelDomain.Location = new System.Drawing.Point(115, 341);
             this.LabelDomain.Name = "LabelDomain";
             this.LabelDomain.Size = new System.Drawing.Size(46, 13);
             this.LabelDomain.TabIndex = 15;
@@ -180,7 +181,7 @@
             // LabelDisplayName
             // 
             this.LabelDisplayName.AutoSize = true;
-            this.LabelDisplayName.Location = new System.Drawing.Point(12, 172);
+            this.LabelDisplayName.Location = new System.Drawing.Point(230, 74);
             this.LabelDisplayName.Name = "LabelDisplayName";
             this.LabelDisplayName.Size = new System.Drawing.Size(75, 13);
             this.LabelDisplayName.TabIndex = 16;
@@ -189,7 +190,7 @@
             // LabelAuthName
             // 
             this.LabelAuthName.AutoSize = true;
-            this.LabelAuthName.Location = new System.Drawing.Point(12, 194);
+            this.LabelAuthName.Location = new System.Drawing.Point(8, 342);
             this.LabelAuthName.Name = "LabelAuthName";
             this.LabelAuthName.Size = new System.Drawing.Size(63, 13);
             this.LabelAuthName.TabIndex = 17;
@@ -197,23 +198,25 @@
             // 
             // TextBoxStunPort
             // 
-            this.TextBoxStunPort.Location = new System.Drawing.Point(12, 351);
+            this.TextBoxStunPort.Location = new System.Drawing.Point(324, 329);
             this.TextBoxStunPort.Name = "TextBoxStunPort";
             this.TextBoxStunPort.Size = new System.Drawing.Size(100, 20);
             this.TextBoxStunPort.TabIndex = 0;
+            this.TextBoxStunPort.Visible = false;
             // 
             // TextBoxStunServer
             // 
-            this.TextBoxStunServer.Location = new System.Drawing.Point(12, 377);
+            this.TextBoxStunServer.Location = new System.Drawing.Point(324, 329);
             this.TextBoxStunServer.Name = "TextBoxStunServer";
             this.TextBoxStunServer.Size = new System.Drawing.Size(100, 20);
             this.TextBoxStunServer.TabIndex = 1;
+            this.TextBoxStunServer.Visible = false;
             // 
             // RegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 481);
+            this.ClientSize = new System.Drawing.Size(436, 183);
             this.Controls.Add(this.TextBoxStunPort);
             this.Controls.Add(this.TextBoxStunServer);
             this.Controls.Add(this.LabelAuthName);
@@ -234,7 +237,11 @@
             this.Controls.Add(this.TextBoxPassword);
             this.Controls.Add(this.TextBoxUserName);
             this.Controls.Add(this.ComboBoxTransport);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "RegistrationForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegistrationForm";
             this.ResumeLayout(false);
             this.PerformLayout();

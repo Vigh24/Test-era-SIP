@@ -21,6 +21,7 @@ namespace SIPSample
 
         private const int MAX_LINES = 9; // Maximum lines
         private const int LINE_BASE = 1;
+        private RegistrationForm _registrationForm;
 
 
         private Session[] _CallSessions = new Session[MAX_LINES];
@@ -108,7 +109,7 @@ namespace SIPSample
 
         private void ShowRegistrationForm()
         {
-            PortSIPLib sdkLib = new PortSIPLib(this); // Pass 'this' as the SIPCallbackEvents instance
+            PortSIPLib sdkLib = new PortSIPLib(this); // Assuming you have an instance of PortSIPLib
             RegistrationForm regForm = new RegistrationForm(sdkLib);
             regForm.ShowDialog();
         }
@@ -405,6 +406,8 @@ namespace SIPSample
         public Form1()
         {
             InitializeComponent();
+            _sdkLib = new PortSIPLib(this);
+            _registrationForm = new RegistrationForm(_sdkLib);
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
             TextBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
@@ -3037,8 +3040,12 @@ namespace SIPSample
 
         private void ButtonSettings_Click(object sender, EventArgs e)
         {
-            RegistrationForm regForm = new RegistrationForm(_sdkLib); // Assuming _sdkLib is accessible here
-            regForm.ShowDialog(); // Show the form as a dialog
+            if (_registrationForm == null || _registrationForm.IsDisposed)
+            {
+                _registrationForm = new RegistrationForm(_sdkLib);
+            }
+            _registrationForm.Show();
+            _registrationForm.BringToFront();
         }
     }
 }

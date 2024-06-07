@@ -12,6 +12,7 @@
         private System.Windows.Forms.TextBox TextBoxStunPort;
         private System.Windows.Forms.ListBox ListBoxSIPLog;
         private System.Windows.Forms.Button ButtonRegister;
+        private System.Windows.Forms.Button ButtonDeregister;
 
         // Add label controls
         private System.Windows.Forms.Label LabelTransport;
@@ -33,6 +34,7 @@
             this.TextBoxStunPort = new System.Windows.Forms.TextBox();
             this.ListBoxSIPLog = new System.Windows.Forms.ListBox();
             this.ButtonRegister = new System.Windows.Forms.Button();
+            this.ButtonDeregister = new System.Windows.Forms.Button();
 
             // Initialize label controls
             this.LabelTransport = new System.Windows.Forms.Label();
@@ -113,6 +115,16 @@
             this.ButtonRegister.UseVisualStyleBackColor = true;
             this.ButtonRegister.Click += new System.EventHandler(this.ButtonRegister_Click);
             // 
+            // ButtonDeregister
+            // 
+            this.ButtonDeregister.Location = new System.Drawing.Point(100, 296); // Adjust location to be next to the Register button
+            this.ButtonDeregister.Name = "ButtonDeregister";
+            this.ButtonDeregister.Size = new System.Drawing.Size(75, 23);
+            this.ButtonDeregister.TabIndex = 9;
+            this.ButtonDeregister.Text = "Deregister";
+            this.ButtonDeregister.UseVisualStyleBackColor = true;
+            this.ButtonDeregister.Click += new System.EventHandler(this.ButtonDeregister_Click);
+            // 
             // LabelTransport
             // 
             this.LabelTransport.AutoSize = true;
@@ -163,9 +175,9 @@
             this.LabelStunServer.AutoSize = true;
             this.LabelStunServer.Location = new System.Drawing.Point(12, 146);
             this.LabelStunServer.Name = "LabelStunServer";
-            this.LabelStunServer.Size = new System.Drawing.Size(66, 13);
+            this.LabelStunServer.Size = new System.Drawing.Size(68, 13);
             this.LabelStunServer.TabIndex = 14;
-            this.LabelStunServer.Text = "STUN Server";
+            this.LabelStunServer.Text = "Stun Server";
             // 
             // LabelStunPort
             // 
@@ -174,7 +186,7 @@
             this.LabelStunPort.Name = "LabelStunPort";
             this.LabelStunPort.Size = new System.Drawing.Size(55, 13);
             this.LabelStunPort.TabIndex = 15;
-            this.LabelStunPort.Text = "STUN Port";
+            this.LabelStunPort.Text = "Stun Port";
             // 
             // RegistrationForm
             // 
@@ -197,6 +209,7 @@
             this.Controls.Add(this.LabelPassword);
             this.Controls.Add(this.LabelUserName);
             this.Controls.Add(this.LabelTransport);
+            this.Controls.Add(this.ButtonDeregister); // Add this line
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "RegistrationForm";

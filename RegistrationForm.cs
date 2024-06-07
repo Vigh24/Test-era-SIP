@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using PortSIP;
@@ -11,6 +12,8 @@ namespace SIPSample
         private PortSIPLib _sdkLib;
         private bool _SIPInited = false;
         private bool _SIPLogined = false;
+
+        private Button btnDeregister;
 
         // Properties to store user data
         public string UserName { get; set; }
@@ -25,6 +28,7 @@ namespace SIPSample
             InitializeComponent();
             _mainForm = mainForm;
             _sdkLib = sdkLib;
+            InitializeDeregisterButton();
 
             // Populate the ComboBox with transport options
             ComboBoxTransport.Items.Add("UDP");
@@ -42,6 +46,36 @@ namespace SIPSample
             StunServerPort = 0;
 
             this.Shown += new EventHandler(RegistrationForm_Shown);
+        }
+
+        private void InitializeDeregisterButton()
+        {
+            btnDeregister = new Button();
+            btnDeregister.Text = "Deregister";
+            btnDeregister.Location = new Point(100, 296); // Adjust location according to your layout
+            btnDeregister.Size = new Size(75, 23);
+            btnDeregister.Click += new EventHandler(ButtonDeregister_Click);
+            this.Controls.Add(btnDeregister);
+        }
+
+        private void ButtonDeregister_Click(object sender, EventArgs e)
+        {
+            if (!_SIPInited)
+            {
+                MessageBox.Show("SIP is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int rt = _sdkLib.unRegisterServer(1000); // Adjust the timeout as needed
+            if (rt != 0)
+            {
+                MessageBox.Show($"Failed to deregister. Error code: {rt}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Deregistration succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _SIPLogined = false; // Update the login status
+            }
         }
 
         private void RegistrationForm_Shown(object sender, EventArgs e)

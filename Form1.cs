@@ -71,6 +71,32 @@ namespace SIPSample
             return index;
         }
 
+        public void UpdateSdkLib(PortSIPLib sdkLib)
+        {
+            _sdkLib = sdkLib;
+        }
+
+        public void InitializeSIP()
+        {
+            // Perform any necessary SIP initialization tasks here
+            InitDefaultAudioCodecs();
+            // Add any other initialization logic if needed
+        }
+
+        public void SetSIPInited(bool inited)
+        {
+            _SIPInited = inited;
+            if (_SIPInited)
+            {
+                InitDefaultAudioCodecs();
+            }
+        }
+
+        public void SetSIPLogined(bool logined)
+        {
+            _SIPLogined = logined;
+        }
+
 
         private byte[] GetBytes(string str)
         {
@@ -430,10 +456,7 @@ namespace SIPSample
 
         }
 
-        public void UpdateSdkLib(PortSIPLib sdkLib)
-        {
-            _sdkLib = sdkLib;
-        }
+
 
         private void InitializeNotifyIcon()
         {
@@ -994,57 +1017,39 @@ namespace SIPSample
 
         private void ButtonDial_Click(object sender, EventArgs e)
         {
-            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            //{
-            //    return;
-            //}
-            if (TextBoxPhoneNumber.Text.Length <= 0)
+            // Check if SIP is initialized and logged in
+            if (!_SIPInited || !_SIPLogined)
+            {
+                MessageBox.Show("Please initialize and log in before making a call.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the phone number is empty
+            if (string.IsNullOrWhiteSpace(TextBoxPhoneNumber.Text))
             {
                 MessageBox.Show("The phone number is empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if (_CallSessions[_CurrentlyLine].getSessionState() == true || _CallSessions[_CurrentlyLine].getRecvCallState() == true)
+            // Ensure at least one audio codec is enabled
+            if (_sdkLib.isAudioCodecEmpty())
             {
-                MessageBox.Show("Current line is busy now, please switch a line.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No audio codecs are configured. Please configure at least one audio codec.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-
-            string callTo = TextBoxPhoneNumber.Text;
-
-
-
-            // Ensure the we have been added one audio codec at least
-            if (_sdkLib.isAudioCodecEmpty() == true)
-            {
-                InitDefaultAudioCodecs();
-            }
-
-            //  Usually for 3PCC need to make call without SDP
-            Boolean hasSdp = true;
-            if (CheckBoxSDP.Checked == true)
-            {
-                hasSdp = false;
-            }
-
-            _sdkLib.setAudioDeviceId(ComboBoxMicrophones.SelectedIndex, ComboBoxSpeakers.SelectedIndex);
-
-            int sessionId = _sdkLib.call(callTo, hasSdp, checkBoxMakeVideo.Checked);
+            // Make the call
+            int sessionId = _sdkLib.call(TextBoxPhoneNumber.Text, true, checkBoxMakeVideo.Checked);
             if (sessionId <= 0)
             {
-                ListBoxSIPLog.Items.Add("Call failure");
+                MessageBox.Show("Failed to initiate the call.", "Call Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            _sdkLib.setRemoteVideoWindow(sessionId, remoteVideoPanel.Handle);
-
+            // Update session state
             _CallSessions[_CurrentlyLine].setSessionId(sessionId);
             _CallSessions[_CurrentlyLine].setSessionState(true);
-
-            string Text = "Line " + _CurrentlyLine.ToString();
-            Text = Text + ": Calling...";
-            ListBoxSIPLog.Items.Add(Text);
+            ListBoxSIPLog.Items.Add($"Line {_CurrentlyLine}: Calling {TextBoxPhoneNumber.Text}...");
         }
 
         private void ButtonHangUp_Click(object sender, EventArgs e)

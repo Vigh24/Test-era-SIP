@@ -210,6 +210,13 @@ namespace SIPSample
 
             // After successful registration, update the main form's _sdkLib instance
             _mainForm.UpdateSdkLib(_sdkLib);
+            _mainForm.SetSIPInited(true);
+            _mainForm.SetSIPLogined(true);
+
+            // Initialize SIP in the main form
+            _mainForm.InitializeSIP();
+
+            MessageBox.Show("Registration succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void TextBoxUserName_TextChanged(object sender, EventArgs e)

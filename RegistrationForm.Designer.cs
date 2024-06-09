@@ -35,8 +35,6 @@
             this.ListBoxSIPLog = new System.Windows.Forms.ListBox();
             this.ButtonRegister = new System.Windows.Forms.Button();
             this.ButtonDeregister = new System.Windows.Forms.Button();
-
-            // Initialize label controls
             this.LabelTransport = new System.Windows.Forms.Label();
             this.LabelUserName = new System.Windows.Forms.Label();
             this.LabelPassword = new System.Windows.Forms.Label();
@@ -44,7 +42,6 @@
             this.LabelServerPort = new System.Windows.Forms.Label();
             this.LabelStunServer = new System.Windows.Forms.Label();
             this.LabelStunPort = new System.Windows.Forms.Label();
-
             this.SuspendLayout();
             // 
             // ComboBoxTransport
@@ -85,29 +82,31 @@
             // 
             // TextBoxStunServer
             // 
-            this.TextBoxStunServer.Location = new System.Drawing.Point(120, 143);
+            this.TextBoxStunServer.Location = new System.Drawing.Point(117, 411);
             this.TextBoxStunServer.Name = "TextBoxStunServer";
             this.TextBoxStunServer.Size = new System.Drawing.Size(100, 20);
             this.TextBoxStunServer.TabIndex = 5;
+            this.TextBoxStunServer.Visible = false;
             // 
             // TextBoxStunPort
             // 
-            this.TextBoxStunPort.Location = new System.Drawing.Point(120, 169);
+            this.TextBoxStunPort.Location = new System.Drawing.Point(117, 437);
             this.TextBoxStunPort.Name = "TextBoxStunPort";
             this.TextBoxStunPort.Size = new System.Drawing.Size(100, 20);
             this.TextBoxStunPort.TabIndex = 6;
+            this.TextBoxStunPort.Visible = false;
             // 
             // ListBoxSIPLog
             // 
             this.ListBoxSIPLog.FormattingEnabled = true;
-            this.ListBoxSIPLog.Location = new System.Drawing.Point(12, 195);
+            this.ListBoxSIPLog.Location = new System.Drawing.Point(12, 147);
             this.ListBoxSIPLog.Name = "ListBoxSIPLog";
             this.ListBoxSIPLog.Size = new System.Drawing.Size(260, 95);
             this.ListBoxSIPLog.TabIndex = 7;
             // 
             // ButtonRegister
             // 
-            this.ButtonRegister.Location = new System.Drawing.Point(12, 296);
+            this.ButtonRegister.Location = new System.Drawing.Point(12, 248);
             this.ButtonRegister.Name = "ButtonRegister";
             this.ButtonRegister.Size = new System.Drawing.Size(75, 23);
             this.ButtonRegister.TabIndex = 8;
@@ -117,7 +116,7 @@
             // 
             // ButtonDeregister
             // 
-            this.ButtonDeregister.Location = new System.Drawing.Point(100, 296); // Adjust location to be next to the Register button
+            this.ButtonDeregister.Location = new System.Drawing.Point(100, 248);
             this.ButtonDeregister.Name = "ButtonDeregister";
             this.ButtonDeregister.Size = new System.Drawing.Size(75, 23);
             this.ButtonDeregister.TabIndex = 9;
@@ -166,33 +165,35 @@
             this.LabelServerPort.AutoSize = true;
             this.LabelServerPort.Location = new System.Drawing.Point(12, 120);
             this.LabelServerPort.Name = "LabelServerPort";
-            this.LabelServerPort.Size = new System.Drawing.Size(61, 13);
+            this.LabelServerPort.Size = new System.Drawing.Size(60, 13);
             this.LabelServerPort.TabIndex = 13;
             this.LabelServerPort.Text = "Server Port";
             // 
             // LabelStunServer
             // 
             this.LabelStunServer.AutoSize = true;
-            this.LabelStunServer.Location = new System.Drawing.Point(12, 146);
+            this.LabelStunServer.Location = new System.Drawing.Point(9, 414);
             this.LabelStunServer.Name = "LabelStunServer";
-            this.LabelStunServer.Size = new System.Drawing.Size(68, 13);
+            this.LabelStunServer.Size = new System.Drawing.Size(63, 13);
             this.LabelStunServer.TabIndex = 14;
             this.LabelStunServer.Text = "Stun Server";
+            this.LabelStunServer.Visible = false;
             // 
             // LabelStunPort
             // 
             this.LabelStunPort.AutoSize = true;
-            this.LabelStunPort.Location = new System.Drawing.Point(12, 172);
+            this.LabelStunPort.Location = new System.Drawing.Point(9, 440);
             this.LabelStunPort.Name = "LabelStunPort";
-            this.LabelStunPort.Size = new System.Drawing.Size(55, 13);
+            this.LabelStunPort.Size = new System.Drawing.Size(51, 13);
             this.LabelStunPort.TabIndex = 15;
             this.LabelStunPort.Text = "Stun Port";
+            this.LabelStunPort.Visible = false;
             // 
             // RegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 331);
+            this.ClientSize = new System.Drawing.Size(284, 279);
             this.Controls.Add(this.ButtonRegister);
             this.Controls.Add(this.ListBoxSIPLog);
             this.Controls.Add(this.TextBoxStunPort);
@@ -209,7 +210,7 @@
             this.Controls.Add(this.LabelPassword);
             this.Controls.Add(this.LabelUserName);
             this.Controls.Add(this.LabelTransport);
-            this.Controls.Add(this.ButtonDeregister); // Add this line
+            this.Controls.Add(this.ButtonDeregister);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "RegistrationForm";
@@ -217,6 +218,7 @@
             this.Text = "RegistrationForm";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
     }
 }

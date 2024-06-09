@@ -169,7 +169,7 @@
             // 
             this.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ButtonSettings.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.ButtonSettings.Location = new System.Drawing.Point(152, 329);
+            this.ButtonSettings.Location = new System.Drawing.Point(145, 317);
             this.ButtonSettings.Name = "ButtonSettings";
             this.ButtonSettings.Size = new System.Drawing.Size(55, 23);
             this.ButtonSettings.TabIndex = 131;
@@ -221,7 +221,7 @@
             // 
             this.CheckBoxConf.AutoSize = true;
             this.CheckBoxConf.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxConf.Location = new System.Drawing.Point(125, 284);
+            this.CheckBoxConf.Location = new System.Drawing.Point(125, 258);
             this.CheckBoxConf.Name = "CheckBoxConf";
             this.CheckBoxConf.Size = new System.Drawing.Size(81, 17);
             this.CheckBoxConf.TabIndex = 125;
@@ -233,7 +233,7 @@
             // 
             this.CheckBoxAA.AutoSize = true;
             this.CheckBoxAA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxAA.Location = new System.Drawing.Point(15, 284);
+            this.CheckBoxAA.Location = new System.Drawing.Point(15, 258);
             this.CheckBoxAA.Name = "CheckBoxAA";
             this.CheckBoxAA.Size = new System.Drawing.Size(86, 17);
             this.CheckBoxAA.TabIndex = 124;
@@ -244,7 +244,7 @@
             // 
             this.CheckBoxDND.AutoSize = true;
             this.CheckBoxDND.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxDND.Location = new System.Drawing.Point(70, 307);
+            this.CheckBoxDND.Location = new System.Drawing.Point(70, 281);
             this.CheckBoxDND.Name = "CheckBoxDND";
             this.CheckBoxDND.Size = new System.Drawing.Size(92, 17);
             this.CheckBoxDND.TabIndex = 123;
@@ -267,7 +267,7 @@
             // button24
             // 
             this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button24.Location = new System.Drawing.Point(31, 329);
+            this.button24.Location = new System.Drawing.Point(24, 317);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(115, 23);
             this.button24.TabIndex = 120;
@@ -278,7 +278,7 @@
             // Button16
             // 
             this.Button16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Button16.Location = new System.Drawing.Point(91, 355);
+            this.Button16.Location = new System.Drawing.Point(84, 343);
             this.Button16.Name = "Button16";
             this.Button16.Size = new System.Drawing.Size(55, 23);
             this.Button16.TabIndex = 119;
@@ -290,7 +290,7 @@
             // 
             this.ButtonAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonAnswer.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.ButtonAnswer.Location = new System.Drawing.Point(10, 242);
+            this.ButtonAnswer.Location = new System.Drawing.Point(7, 508);
             this.ButtonAnswer.Name = "ButtonAnswer";
             this.ButtonAnswer.Size = new System.Drawing.Size(105, 30);
             this.ButtonAnswer.TabIndex = 114;
@@ -301,7 +301,7 @@
             // ButtonTransfer
             // 
             this.ButtonTransfer.ForeColor = System.Drawing.Color.Black;
-            this.ButtonTransfer.Location = new System.Drawing.Point(152, 355);
+            this.ButtonTransfer.Location = new System.Drawing.Point(145, 343);
             this.ButtonTransfer.Name = "ButtonTransfer";
             this.ButtonTransfer.Size = new System.Drawing.Size(55, 23);
             this.ButtonTransfer.TabIndex = 113;
@@ -312,7 +312,7 @@
             // ButtonHold
             // 
             this.ButtonHold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ButtonHold.Location = new System.Drawing.Point(31, 355);
+            this.ButtonHold.Location = new System.Drawing.Point(24, 343);
             this.ButtonHold.Name = "ButtonHold";
             this.ButtonHold.Size = new System.Drawing.Size(55, 23);
             this.ButtonHold.TabIndex = 112;
@@ -336,7 +336,7 @@
             this.ButtonReject.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ButtonReject.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonReject.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.ButtonReject.Location = new System.Drawing.Point(114, 242);
+            this.ButtonReject.Location = new System.Drawing.Point(111, 508);
             this.ButtonReject.Name = "ButtonReject";
             this.ButtonReject.Size = new System.Drawing.Size(104, 30);
             this.ButtonReject.TabIndex = 110;
@@ -1193,7 +1193,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SIPSample.Properties.Resources.WhatsApp_Image_2024_06_05_at_11_37_50_AM;
-            this.pictureBox1.Location = new System.Drawing.Point(114, 410);
+            this.pictureBox1.Location = new System.Drawing.Point(114, 384);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(108, 28);
             this.pictureBox1.TabIndex = 130;
@@ -1205,7 +1205,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(227, 440);
+            this.ClientSize = new System.Drawing.Size(227, 420);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ButtonSettings);
             this.Controls.Add(this.groupBox6);

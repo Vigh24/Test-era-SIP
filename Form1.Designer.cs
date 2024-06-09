@@ -356,6 +356,8 @@
             this.ButtonHangUp.Text = "Hangup";
             this.ButtonHangUp.UseVisualStyleBackColor = true;
             this.ButtonHangUp.Click += new System.EventHandler(this.ButtonHangUp_Click);
+            this.ButtonHangUp.MouseEnter += new System.EventHandler(this.ButtonHangUp_MouseEnter);
+            this.ButtonHangUp.MouseLeave += new System.EventHandler(this.ButtonHangUp_MouseLeave);
             // 
             // ButtonDial
             // 
@@ -369,6 +371,8 @@
             this.ButtonDial.Text = "Call";
             this.ButtonDial.UseVisualStyleBackColor = true;
             this.ButtonDial.Click += new System.EventHandler(this.ButtonDial_Click);
+            this.ButtonDial.MouseEnter += new System.EventHandler(this.ButtonDial_MouseEnter);
+            this.ButtonDial.MouseLeave += new System.EventHandler(this.ButtonDial_MouseLeave);
             // 
             // Button12
             // 

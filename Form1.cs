@@ -447,6 +447,8 @@ namespace SIPSample
             InitializeComponent();
             _sdkLib = new PortSIPLib(this);
             _registrationForm = new RegistrationForm(this, _sdkLib);
+            ButtonDial.MouseEnter += ButtonDial_MouseEnter;
+            ButtonDial.MouseLeave += ButtonDial_MouseLeave;
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
             TextBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
@@ -3078,6 +3080,26 @@ namespace SIPSample
             }
             _registrationForm.Show();
             _registrationForm.BringToFront();
+        }
+
+        private void ButtonDial_MouseEnter(object sender, EventArgs e)
+        {
+            ButtonDial.BackColor = Color.LightGreen; // Change to green when mouse enters
+        }
+
+        private void ButtonDial_MouseLeave(object sender, EventArgs e)
+        {
+            ButtonDial.BackColor = SystemColors.Control; // Change back to default when mouse leaves
+        }
+
+        private void ButtonHangUp_MouseEnter(object sender, EventArgs e)
+        {
+            ButtonHangUp.BackColor = Color.Red;
+        }
+
+        private void ButtonHangUp_MouseLeave(object sender, EventArgs e)
+        {
+            ButtonHangUp.BackColor = SystemColors.Control;
         }
     }
 }

@@ -285,18 +285,9 @@ namespace SIPSample
         {
             this.Invoke((MethodInvoker)delegate
             {
-                // Example of handling an incoming call
-                var result = MessageBox.Show($"Incoming call from {callerDisplayName}\nDo you want to accept the call?", "Incoming Call", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    _sdkLib.answerCall(sessionId, existsVideo); // Answer the call
-                    MessageBox.Show("Call accepted.");
-                }
-                else
-                {
-                    _sdkLib.rejectCall(sessionId, 486); // Reject the call
-                    MessageBox.Show("Call rejected.");
-                }
+                // Show the IncomingCallForm
+                IncomingCallForm incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib);
+                incomingCallForm.Show();
             });
             return 0;
         }

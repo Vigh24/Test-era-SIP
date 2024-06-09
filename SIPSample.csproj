@@ -113,6 +113,12 @@
     <Compile Include="IncomingCallDialog.Designer.cs">
       <DependentUpon>IncomingCallDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="IncomingCallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IncomingCallForm.Designer.cs">
+      <DependentUpon>IncomingCallForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PortSIP\PortSIPLib.cs" />
     <Compile Include="PortSIP\PortSIPNativeMethods.cs" />
     <Compile Include="PortSIP\PortSIPTypes.cs" />

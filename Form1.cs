@@ -46,6 +46,8 @@ namespace SIPSample
         private bool isExpanded = false; // Track the current state
         private int _CurrentlyLine = LINE_BASE;
         private AudioCodecsForm _audioCodecsForm;
+        private PictureBox pictureBoxStatus; // Declare the PictureBox here
+
 
 
 
@@ -95,6 +97,14 @@ namespace SIPSample
         public void SetSIPLogined(bool logined)
         {
             _SIPLogined = logined;
+            if (_SIPLogined)
+            {
+                pictureBoxStatus.Image = Properties.Resources.image2; //Registered image
+            }
+            else
+            {
+                pictureBoxStatus.Image = Properties.Resources.image1;
+            }
         }
 
 
@@ -441,6 +451,15 @@ namespace SIPSample
             TextBoxPhoneNumber.Dock = DockStyle.None;
             TextBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
             TextBoxPhoneNumber.Multiline = true; // Enable multiline to adjust height
+
+            // Initialize PictureBox
+            pictureBoxStatus = new PictureBox();
+            pictureBoxStatus.Size = new Size(28, 28); // Set the desired size
+            pictureBoxStatus.Location = new Point(7, 403); // Set the desired location
+            this.Controls.Add(pictureBoxStatus);
+
+            // Load initial image
+            pictureBoxStatus.Image = Properties.Resources.image1; // Assuming image1 is the "not registered" image
 
             InitializeNotifyIcon();
             _fmVideoScreen = new videoScreen();

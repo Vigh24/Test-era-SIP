@@ -237,6 +237,10 @@
     <Content Include="portsip_sdk.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\image1.jpeg" />
+    <None Include="Resources\image2.jpeg" />
+    <None Include="Resources\image2.png" />
+    <None Include="Resources\image1.png" />
     <None Include="Resources\WhatsApp Image 2024-06-05 at 11.37.50 AM.jpeg" />
     <None Include="Resources\WhatsApp Image 2024-06-03 at 1.31.14 PM.jpeg" />
     <None Include="Resources\WhatsApp Image 2024-06-03 at 1.25.35 PM.jpeg" />

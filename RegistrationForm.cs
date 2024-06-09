@@ -283,7 +283,21 @@ namespace SIPSample
 
         public int onInviteIncoming(int sessionId, string callerDisplayName, string caller, string calleeDisplayName, string callee, string audioCodecNames, string videoCodecNames, bool existsAudio, bool existsVideo, StringBuilder sipMessage)
         {
-            // Implementation code here
+            this.Invoke((MethodInvoker)delegate
+            {
+                // Example of handling an incoming call
+                var result = MessageBox.Show($"Incoming call from {callerDisplayName}\nDo you want to accept the call?", "Incoming Call", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    _sdkLib.answerCall(sessionId, existsVideo); // Answer the call
+                    MessageBox.Show("Call accepted.");
+                }
+                else
+                {
+                    _sdkLib.rejectCall(sessionId, 486); // Reject the call
+                    MessageBox.Show("Call rejected.");
+                }
+            });
             return 0;
         }
 

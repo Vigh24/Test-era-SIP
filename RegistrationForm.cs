@@ -30,6 +30,8 @@ namespace SIPSample
             _sdkLib = sdkLib;
             InitializeDeregisterButton();
 
+            TextBoxPassword.PasswordChar = '*';
+
             // Populate the ComboBox with transport options
             ComboBoxTransport.Items.Add("UDP");
             ComboBoxTransport.Items.Add("TLS");

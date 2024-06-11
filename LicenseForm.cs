@@ -8,11 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using Microsoft.Win32;
 
 namespace SIPSample
 {
     public partial class LicenseForm : Form
     {
+        public bool IsActivated { get; private set; } = false; // Public property to track if the license is activated
+        public bool IsTrialStarted { get; private set; } = false; // Public property to track if the trial is started
+
         private string generatedKey; // Field to store the generated key
 
         public LicenseForm()
@@ -24,13 +28,16 @@ namespace SIPSample
         {
             // Start or continue a 30-day trial
             StartTrial();
+            IsTrialStarted = true; // Set the trial started flag
             this.Close();
         }
 
         private void StartTrial()
         {
-            // Logic to start or check the trial period
-            // Example: Save the start date in a file or registry
+            // Save the trial start date in the registry
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\SIPSample");
+            key.SetValue("TrialStartDate", DateTime.Now.ToString());
+            key.Close();
         }
 
         private void btnActivate_Click(object sender, EventArgs e)
@@ -45,6 +52,7 @@ namespace SIPSample
             if (ValidateLicense(decryptedKey))
             {
                 MessageBox.Show("Activation Successful");
+                IsActivated = true; // Set the activation flag
                 this.Close();
             }
             else

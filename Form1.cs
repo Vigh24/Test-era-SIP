@@ -5,14 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using PortSIP;
 using System.Drawing;
-
-
-
-
+using Microsoft.Win32;
 
 namespace SIPSample
 {
@@ -22,6 +20,7 @@ namespace SIPSample
         private const int MAX_LINES = 9; // Maximum lines
         private const int LINE_BASE = 1;
         private RegistrationForm _registrationForm;
+        private LicenseForm _licenseForm;
 
 
         private Session[] _CallSessions = new Session[MAX_LINES];
@@ -484,19 +483,18 @@ namespace SIPSample
             bool isLicenseValid = CheckLicenseValidity();
             bool isTrialActive = CheckTrialStatus();
 
-            if (!isLicenseValid && !isTrialActive)
+            while (!isLicenseValid && !isTrialActive)
             {
-                LicenseForm licenseForm = new LicenseForm();
-                licenseForm.ShowDialog();
+                _licenseForm = new LicenseForm();
+                _licenseForm.ShowDialog();
 
                 // Re-check after closing the license form
-                isLicenseValid = CheckLicenseValidity();
-                isTrialActive = CheckTrialStatus();
+                isLicenseValid = _licenseForm.IsActivated;
+                isTrialActive = _licenseForm.IsTrialStarted;
 
                 if (!isLicenseValid && !isTrialActive)
                 {
                     MessageBox.Show("You need a valid license or an active trial to use this application.");
-                    Application.Exit(); // Exit if still not valid or active
                 }
             }
         }
@@ -510,9 +508,21 @@ namespace SIPSample
 
         private bool CheckTrialStatus()
         {
-            // Implement your logic to check if the trial is still active
-            // Example: Compare saved date in a file with current date
-            return false; // Placeholder
+            // Check if the trial period is still active
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\SIPSample");
+            if (key != null)
+            {
+                string trialStartDateStr = (string)key.GetValue("TrialStartDate", null);
+                if (DateTime.TryParse(trialStartDateStr, out DateTime trialStartDate))
+                {
+                    TimeSpan trialDuration = DateTime.Now - trialStartDate;
+                    if (trialDuration.TotalDays <= 30)
+                    {
+                        return true; // Trial is still active
+                    }
+                }
+            }
+            return false; // Trial has expired or not started
         }
 
 

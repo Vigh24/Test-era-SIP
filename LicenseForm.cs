@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using Microsoft.Win32;
+using System.IO;
 
 namespace SIPSample
 {
@@ -18,6 +19,8 @@ namespace SIPSample
         public bool IsTrialStarted { get; private set; } = false; // Public property to track if the trial is started
 
         private string generatedKey; // Field to store the generated key
+        private static readonly byte[] aesKey = Encoding.UTF8.GetBytes("12345678901234567890123456789012"); // 32 bytes key
+        private static readonly byte[] aesIV = Encoding.UTF8.GetBytes("1234567890123456"); // 16 bytes IV
 
         public LicenseForm()
         {
@@ -25,8 +28,7 @@ namespace SIPSample
             // Add a button for resetting the license status for demonstration purposes
             Button resetButton = new Button();
             resetButton.Text = "Reset License";
-            resetButton.Location = new Point(131, 50); // Adjust the location as needed
-            resetButton.Size = new Size(97, 20);
+            resetButton.Location = new Point(10, 200); // Adjust the location as needed
             resetButton.Click += ResetButton_Click;
             this.Controls.Add(resetButton);
         }
@@ -66,14 +68,11 @@ namespace SIPSample
 
         private void btnActivate_Click(object sender, EventArgs e)
         {
-            // Check the license key
+            // The inputKey should be the decrypted key entered by the user
             string inputKey = txtLicenseKey.Text;
-            string decryptedKey = inputKey; // Assume the input is already decrypted
 
-            Console.WriteLine($"Generated Key: {generatedKey}");
-            Console.WriteLine($"Decrypted Key: {decryptedKey}");
-
-            if (ValidateLicense(decryptedKey))
+            // Now compare the input key with the generated key
+            if (ValidateLicense(inputKey))
             {
                 MessageBox.Show("Activation Successful");
                 IsActivated = true; // Set the activation flag
@@ -92,33 +91,60 @@ namespace SIPSample
             return key == generatedKey;
         }
 
-        private string DecryptKey(string encryptedKey)
+        private string EncryptKey(string plainText)
         {
-            // Assuming the key was encrypted using Base64; replace with your actual decryption logic
-            byte[] bytes = Convert.FromBase64String(encryptedKey);
-            return Encoding.UTF8.GetString(bytes);
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = aesKey;
+                aesAlg.IV = aesIV;
+                aesAlg.Padding = PaddingMode.PKCS7;  // Ensure padding is set to PKCS7
+
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+                using (MemoryStream msEncrypt = new MemoryStream())
+                {
+                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            swEncrypt.Write(plainText);
+                        }
+                        return Convert.ToBase64String(msEncrypt.ToArray());
+                    }
+                }
+            }
         }
 
-        private bool IsBase64String(string s)
+        private string DecryptKey(string cipherText)
         {
-            s = s.Trim();
-            return (s.Length % 4 == 0) && System.Text.RegularExpressions.Regex.IsMatch(s, @"^[a-zA-Z0-9\+/]*={0,3}$", System.Text.RegularExpressions.RegexOptions.None);
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = aesKey;
+                aesAlg.IV = aesIV;
+                aesAlg.Padding = PaddingMode.PKCS7;  // Ensure padding is set to PKCS7
+
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+                using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(cipherText)))
+                {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        {
+                            return srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+            }
         }
 
         private void btnGetKey_Click(object sender, EventArgs e)
         {
-            string encryptedKey = GenerateEncryptedKey();
+            string randomKey = GenerateRandomKey();
+            string encryptedKey = EncryptKey(randomKey);
             Clipboard.SetText(encryptedKey);
             MessageBox.Show("Key copied to clipboard");
             Console.WriteLine($"Generated Key: {generatedKey}");
-        }
-
-        private string GenerateEncryptedKey()
-        {
-            // Generate a random key
-            generatedKey = GenerateRandomKey(); // Store the generated key
-            // Encrypt the key
-            return Convert.ToBase64String(Encoding.UTF8.GetBytes(generatedKey));
         }
 
         private string GenerateRandomKey()
@@ -126,8 +152,9 @@ namespace SIPSample
             // Generate a random string as the key
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var random = new Random();
-            return new string(Enumerable.Repeat(chars, 16)
+            generatedKey = new string(Enumerable.Repeat(chars, 16)
               .Select(s => s[random.Next(s.Length)]).ToArray());
+            return generatedKey;
         }
 
         private void SaveActivationStatus(bool status)

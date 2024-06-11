@@ -22,6 +22,30 @@ namespace SIPSample
         public LicenseForm()
         {
             InitializeComponent();
+            // Add a button for resetting the license status for demonstration purposes
+            Button resetButton = new Button();
+            resetButton.Text = "Reset License";
+            resetButton.Location = new Point(131, 50); // Adjust the location as needed
+            resetButton.Size = new Size(97, 20);
+            resetButton.Click += ResetButton_Click;
+            this.Controls.Add(resetButton);
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            ResetLicenseStatus();
+            MessageBox.Show("License status has been reset.");
+        }
+
+        private void ResetLicenseStatus()
+        {
+            // Delete the registry key that stores the activation status
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\SIPSample", true);
+            if (key != null)
+            {
+                key.DeleteValue("IsActivated", false);
+                key.Close();
+            }
         }
 
         private void btnTrial_Click(object sender, EventArgs e)
@@ -114,4 +138,3 @@ namespace SIPSample
         }
     }
 }
-

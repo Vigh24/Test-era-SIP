@@ -44,12 +44,12 @@
             // 
             this.txtLicenseKey.Location = new System.Drawing.Point(12, 15);
             this.txtLicenseKey.Name = "txtLicenseKey";
-            this.txtLicenseKey.Size = new System.Drawing.Size(237, 20);
+            this.txtLicenseKey.Size = new System.Drawing.Size(216, 20);
             this.txtLicenseKey.TabIndex = 0;
             // 
             // btnTrial
             // 
-            this.btnTrial.Location = new System.Drawing.Point(12, 47);
+            this.btnTrial.Location = new System.Drawing.Point(12, 76);
             this.btnTrial.Name = "btnTrial";
             this.btnTrial.Size = new System.Drawing.Size(71, 20);
             this.btnTrial.TabIndex = 1;
@@ -59,7 +59,7 @@
             // 
             // btnActivate
             // 
-            this.btnActivate.Location = new System.Drawing.Point(89, 47);
+            this.btnActivate.Location = new System.Drawing.Point(131, 76);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(97, 20);
             this.btnActivate.TabIndex = 2;
@@ -69,9 +69,9 @@
             // 
             // btnGetKey
             // 
-            this.btnGetKey.Location = new System.Drawing.Point(192, 47);
+            this.btnGetKey.Location = new System.Drawing.Point(12, 50);
             this.btnGetKey.Name = "btnGetKey";
-            this.btnGetKey.Size = new System.Drawing.Size(57, 20);
+            this.btnGetKey.Size = new System.Drawing.Size(71, 20);
             this.btnGetKey.TabIndex = 3;
             this.btnGetKey.Text = "Get Key";
             this.btnGetKey.UseVisualStyleBackColor = true;
@@ -81,13 +81,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(260, 74);
+            this.ClientSize = new System.Drawing.Size(240, 114);
             this.Controls.Add(this.txtLicenseKey);
             this.Controls.Add(this.btnTrial);
             this.Controls.Add(this.btnActivate);
             this.Controls.Add(this.btnGetKey);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "LicenseForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LicenseForm";
             this.ResumeLayout(false);
             this.PerformLayout();

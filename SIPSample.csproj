@@ -119,6 +119,12 @@
     <Compile Include="IncomingCallForm.Designer.cs">
       <DependentUpon>IncomingCallForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LicenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LicenseForm.Designer.cs">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PortSIP\PortSIPLib.cs" />
     <Compile Include="PortSIP\PortSIPNativeMethods.cs" />
     <Compile Include="PortSIP\PortSIPTypes.cs" />
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IncomingCallDialog.resx">
       <DependentUpon>IncomingCallDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LicenseForm.resx">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationForm.resx">
       <DependentUpon>RegistrationForm.cs</DependentUpon>

@@ -445,6 +445,7 @@ namespace SIPSample
         public Form1()
         {
             InitializeComponent();
+            CheckLicenseAndShowLicenseForm();
             _sdkLib = new PortSIPLib(this);
             _registrationForm = new RegistrationForm(this, _sdkLib);
             ButtonDial.MouseEnter += ButtonDial_MouseEnter;
@@ -477,6 +478,42 @@ namespace SIPSample
 
         }
 
+        private void CheckLicenseAndShowLicenseForm()
+        {
+            // Assuming you have a method to check if the license is valid
+            bool isLicenseValid = CheckLicenseValidity();
+            bool isTrialActive = CheckTrialStatus();
+
+            if (!isLicenseValid && !isTrialActive)
+            {
+                LicenseForm licenseForm = new LicenseForm();
+                licenseForm.ShowDialog();
+
+                // Re-check after closing the license form
+                isLicenseValid = CheckLicenseValidity();
+                isTrialActive = CheckTrialStatus();
+
+                if (!isLicenseValid && !isTrialActive)
+                {
+                    MessageBox.Show("You need a valid license or an active trial to use this application.");
+                    Application.Exit(); // Exit if still not valid or active
+                }
+            }
+        }
+
+        private bool CheckLicenseValidity()
+        {
+            // Implement your logic to check if the license is valid
+            // Example: Check a file or registry entry
+            return false; // Placeholder
+        }
+
+        private bool CheckTrialStatus()
+        {
+            // Implement your logic to check if the trial is still active
+            // Example: Compare saved date in a file with current date
+            return false; // Placeholder
+        }
 
 
         private void InitializeNotifyIcon()

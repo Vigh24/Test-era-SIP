@@ -9,26 +9,48 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Eratronics Softphone", "..\Eratronics Softphone\Eratronics Softphone.vdproj", "{46E52BE1-089E-42F8-A2E8-706BE991F81F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseKeyDecryptor", "..\LicenseKeyDecryptor\LicenseKeyDecryptor.csproj", "{78DF281B-7554-4B0B-A20B-3BF4B613606C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Debug|x64.ActiveCfg = Debug|x64
 		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Debug|x64.Build.0 = Debug|x64
 		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Debug|x86.ActiveCfg = Debug|x86
 		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Debug|x86.Build.0 = Debug|x86
+		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Release|Any CPU.ActiveCfg = Release|x86
 		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Release|x64.ActiveCfg = Release|x64
 		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Release|x64.Build.0 = Release|x64
 		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Release|x86.ActiveCfg = Release|x86
 		{0B25F43F-71C7-4A12-93F7-798AB7716637}.Release|x86.Build.0 = Release|x86
+		{46E52BE1-089E-42F8-A2E8-706BE991F81F}.Debug|Any CPU.ActiveCfg = Debug
+		{46E52BE1-089E-42F8-A2E8-706BE991F81F}.Debug|Any CPU.Build.0 = Debug
 		{46E52BE1-089E-42F8-A2E8-706BE991F81F}.Debug|x64.ActiveCfg = Debug
 		{46E52BE1-089E-42F8-A2E8-706BE991F81F}.Debug|x86.ActiveCfg = Debug
+		{46E52BE1-089E-42F8-A2E8-706BE991F81F}.Release|Any CPU.ActiveCfg = Release
+		{46E52BE1-089E-42F8-A2E8-706BE991F81F}.Release|Any CPU.Build.0 = Release
 		{46E52BE1-089E-42F8-A2E8-706BE991F81F}.Release|x64.ActiveCfg = Release
 		{46E52BE1-089E-42F8-A2E8-706BE991F81F}.Release|x86.ActiveCfg = Release
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Debug|x64.Build.0 = Debug|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Debug|x86.Build.0 = Debug|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Release|x64.ActiveCfg = Release|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Release|x64.Build.0 = Release|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Release|x86.ActiveCfg = Release|Any CPU
+		{78DF281B-7554-4B0B-A20B-3BF4B613606C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

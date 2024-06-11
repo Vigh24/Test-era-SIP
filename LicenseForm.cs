@@ -53,6 +53,7 @@ namespace SIPSample
             {
                 MessageBox.Show("Activation Successful");
                 IsActivated = true; // Set the activation flag
+                SaveActivationStatus(true); // Save the activation status
                 this.Close();
             }
             else
@@ -104,5 +105,13 @@ namespace SIPSample
             return new string(Enumerable.Repeat(chars, 16)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        private void SaveActivationStatus(bool status)
+        {
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\SIPSample");
+            key.SetValue("IsActivated", status);
+            key.Close();
+        }
     }
 }
+

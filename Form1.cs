@@ -479,11 +479,11 @@ namespace SIPSample
 
         private void CheckLicenseAndShowLicenseForm()
         {
-            // Assuming you have a method to check if the license is valid
+            // Check if the license is valid or if the trial is active
             bool isLicenseValid = CheckLicenseValidity();
             bool isTrialActive = CheckTrialStatus();
 
-            while (!isLicenseValid && !isTrialActive)
+            if (!isLicenseValid && !isTrialActive)
             {
                 _licenseForm = new LicenseForm();
                 _licenseForm.ShowDialog();
@@ -501,9 +501,15 @@ namespace SIPSample
 
         private bool CheckLicenseValidity()
         {
-            // Implement your logic to check if the license is valid
-            // Example: Check a file or registry entry
-            return false; // Placeholder
+            // Check the registry for the activation status
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\SIPSample");
+            if (key != null)
+            {
+                object status = key.GetValue("IsActivated", false);
+                key.Close();
+                return Convert.ToBoolean(status);
+            }
+            return false;
         }
 
         private bool CheckTrialStatus()

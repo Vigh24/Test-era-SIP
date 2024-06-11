@@ -479,22 +479,26 @@ namespace SIPSample
 
         private void CheckLicenseAndShowLicenseForm()
         {
-            // Check if the license is valid or if the trial is active
             bool isLicenseValid = CheckLicenseValidity();
             bool isTrialActive = CheckTrialStatus();
+
+            Console.WriteLine($"License Valid: {isLicenseValid}, Trial Active: {isTrialActive}"); // Add logging
 
             if (!isLicenseValid && !isTrialActive)
             {
                 _licenseForm = new LicenseForm();
                 _licenseForm.ShowDialog();
 
-                // Re-check after closing the license form
                 isLicenseValid = _licenseForm.IsActivated;
                 isTrialActive = _licenseForm.IsTrialStarted;
+
+                Console.WriteLine($"Rechecked License Valid: {isLicenseValid}, Trial Active: {isTrialActive}"); // Add logging
 
                 if (!isLicenseValid && !isTrialActive)
                 {
                     MessageBox.Show("You need a valid license or an active trial to use this application.");
+                    Application.Exit(); // Attempt to close the application
+                    Environment.Exit(0); // Forcefully exit if Application.Exit fails
                 }
             }
         }

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Cryptography;
 using Microsoft.Win32;
 using System.IO;
+using System.Management; // Add reference to System.Management
 
 namespace SIPSample
 {
@@ -17,10 +17,9 @@ namespace SIPSample
     {
         public bool IsActivated { get; private set; } = false; // Public property to track if the license is activated
         public bool IsTrialStarted { get; private set; } = false; // Public property to track if the trial is started
+        public bool IsClosedWithoutAction { get; private set; } = true; // Public property to track if the form is closed without action
 
         private string generatedKey; // Field to store the generated key
-        private static readonly byte[] aesKey = Encoding.UTF8.GetBytes("12345678901234567890123456789012"); // 32 bytes key
-        private static readonly byte[] aesIV = Encoding.UTF8.GetBytes("1234567890123456"); // 16 bytes IV
 
         public LicenseForm()
         {
@@ -46,6 +45,7 @@ namespace SIPSample
             if (key != null)
             {
                 key.DeleteValue("IsActivated", false);
+                key.DeleteValue("TrialStartDate", false);
                 key.Close();
             }
         }
@@ -68,93 +68,92 @@ namespace SIPSample
 
         private void btnActivate_Click(object sender, EventArgs e)
         {
-            // The inputKey should be the decrypted key entered by the user
-            string inputKey = txtLicenseKey.Text;
+            ActivateLicense();
+        }
 
-            // Now compare the input key with the generated key
+        private void ActivateLicense()
+        {
+            string inputKey = txtLicenseKey.Text;
             if (ValidateLicense(inputKey))
             {
-                MessageBox.Show("Activation Successful");
-                IsActivated = true; // Set the activation flag
-                SaveActivationStatus(true); // Save the activation status
+                SaveActivationStatus(true);
+                MessageBox.Show("License activated successfully.");
+                this.IsActivated = true;
+                this.IsClosedWithoutAction = false; // Set to false as action is taken
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Invalid License Key");
+                MessageBox.Show("Invalid license key.");
             }
         }
 
-        private bool ValidateLicense(string key)
+        private bool ValidateLicense(string inputKey)
         {
-            // Validate the license key against the stored generated key
-            return key == generatedKey;
+            string systemInfo = GetSystemInfo(); // Retrieve system-specific information
+            string encodedKey = EncodeKey(systemInfo); // Encode the system information
+            string decodedKey = DecodeKey(encodedKey); // Decode the encoded key to match the decryptor's logic
+            string modifiedKey = decodedKey + "Era"; // Modify the decoded key
+            string encodedModifiedKey = EncodeKey(modifiedKey); // Encode the modified key
+            string finalKey = EncodeKey(encodedModifiedKey + "tro"); // Apply further transformations
+            finalKey = EncodeKey(finalKey + "nics"); // Apply final transformation
+
+            // Debugging statements
+            Console.WriteLine("System Info: " + systemInfo);
+            Console.WriteLine("Encoded Key: " + encodedKey);
+            Console.WriteLine("Decoded Key: " + decodedKey);
+            Console.WriteLine("Modified Key: " + modifiedKey);
+            Console.WriteLine("Encoded Modified Key: " + encodedModifiedKey);
+            Console.WriteLine("Final Key: " + finalKey);
+            Console.WriteLine("Input Key: " + inputKey);
+
+            return inputKey == finalKey; // Compare the input key with the dynamically generated final key
         }
 
-        private string EncryptKey(string plainText)
+        private string EncodeKey(string plainText)
         {
-            using (Aes aesAlg = Aes.Create())
-            {
-                aesAlg.Key = aesKey;
-                aesAlg.IV = aesIV;
-                aesAlg.Padding = PaddingMode.PKCS7;  // Ensure padding is set to PKCS7
-
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-                using (MemoryStream msEncrypt = new MemoryStream())
-                {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            swEncrypt.Write(plainText);
-                        }
-                        return Convert.ToBase64String(msEncrypt.ToArray());
-                    }
-                }
-            }
+            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            return Convert.ToBase64String(plainTextBytes);
         }
 
-        private string DecryptKey(string cipherText)
+        private string DecodeKey(string encodedText)
         {
-            using (Aes aesAlg = Aes.Create())
-            {
-                aesAlg.Key = aesKey;
-                aesAlg.IV = aesIV;
-                aesAlg.Padding = PaddingMode.PKCS7;  // Ensure padding is set to PKCS7
-
-                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-
-                using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(cipherText)))
-                {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                        {
-                            return srDecrypt.ReadToEnd();
-                        }
-                    }
-                }
-            }
+            var base64EncodedBytes = Convert.FromBase64String(encodedText);
+            return Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
         private void btnGetKey_Click(object sender, EventArgs e)
         {
-            string randomKey = GenerateRandomKey();
-            string encryptedKey = EncryptKey(randomKey);
-            Clipboard.SetText(encryptedKey);
-            MessageBox.Show("Key copied to clipboard");
-            Console.WriteLine($"Generated Key: {generatedKey}");
+            string systemInfo = GetSystemInfo();
+            string encodedKey = EncodeKey(systemInfo);
+            Clipboard.SetText(encodedKey);
+            MessageBox.Show("Generated License Key: " + systemInfo);
+            MessageBox.Show("Encrypted License Key: " + encodedKey);
+            MessageBox.Show("Encrypted License Key copied to clipboard");
+            Console.WriteLine("System Info: " + systemInfo);
+            Console.WriteLine("Encoded Key: " + encodedKey);
         }
 
-        private string GenerateRandomKey()
+        private string GetSystemInfo()
         {
-            // Generate a random string as the key
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            generatedKey = new string(Enumerable.Repeat(chars, 16)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
-            return generatedKey;
+            // Get the serial number of the system
+            string serialNumber = "";
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT SerialNumber FROM Win32_BIOS");
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                serialNumber = obj["SerialNumber"].ToString();
+            }
+
+            // Get the MAC address
+            string macAddress = "";
+            searcher = new ManagementObjectSearcher("SELECT MACAddress FROM Win32_NetworkAdapter WHERE MACAddress IS NOT NULL AND NOT (MACAddress LIKE '00:00:00:00:00:00')");
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                macAddress = obj["MACAddress"].ToString();
+                break; // Get the first MAC address
+            }
+
+            return serialNumber + macAddress; // Concatenate serial number and MAC address
         }
 
         private void SaveActivationStatus(bool status)
@@ -162,6 +161,15 @@ namespace SIPSample
             RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\SIPSample");
             key.SetValue("IsActivated", status);
             key.Close();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (!IsActivated && !IsTrialStarted)
+            {
+                IsClosedWithoutAction = true;
+            }
+            base.OnFormClosing(e);
         }
     }
 }

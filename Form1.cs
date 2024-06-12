@@ -457,7 +457,7 @@ namespace SIPSample
             // Initialize PictureBox
             pictureBoxStatus = new PictureBox();
             pictureBoxStatus.Size = new Size(28, 28); // Set the desired size
-            pictureBoxStatus.Location = new Point(7, 380); // Set the desired location
+            pictureBoxStatus.Location = new Point(7, 390); // Set the desired location
             this.Controls.Add(pictureBoxStatus);
 
             // Load initial image

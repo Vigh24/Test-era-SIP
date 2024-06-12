@@ -49,7 +49,7 @@
             // 
             // btnTrial
             // 
-            this.btnTrial.Location = new System.Drawing.Point(12, 76);
+            this.btnTrial.Location = new System.Drawing.Point(12, 50);
             this.btnTrial.Name = "btnTrial";
             this.btnTrial.Size = new System.Drawing.Size(71, 20);
             this.btnTrial.TabIndex = 1;
@@ -59,9 +59,9 @@
             // 
             // btnActivate
             // 
-            this.btnActivate.Location = new System.Drawing.Point(131, 76);
+            this.btnActivate.Location = new System.Drawing.Point(12, 76);
             this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(97, 20);
+            this.btnActivate.Size = new System.Drawing.Size(216, 20);
             this.btnActivate.TabIndex = 2;
             this.btnActivate.Text = "Activate License";
             this.btnActivate.UseVisualStyleBackColor = true;
@@ -69,7 +69,7 @@
             // 
             // btnGetKey
             // 
-            this.btnGetKey.Location = new System.Drawing.Point(12, 50);
+            this.btnGetKey.Location = new System.Drawing.Point(157, 50);
             this.btnGetKey.Name = "btnGetKey";
             this.btnGetKey.Size = new System.Drawing.Size(71, 20);
             this.btnGetKey.TabIndex = 3;

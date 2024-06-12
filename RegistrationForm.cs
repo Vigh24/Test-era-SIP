@@ -287,14 +287,23 @@ namespace SIPSample
         {
             this.Invoke((MethodInvoker)delegate
             {
-                // Always show the IncomingCallForm
-                IncomingCallForm incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib);
-                incomingCallForm.Show();
-
-                // Check if Auto Answer is enabled
-                if (_mainForm.CheckBoxAA.Checked)
+                // Check if Do Not Disturb is enabled
+                if (_mainForm.CheckBoxDND.Checked)
                 {
-                    incomingCallForm.AutoAnswerCall();
+                    _sdkLib.rejectCall(sessionId, 486); // Automatically reject the call
+                    MessageBox.Show("Call rejected due to DND mode.");
+                }
+                else
+                {
+                    // Always show the IncomingCallForm
+                    IncomingCallForm incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib);
+                    incomingCallForm.Show();
+
+                    // Check if Auto Answer is enabled
+                    if (_mainForm.CheckBoxAA.Checked)
+                    {
+                        incomingCallForm.AutoAnswerCall();
+                    }
                 }
             });
             return 0;

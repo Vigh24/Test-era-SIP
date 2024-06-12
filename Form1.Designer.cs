@@ -169,7 +169,7 @@
             // 
             this.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ButtonSettings.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.ButtonSettings.Location = new System.Drawing.Point(145, 317);
+            this.ButtonSettings.Location = new System.Drawing.Point(145, 285);
             this.ButtonSettings.Name = "ButtonSettings";
             this.ButtonSettings.Size = new System.Drawing.Size(55, 23);
             this.ButtonSettings.TabIndex = 131;
@@ -221,12 +221,13 @@
             // 
             this.CheckBoxConf.AutoSize = true;
             this.CheckBoxConf.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxConf.Location = new System.Drawing.Point(125, 258);
+            this.CheckBoxConf.Location = new System.Drawing.Point(12, 395);
             this.CheckBoxConf.Name = "CheckBoxConf";
             this.CheckBoxConf.Size = new System.Drawing.Size(81, 17);
             this.CheckBoxConf.TabIndex = 125;
             this.CheckBoxConf.Text = "Conference";
             this.CheckBoxConf.UseVisualStyleBackColor = true;
+            this.CheckBoxConf.Visible = false;
             this.CheckBoxConf.CheckedChanged += new System.EventHandler(this.CheckBoxConf_CheckedChanged);
             // 
             // CheckBoxAA
@@ -244,7 +245,7 @@
             // 
             this.CheckBoxDND.AutoSize = true;
             this.CheckBoxDND.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxDND.Location = new System.Drawing.Point(70, 281);
+            this.CheckBoxDND.Location = new System.Drawing.Point(108, 259);
             this.CheckBoxDND.Name = "CheckBoxDND";
             this.CheckBoxDND.Size = new System.Drawing.Size(92, 17);
             this.CheckBoxDND.TabIndex = 123;
@@ -267,7 +268,7 @@
             // button24
             // 
             this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button24.Location = new System.Drawing.Point(24, 317);
+            this.button24.Location = new System.Drawing.Point(24, 285);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(115, 23);
             this.button24.TabIndex = 120;
@@ -278,7 +279,7 @@
             // Button16
             // 
             this.Button16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Button16.Location = new System.Drawing.Point(84, 343);
+            this.Button16.Location = new System.Drawing.Point(84, 311);
             this.Button16.Name = "Button16";
             this.Button16.Size = new System.Drawing.Size(55, 23);
             this.Button16.TabIndex = 119;
@@ -301,7 +302,7 @@
             // ButtonTransfer
             // 
             this.ButtonTransfer.ForeColor = System.Drawing.Color.Black;
-            this.ButtonTransfer.Location = new System.Drawing.Point(145, 343);
+            this.ButtonTransfer.Location = new System.Drawing.Point(145, 311);
             this.ButtonTransfer.Name = "ButtonTransfer";
             this.ButtonTransfer.Size = new System.Drawing.Size(55, 23);
             this.ButtonTransfer.TabIndex = 113;
@@ -312,7 +313,7 @@
             // ButtonHold
             // 
             this.ButtonHold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ButtonHold.Location = new System.Drawing.Point(24, 343);
+            this.ButtonHold.Location = new System.Drawing.Point(24, 311);
             this.ButtonHold.Name = "ButtonHold";
             this.ButtonHold.Size = new System.Drawing.Size(55, 23);
             this.ButtonHold.TabIndex = 112;
@@ -1197,7 +1198,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SIPSample.Properties.Resources.WhatsApp_Image_2024_06_05_at_11_37_50_AM;
-            this.pictureBox1.Location = new System.Drawing.Point(114, 384);
+            this.pictureBox1.Location = new System.Drawing.Point(114, 355);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(108, 28);
             this.pictureBox1.TabIndex = 130;
@@ -1209,7 +1210,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(227, 420);
+            this.ClientSize = new System.Drawing.Size(227, 388);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ButtonSettings);
             this.Controls.Add(this.groupBox6);

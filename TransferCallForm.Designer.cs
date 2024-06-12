@@ -49,7 +49,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label5.Location = new System.Drawing.Point(18, 144);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
@@ -59,7 +59,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label4.Location = new System.Drawing.Point(18, 121);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(150, 13);
@@ -69,7 +69,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Location = new System.Drawing.Point(18, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(197, 13);
@@ -79,17 +79,17 @@
             // Label2
             // 
             this.Label2.AutoSize = true;
-            this.Label2.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.Label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Label2.Location = new System.Drawing.Point(18, 51);
             this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(158, 13);
+            this.Label2.Size = new System.Drawing.Size(74, 13);
             this.Label2.TabIndex = 51;
-            this.Label2.Text = "(Likes: sip:number@sip.sip.com)";
+            this.Label2.Text = "Example : 100";
             // 
             // Button1
             // 
             this.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button1.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.Button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Button1.Location = new System.Drawing.Point(103, 73);
             this.Button1.Name = "Button1";
             this.Button1.Size = new System.Drawing.Size(75, 21);
@@ -108,7 +108,7 @@
             // Label1
             // 
             this.Label1.AutoSize = true;
-            this.Label1.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.Label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Label1.Location = new System.Drawing.Point(12, 9);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(114, 13);
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(281, 176);
             this.Controls.Add(this.TextBoxLineNum);
             this.Controls.Add(this.label5);

@@ -1261,99 +1261,52 @@ namespace SIPSample
 
         private void ButtonTransfer_Click(object sender, EventArgs e)
         {
-            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            //{
-            //    return;
-            //}
+            TransferCallForm transferDlg = new TransferCallForm();
+            if (transferDlg.ShowDialog() == DialogResult.OK)
+            {
+                string referTo = transferDlg.GetTransferNumber();
+                if (string.IsNullOrEmpty(referTo))
+                {
+                    MessageBox.Show("The transfer number is empty", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-            if (_CallSessions[_CurrentlyLine].getSessionState() == false)
-            {
-                MessageBox.Show("Need to make the call established first", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            TransferCallForm TransferDlg = new TransferCallForm();
-            if (TransferDlg.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            string referTo = TransferDlg.GetTransferNumber();
-            if (referTo.Length <= 0)
-            {
-                MessageBox.Show("The transfer number is empty", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            int rt = _sdkLib.refer(_CallSessions[_CurrentlyLine].getSessionId(), referTo);
-            if (rt != 0)
-            {
-                string Text = "Line " + _CurrentlyLine.ToString();
-                Text = Text + ": failed to Transfer";
-                ListBoxSIPLog.Items.Add(Text);
-            }
-            else
-            {
-                string Text = "Line " + _CurrentlyLine.ToString();
-                Text = Text + ": Transferring";
-                ListBoxSIPLog.Items.Add(Text);
+                int result = _sdkLib.refer(_CallSessions[_CurrentlyLine].getSessionId(), referTo);
+                if (result != 0)
+                {
+                    MessageBox.Show("Failed to transfer the call.");
+                }
+                else
+                {
+                    MessageBox.Show("Call transferred successfully.");
+                }
             }
         }
 
-        private void button24_Click(object sender, EventArgs e)
+        private void button24_Click(object sender, EventArgs e) // Assuming button24 is your attended transfer button
         {
-            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            //{
-            //    return;
-            //}
-
-            if (_CallSessions[_CurrentlyLine].getSessionState() == false)
+            TransferCallForm transferDlg = new TransferCallForm();
+            if (transferDlg.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Need to make the call established first", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+                string referTo = transferDlg.GetTransferNumber();
+                int replaceLine = transferDlg.GetReplaceLineNum();
 
-            TransferCallForm TransferDlg = new TransferCallForm();
-            if (TransferDlg.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
+                if (string.IsNullOrEmpty(referTo) || replaceLine < 0 || replaceLine >= MAX_LINES)
+                {
+                    MessageBox.Show("Invalid transfer details provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-            string referTo = TransferDlg.GetTransferNumber();
-
-            if (referTo.Length <= 0)
-            {
-                MessageBox.Show("The transfer number is empty", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            int replaceLine = TransferDlg.GetReplaceLineNum();
-            if (replaceLine <= 0 || replaceLine >= MAX_LINES)
-            {
-                MessageBox.Show("The replace line out of range", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-
-            if (_CallSessions[replaceLine].getSessionState() == false)
-            {
-                MessageBox.Show("The replace line does not established yet", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            int rt = _sdkLib.attendedRefer(_CallSessions[_CurrentlyLine].getSessionId(), _CallSessions[replaceLine].getSessionId(), referTo);
-
-            if (rt != 0)
-            {
-                string Text = "Line " + _CurrentlyLine.ToString();
-                Text = Text + ": failed to Attend transfer";
-                ListBoxSIPLog.Items.Add(Text);
-            }
-            else
-            {
-                string Text = "Line " + _CurrentlyLine.ToString();
-                Text = Text + ": Transferring";
-                ListBoxSIPLog.Items.Add(Text);
+                // Assuming _CallSessions is an array of session objects and getSessionId() gets the session ID
+                int result = _sdkLib.attendedRefer(_CallSessions[_CurrentlyLine].getSessionId(), _CallSessions[replaceLine].getSessionId(), referTo);
+                if (result != 0)
+                {
+                    MessageBox.Show("Failed to perform attended transfer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Attended transfer initiated successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 

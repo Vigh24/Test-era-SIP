@@ -39,5 +39,10 @@ namespace SIPSample
             MessageBox.Show("Call ended.");
             this.Close();
         }
+
+        public void AutoAnswerCall()
+        {
+            btnAnswer_Click(this, EventArgs.Empty);
+        }
     }
 }

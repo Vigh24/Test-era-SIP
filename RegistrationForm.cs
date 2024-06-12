@@ -287,9 +287,15 @@ namespace SIPSample
         {
             this.Invoke((MethodInvoker)delegate
             {
-                // Show the IncomingCallForm
+                // Always show the IncomingCallForm
                 IncomingCallForm incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib);
                 incomingCallForm.Show();
+
+                // Check if Auto Answer is enabled
+                if (_mainForm.CheckBoxAA.Checked)
+                {
+                    incomingCallForm.AutoAnswerCall();
+                }
             });
             return 0;
         }

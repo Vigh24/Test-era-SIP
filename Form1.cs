@@ -1221,66 +1221,42 @@ namespace SIPSample
 
         private void ButtonHold_Click(object sender, EventArgs e)
         {
-            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            //{
-            //    return;
-            //}
-
-            if (_CallSessions[_CurrentlyLine].getSessionState() == false || _CallSessions[_CurrentlyLine].getHoldState() == true)
+            if (!_SIPInited || !_CallSessions[_CurrentlyLine].getSessionState())
             {
+                MessageBox.Show("No active call to hold.");
                 return;
             }
 
-
-            string Text;
-            int rt = _sdkLib.hold(_CallSessions[_CurrentlyLine].getSessionId());
-            if (rt != 0)
+            int result = _sdkLib.hold(_CallSessions[_CurrentlyLine].getSessionId());
+            if (result != 0)
             {
-                Text = "Line " + _CurrentlyLine.ToString();
-                Text = Text + ": hold failure.";
-                ListBoxSIPLog.Items.Add(Text);
-
-                return;
+                MessageBox.Show("Failed to hold the call.");
             }
-
-
-            _CallSessions[_CurrentlyLine].setHoldState(true);
-
-            Text = "Line " + _CurrentlyLine.ToString();
-            Text = Text + ": hold";
-            ListBoxSIPLog.Items.Add(Text);
+            else
+            {
+                _CallSessions[_CurrentlyLine].setHoldState(true);
+                MessageBox.Show("Call is on hold.");
+            }
         }
 
-        private void Button16_Click(object sender, EventArgs e)
+        private void Button16_Click(object sender, EventArgs e) // Assuming Button16 is your Unhold button
         {
-            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            //{
-            //    return;
-            //}
-
-            if (_CallSessions[_CurrentlyLine].getSessionState() == false || _CallSessions[_CurrentlyLine].getHoldState() == false)
+            if (!_SIPInited || !_CallSessions[_CurrentlyLine].getSessionState() || !_CallSessions[_CurrentlyLine].getHoldState())
             {
+                MessageBox.Show("No call is currently on hold.");
                 return;
             }
 
-            string Text;
-            int rt = _sdkLib.unHold(_CallSessions[_CurrentlyLine].getSessionId());
-            if (rt != 0)
+            int result = _sdkLib.unHold(_CallSessions[_CurrentlyLine].getSessionId());
+            if (result != 0)
+            {
+                MessageBox.Show("Failed to unhold the call.");
+            }
+            else
             {
                 _CallSessions[_CurrentlyLine].setHoldState(false);
-
-                Text = "Line " + _CurrentlyLine.ToString();
-                Text = Text + ": Un-Hold Failure.";
-                ListBoxSIPLog.Items.Add(Text);
-
-                return;
+                MessageBox.Show("Call is no longer on hold.");
             }
-
-            _CallSessions[_CurrentlyLine].setHoldState(false);
-
-            Text = "Line " + _CurrentlyLine.ToString();
-            Text = Text + ": Un-Hold";
-            ListBoxSIPLog.Items.Add(Text);
         }
 
         private void ButtonTransfer_Click(object sender, EventArgs e)

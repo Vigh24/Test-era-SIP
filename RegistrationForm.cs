@@ -190,7 +190,7 @@ namespace SIPSample
             rt = _sdkLib.setLicenseKey(licenseKey);
             if (rt == PortSIP_Errors.ECoreTrialVersionLicenseKey)
             {
-                MessageBox.Show("This sample was built based on evaluation PortSIP VoIP SDK, which allows only three minutes conversation. The conversation will be cut off automatically after three minutes, then you can't hear anything. Feel free to contact us at: sales@portsip.com to purchase the official version.");
+                MessageBox.Show("Thankyou for using our Softphone Application.");
             }
             else if (rt == PortSIP_Errors.ECoreWrongLicenseKey)
             {

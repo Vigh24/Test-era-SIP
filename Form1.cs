@@ -11,10 +11,11 @@ using System.Runtime.InteropServices;
 using PortSIP;
 using System.Drawing;
 using Microsoft.Win32;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace SIPSample
 {
-    public partial class Form1 : Form, SIPCallbackEvents
+    public partial class Form1 : KryptonForm, SIPCallbackEvents
     {
         private PortSIPLib _sdkLib;
         private const int MAX_LINES = 9; // Maximum lines

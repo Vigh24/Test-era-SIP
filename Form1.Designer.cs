@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -124,6 +125,7 @@
             this.ComboboxScreenLst = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarSpeaker)).BeginInit();
@@ -167,7 +169,7 @@
             // 
             // ButtonSettings
             // 
-            this.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonSettings.ForeColor = System.Drawing.SystemColors.WindowText;
             this.ButtonSettings.Location = new System.Drawing.Point(145, 285);
             this.ButtonSettings.Name = "ButtonSettings";
@@ -267,6 +269,7 @@
             // 
             // button24
             // 
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button24.Location = new System.Drawing.Point(24, 285);
             this.button24.Name = "button24";
@@ -278,6 +281,7 @@
             // 
             // Button16
             // 
+            this.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Button16.Location = new System.Drawing.Point(84, 311);
             this.Button16.Name = "Button16";
@@ -301,6 +305,7 @@
             // 
             // ButtonTransfer
             // 
+            this.ButtonTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonTransfer.ForeColor = System.Drawing.Color.Black;
             this.ButtonTransfer.Location = new System.Drawing.Point(145, 311);
             this.ButtonTransfer.Name = "ButtonTransfer";
@@ -312,6 +317,7 @@
             // 
             // ButtonHold
             // 
+            this.ButtonHold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ButtonHold.Location = new System.Drawing.Point(24, 311);
             this.ButtonHold.Name = "ButtonHold";
@@ -348,9 +354,10 @@
             // ButtonHangUp
             // 
             this.ButtonHangUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ButtonHangUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHangUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonHangUp.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.ButtonHangUp.Location = new System.Drawing.Point(114, 212);
+            this.ButtonHangUp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.ButtonHangUp.Location = new System.Drawing.Point(115, 212);
             this.ButtonHangUp.Name = "ButtonHangUp";
             this.ButtonHangUp.Size = new System.Drawing.Size(104, 30);
             this.ButtonHangUp.TabIndex = 108;
@@ -363,9 +370,10 @@
             // ButtonDial
             // 
             this.ButtonDial.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ButtonDial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDial.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.ButtonDial.Location = new System.Drawing.Point(10, 212);
+            this.ButtonDial.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.ButtonDial.Location = new System.Drawing.Point(9, 212);
             this.ButtonDial.Name = "ButtonDial";
             this.ButtonDial.Size = new System.Drawing.Size(105, 30);
             this.ButtonDial.TabIndex = 108;
@@ -378,8 +386,9 @@
             // Button12
             // 
             this.Button12.FlatAppearance.BorderSize = 0;
+            this.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button12.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button12.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button12.Location = new System.Drawing.Point(148, 177);
             this.Button12.Name = "Button12";
             this.Button12.Size = new System.Drawing.Size(70, 35);
@@ -391,8 +400,9 @@
             // Button13
             // 
             this.Button13.FlatAppearance.BorderSize = 0;
+            this.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button13.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button13.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button13.Location = new System.Drawing.Point(79, 177);
             this.Button13.Name = "Button13";
             this.Button13.Size = new System.Drawing.Size(70, 35);
@@ -404,8 +414,9 @@
             // Button14
             // 
             this.Button14.FlatAppearance.BorderSize = 0;
+            this.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button14.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button14.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button14.Location = new System.Drawing.Point(10, 177);
             this.Button14.Name = "Button14";
             this.Button14.Size = new System.Drawing.Size(70, 35);
@@ -417,8 +428,9 @@
             // Button9
             // 
             this.Button9.FlatAppearance.BorderSize = 0;
+            this.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button9.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button9.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button9.Location = new System.Drawing.Point(148, 142);
             this.Button9.Name = "Button9";
             this.Button9.Size = new System.Drawing.Size(70, 35);
@@ -430,8 +442,9 @@
             // Button10
             // 
             this.Button10.FlatAppearance.BorderSize = 0;
+            this.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button10.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button10.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button10.Location = new System.Drawing.Point(79, 142);
             this.Button10.Name = "Button10";
             this.Button10.Size = new System.Drawing.Size(70, 35);
@@ -443,8 +456,9 @@
             // Button11
             // 
             this.Button11.FlatAppearance.BorderSize = 0;
+            this.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button11.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button11.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button11.Location = new System.Drawing.Point(10, 142);
             this.Button11.Name = "Button11";
             this.Button11.Size = new System.Drawing.Size(70, 35);
@@ -456,8 +470,9 @@
             // Button6
             // 
             this.Button6.FlatAppearance.BorderSize = 0;
+            this.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button6.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button6.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button6.Location = new System.Drawing.Point(148, 107);
             this.Button6.Name = "Button6";
             this.Button6.Size = new System.Drawing.Size(70, 35);
@@ -469,8 +484,9 @@
             // Button7
             // 
             this.Button7.FlatAppearance.BorderSize = 0;
+            this.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button7.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button7.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button7.Location = new System.Drawing.Point(79, 107);
             this.Button7.Name = "Button7";
             this.Button7.Size = new System.Drawing.Size(70, 35);
@@ -482,8 +498,9 @@
             // Button8
             // 
             this.Button8.FlatAppearance.BorderSize = 0;
+            this.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button8.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button8.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button8.Location = new System.Drawing.Point(10, 107);
             this.Button8.Name = "Button8";
             this.Button8.Size = new System.Drawing.Size(70, 35);
@@ -495,8 +512,9 @@
             // Button5
             // 
             this.Button5.FlatAppearance.BorderSize = 0;
+            this.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button5.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button5.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button5.Location = new System.Drawing.Point(148, 72);
             this.Button5.Name = "Button5";
             this.Button5.Size = new System.Drawing.Size(70, 35);
@@ -508,8 +526,9 @@
             // Button4
             // 
             this.Button4.FlatAppearance.BorderSize = 0;
+            this.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button4.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button4.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button4.Location = new System.Drawing.Point(79, 72);
             this.Button4.Name = "Button4";
             this.Button4.Size = new System.Drawing.Size(70, 35);
@@ -521,8 +540,9 @@
             // Button3
             // 
             this.Button3.FlatAppearance.BorderSize = 0;
+            this.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button3.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button3.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Button3.Location = new System.Drawing.Point(10, 72);
             this.Button3.Name = "Button3";
             this.Button3.Size = new System.Drawing.Size(70, 35);
@@ -543,7 +563,7 @@
             this.TextBoxPhoneNumber.MaxLength = 200000;
             this.TextBoxPhoneNumber.Multiline = true;
             this.TextBoxPhoneNumber.Name = "TextBoxPhoneNumber";
-            this.TextBoxPhoneNumber.Size = new System.Drawing.Size(207, 38);
+            this.TextBoxPhoneNumber.Size = new System.Drawing.Size(203, 38);
             this.TextBoxPhoneNumber.TabIndex = 95;
             this.TextBoxPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1204,11 +1224,25 @@
             this.pictureBox1.TabIndex = 130;
             this.pictureBox1.TabStop = false;
             // 
+            // kryptonPalette1
+            // 
+            this.kryptonPalette1.ButtonSpecs.FormClose.Style = ComponentFactory.Krypton.Toolkit.PaletteButtonStyle.Standalone;
+            this.kryptonPalette1.ButtonSpecs.FormMax.Style = ComponentFactory.Krypton.Toolkit.PaletteButtonStyle.Standalone;
+            this.kryptonPalette1.ButtonSpecs.FormMin.Style = ComponentFactory.Krypton.Toolkit.PaletteButtonStyle.Standalone;
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Border.Rounding = 8;
+            this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(227, 388);
             this.Controls.Add(this.pictureBox1);
@@ -1262,6 +1296,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
+            this.Palette = this.kryptonPalette1;
+            this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Eratronics";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -1386,6 +1422,7 @@
         internal System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button ButtonSettings;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
     }
 }
 

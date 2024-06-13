@@ -39,15 +39,20 @@ namespace SIPSample
             ComboBoxTransport.Items.Add("PERS");
             ComboBoxTransport.SelectedIndex = 0; // Default to UDP
 
-            // Initialize properties with default values or from configuration
-            UserName = ""; // Default or loaded from configuration
-            Password = "";
-            ServerAddress = "";
-            ServerPort = 0;
-            StunServer = "";
-            StunServerPort = 0;
+            // Load settings
+            LoadSettings();
 
             this.Shown += new EventHandler(RegistrationForm_Shown);
+        }
+
+        private void LoadSettings()
+        {
+            UserName = Properties.Settings.Default.UserName;
+            Password = Properties.Settings.Default.Password;
+            ServerAddress = Properties.Settings.Default.ServerAddress;
+            ServerPort = int.TryParse(Properties.Settings.Default.ServerPort, out int serverPort) ? serverPort : 0;
+            StunServer = Properties.Settings.Default.StunServer;
+            StunServerPort = int.TryParse(Properties.Settings.Default.StunServerPort, out int stunServerPort) ? stunServerPort : 0;
         }
 
         private void InitializeDeregisterButton()
@@ -219,6 +224,20 @@ namespace SIPSample
             _mainForm.InitializeSIP();
 
             MessageBox.Show("Registration succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Save settings after successful registration
+            SaveSettings();
+        }
+
+        private void SaveSettings()
+        {
+            Properties.Settings.Default.UserName = TextBoxUserName.Text;
+            Properties.Settings.Default.Password = TextBoxPassword.Text;
+            Properties.Settings.Default.ServerAddress = TextBoxServer.Text;
+            Properties.Settings.Default.ServerPort = TextBoxServerPort.Text;
+            Properties.Settings.Default.StunServer = TextBoxStunServer.Text;
+            Properties.Settings.Default.StunServerPort = TextBoxStunPort.Text;
+            Properties.Settings.Default.Save();
         }
 
         private void TextBoxUserName_TextChanged(object sender, EventArgs e)

@@ -155,6 +155,9 @@
     <EmbeddedResource Include="IncomingCallDialog.resx">
       <DependentUpon>IncomingCallDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="IncomingCallForm.resx">
+      <DependentUpon>IncomingCallForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LicenseForm.resx">
       <DependentUpon>LicenseForm.cs</DependentUpon>
     </EmbeddedResource>

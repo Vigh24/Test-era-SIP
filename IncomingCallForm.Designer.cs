@@ -19,6 +19,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncomingCallForm));
             this.lblCaller = new System.Windows.Forms.Label();
             this.btnAnswer = new System.Windows.Forms.Button();
             this.btnReject = new System.Windows.Forms.Button();
@@ -72,10 +73,12 @@
             this.Controls.Add(this.btnReject);
             this.Controls.Add(this.btnAnswer);
             this.Controls.Add(this.lblCaller);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IncomingCallForm";
             this.Text = "Incoming Call";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
     }
 }

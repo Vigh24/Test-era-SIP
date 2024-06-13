@@ -81,6 +81,36 @@ namespace SIPSample.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap call_removebg_preview_1_ {
+            get {
+                object obj = ResourceManager.GetObject("call-removebg-preview(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap call_removebg_preview_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("call-removebg-preview(1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap circle_removebg_preview_1_ {
+            get {
+                object obj = ResourceManager.GetObject("circle-removebg-preview(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon DARE_LOGO_wo_bg {
@@ -123,9 +153,39 @@ namespace SIPSample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap phone_call_removebg_preview_1_ {
+            get {
+                object obj = ResourceManager.GetObject("phone-call-removebg-preview(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap phone_call_removebg_preview_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("phone-call-removebg-preview(1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap plasma_dialer {
             get {
                 object obj = ResourceManager.GetObject("plasma-dialer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap telephone_call_removebg_preview_1__1_ {
+            get {
+                object obj = ResourceManager.GetObject("telephone-call-removebg-preview(1)(1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

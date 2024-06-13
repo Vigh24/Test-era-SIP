@@ -265,6 +265,12 @@
     <Content Include="portsip_sdk.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\circle-removebg-preview%281%29.png" />
+    <None Include="Resources\telephone-call-removebg-preview%281%29%281%29.png" />
+    <None Include="Resources\call-removebg-preview%281%291.png" />
+    <None Include="Resources\phone-call-removebg-preview%281%291.png" />
+    <None Include="Resources\phone-call-removebg-preview%281%29.png" />
+    <None Include="Resources\call-removebg-preview%281%29.png" />
     <None Include="Resources\image2.jpeg" />
     <None Include="Resources\image1.jpeg" />
     <None Include="Resources\image2.png" />

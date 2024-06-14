@@ -47,6 +47,7 @@ namespace SIPSample
         private int _CurrentlyLine = LINE_BASE;
         private AudioCodecsForm _audioCodecsForm;
         private PictureBox pictureBoxStatus; // Declare the PictureBox here
+        private KryptonContextMenu kryptonContextMenu1;
 
 
 
@@ -107,6 +108,16 @@ namespace SIPSample
             }
         }
 
+        private void InitializeContextMenu()
+        {
+            kryptonContextMenu1 = new KryptonContextMenu();
+            KryptonContextMenuItem editAccountItem = new KryptonContextMenuItem("Edit Account", EditAccount_Click);
+            KryptonContextMenuItems menuItems = new KryptonContextMenuItems();
+            menuItems.Items.Add(editAccountItem);
+            kryptonContextMenu1.Items.Add(menuItems);
+
+            kryptonDropButton1.KryptonContextMenu = kryptonContextMenu1;
+        }
 
         private byte[] GetBytes(string str)
         {
@@ -445,6 +456,7 @@ namespace SIPSample
         public Form1()
         {
             InitializeComponent();
+            InitializeContextMenu();
             CheckLicenseAndShowLicenseForm();
             _sdkLib = new PortSIPLib(this);
             _registrationForm = new RegistrationForm(this, _sdkLib);
@@ -458,7 +470,7 @@ namespace SIPSample
             // Initialize PictureBox
             pictureBoxStatus = new PictureBox();
             pictureBoxStatus.Size = new Size(28, 28); // Set the desired size
-            pictureBoxStatus.Location = new Point(7, 359); // Set the desired location
+            pictureBoxStatus.Location = new Point(7, 368); // Set the desired location
             this.Controls.Add(pictureBoxStatus);
 
             // Load initial image
@@ -3114,6 +3126,17 @@ namespace SIPSample
         private void ButtonHangUp_MouseLeave(object sender, EventArgs e)
         {
             ButtonHangUp.BackColor = SystemColors.Control;
+        }
+
+        private void EditAccount_Click(object sender, EventArgs e)
+        {
+            RegistrationForm registrationForm = new RegistrationForm(this, _sdkLib);
+            registrationForm.Show();
+        }
+
+        private void kryptonDropButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

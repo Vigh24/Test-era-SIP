@@ -103,6 +103,16 @@ namespace SIPSample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap circle_1_ {
+            get {
+                object obj = ResourceManager.GetObject("circle(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap circle_removebg_preview_1_ {
             get {
                 object obj = ResourceManager.GetObject("circle-removebg-preview(1)", resourceCulture);
@@ -183,9 +193,49 @@ namespace SIPSample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pngegg_2_ {
+            get {
+                object obj = ResourceManager.GetObject("pngegg(2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap telephone_call_1_ {
+            get {
+                object obj = ResourceManager.GetObject("telephone-call(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap telephone_call_removebg_preview_1__1_ {
             get {
                 object obj = ResourceManager.GetObject("telephone-call-removebg-preview(1)(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap v910_ning_04_ai_1_ {
+            get {
+                object obj = ResourceManager.GetObject("v910-ning-04-ai(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap v910_ning_04_ai_2__1_ {
+            get {
+                object obj = ResourceManager.GetObject("v910-ning-04-ai(2)(1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +296,16 @@ namespace SIPSample.Properties {
         internal static System.Drawing.Bitmap WhatsApp_Image_2024_06_05_at_11_37_50_AM {
             get {
                 object obj = ResourceManager.GetObject("WhatsApp Image 2024-06-05 at 11.37.50 AM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2024_06_13_at_6_12_46_PM_2_ {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2024-06-13 at 6.12.46 PM(2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

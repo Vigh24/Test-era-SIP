@@ -1222,21 +1222,48 @@ namespace SIPSample
 
         private void ButtonHold_Click(object sender, EventArgs e)
         {
-            if (!_SIPInited || !_CallSessions[_CurrentlyLine].getSessionState())
+            if (_SIPInited == false)
             {
-                MessageBox.Show("No active call to hold.");
+                MessageBox.Show("Please initialize the SDK first.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            int result = _sdkLib.hold(_CallSessions[_CurrentlyLine].getSessionId());
-            if (result != 0)
+            if (_CallSessions[_CurrentlyLine].getSessionState() == false)
             {
-                MessageBox.Show("Failed to hold the call.");
+                MessageBox.Show("No active call to hold/unhold.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Toggle hold state
+            if (_CallSessions[_CurrentlyLine].getHoldState())
+            {
+                // Unhold the call
+                int result = _sdkLib.unHold(_CallSessions[_CurrentlyLine].getSessionId());
+                if (result == 0)
+                {
+                    _CallSessions[_CurrentlyLine].setHoldState(false);
+                    ButtonHold.BackColor = SystemColors.Control; // Change back to default color
+                    MessageBox.Show("Call is no longer on hold.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to unhold the call.");
+                }
             }
             else
             {
-                _CallSessions[_CurrentlyLine].setHoldState(true);
-                MessageBox.Show("Call is on hold.");
+                // Hold the call
+                int result = _sdkLib.hold(_CallSessions[_CurrentlyLine].getSessionId());
+                if (result == 0)
+                {
+                    _CallSessions[_CurrentlyLine].setHoldState(true);
+                    ButtonHold.BackColor = Color.Gray; // Change to indicate hold state
+                    MessageBox.Show("Call is on hold.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to hold the call.");
+                }
             }
         }
 

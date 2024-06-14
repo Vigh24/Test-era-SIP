@@ -171,7 +171,7 @@
             // 
             this.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonSettings.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.ButtonSettings.Location = new System.Drawing.Point(141, 303);
+            this.ButtonSettings.Location = new System.Drawing.Point(141, 332);
             this.ButtonSettings.Name = "ButtonSettings";
             this.ButtonSettings.Size = new System.Drawing.Size(70, 23);
             this.ButtonSettings.TabIndex = 131;
@@ -223,7 +223,7 @@
             // 
             this.CheckBoxConf.AutoSize = true;
             this.CheckBoxConf.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxConf.Location = new System.Drawing.Point(12, 395);
+            this.CheckBoxConf.Location = new System.Drawing.Point(68, 446);
             this.CheckBoxConf.Name = "CheckBoxConf";
             this.CheckBoxConf.Size = new System.Drawing.Size(81, 17);
             this.CheckBoxConf.TabIndex = 125;
@@ -271,7 +271,7 @@
             // 
             this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button24.Location = new System.Drawing.Point(20, 303);
+            this.button24.Location = new System.Drawing.Point(12, 308);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(115, 23);
             this.button24.TabIndex = 120;
@@ -283,12 +283,13 @@
             // 
             this.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Button16.Location = new System.Drawing.Point(80, 329);
+            this.Button16.Location = new System.Drawing.Point(12, 446);
             this.Button16.Name = "Button16";
             this.Button16.Size = new System.Drawing.Size(55, 23);
             this.Button16.TabIndex = 119;
             this.Button16.Text = "UnHold";
             this.Button16.UseVisualStyleBackColor = true;
+            this.Button16.Visible = false;
             this.Button16.Click += new System.EventHandler(this.Button16_Click);
             // 
             // ButtonAnswer
@@ -307,9 +308,9 @@
             // 
             this.ButtonTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonTransfer.ForeColor = System.Drawing.Color.Black;
-            this.ButtonTransfer.Location = new System.Drawing.Point(141, 329);
+            this.ButtonTransfer.Location = new System.Drawing.Point(71, 332);
             this.ButtonTransfer.Name = "ButtonTransfer";
-            this.ButtonTransfer.Size = new System.Drawing.Size(70, 23);
+            this.ButtonTransfer.Size = new System.Drawing.Size(56, 23);
             this.ButtonTransfer.TabIndex = 113;
             this.ButtonTransfer.Text = "Transfer";
             this.ButtonTransfer.UseVisualStyleBackColor = true;
@@ -319,7 +320,7 @@
             // 
             this.ButtonHold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ButtonHold.Location = new System.Drawing.Point(20, 329);
+            this.ButtonHold.Location = new System.Drawing.Point(12, 332);
             this.ButtonHold.Name = "ButtonHold";
             this.ButtonHold.Size = new System.Drawing.Size(55, 23);
             this.ButtonHold.TabIndex = 112;
@@ -353,35 +354,38 @@
             // 
             // ButtonHangUp
             // 
-            this.ButtonHangUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ButtonHangUp.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ButtonHangUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ButtonHangUp.FlatAppearance.BorderSize = 10;
             this.ButtonHangUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHangUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonHangUp.ForeColor = System.Drawing.Color.Transparent;
-            this.ButtonHangUp.Image = global::SIPSample.Properties.Resources.circle_removebg_preview_1_;
-            this.ButtonHangUp.Location = new System.Drawing.Point(142, 217);
+            this.ButtonHangUp.ForeColor = System.Drawing.Color.White;
+            this.ButtonHangUp.Image = global::SIPSample.Properties.Resources.v910_ning_04_ai_2__1_;
+            this.ButtonHangUp.Location = new System.Drawing.Point(148, 217);
             this.ButtonHangUp.Name = "ButtonHangUp";
             this.ButtonHangUp.Size = new System.Drawing.Size(63, 58);
             this.ButtonHangUp.TabIndex = 108;
-            this.ButtonHangUp.UseVisualStyleBackColor = true;
+            this.ButtonHangUp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ButtonHangUp.UseVisualStyleBackColor = false;
             this.ButtonHangUp.Click += new System.EventHandler(this.ButtonHangUp_Click);
-            this.ButtonHangUp.MouseEnter += new System.EventHandler(this.ButtonHangUp_MouseEnter);
-            this.ButtonHangUp.MouseLeave += new System.EventHandler(this.ButtonHangUp_MouseLeave);
             // 
             // ButtonDial
             // 
-            this.ButtonDial.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ButtonDial.BackColor = System.Drawing.Color.White;
+            this.ButtonDial.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonDial.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.ButtonDial.FlatAppearance.BorderSize = 10;
             this.ButtonDial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonDial.ForeColor = System.Drawing.Color.Transparent;
-            this.ButtonDial.Image = global::SIPSample.Properties.Resources.telephone_call_removebg_preview_1__1_;
-            this.ButtonDial.Location = new System.Drawing.Point(24, 218);
+            this.ButtonDial.Image = global::SIPSample.Properties.Resources.v910_ning_04_ai_1_;
+            this.ButtonDial.Location = new System.Drawing.Point(17, 216);
             this.ButtonDial.Name = "ButtonDial";
             this.ButtonDial.Size = new System.Drawing.Size(63, 58);
             this.ButtonDial.TabIndex = 108;
-            this.ButtonDial.UseVisualStyleBackColor = true;
+            this.ButtonDial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ButtonDial.UseVisualStyleBackColor = false;
             this.ButtonDial.Click += new System.EventHandler(this.ButtonDial_Click);
-            this.ButtonDial.MouseEnter += new System.EventHandler(this.ButtonDial_MouseEnter);
-            this.ButtonDial.MouseLeave += new System.EventHandler(this.ButtonDial_MouseLeave);
             // 
             // Button12
             // 
@@ -1245,7 +1249,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(227, 388);
+            this.ClientSize = new System.Drawing.Size(227, 390);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ButtonSettings);
             this.Controls.Add(this.groupBox6);

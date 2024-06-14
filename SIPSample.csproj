@@ -265,6 +265,12 @@
     <Content Include="portsip_sdk.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\v910-ning-04-ai%282%29%281%29.png" />
+    <None Include="Resources\v910-ning-04-ai%281%29.png" />
+    <None Include="Resources\WhatsApp Image 2024-06-13 at 6.12.46 PM%282%29.jpeg" />
+    <None Include="Resources\pngegg%282%29.png" />
+    <None Include="Resources\circle%281%29.png" />
+    <None Include="Resources\telephone-call%281%29.png" />
     <None Include="Resources\circle-removebg-preview%281%29.png" />
     <None Include="Resources\telephone-call-removebg-preview%281%29%281%29.png" />
     <None Include="Resources\call-removebg-preview%281%291.png" />

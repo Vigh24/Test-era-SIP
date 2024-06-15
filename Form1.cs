@@ -22,6 +22,7 @@ namespace SIPSample
         private const int LINE_BASE = 1;
         private RegistrationForm _registrationForm;
         private LicenseForm _licenseForm;
+        private List<string> _callLogs = new List<string>();
 
 
         private Session[] _CallSessions = new Session[MAX_LINES];
@@ -117,6 +118,12 @@ namespace SIPSample
             kryptonContextMenu1.Items.Add(menuItems);
 
             kryptonDropButton1.KryptonContextMenu = kryptonContextMenu1;
+        }
+
+        public void LogCall(string log)
+        {
+            _callLogs.Add(log);
+            // Optionally, you can also write the log to a file or database here
         }
 
         private byte[] GetBytes(string str)
@@ -3137,6 +3144,12 @@ namespace SIPSample
         private void kryptonDropButton1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ButtonLogs_Click(object sender, EventArgs e)
+        {
+            LogsForm logsForm = new LogsForm(_callLogs);
+            logsForm.Show();
         }
     }
 }

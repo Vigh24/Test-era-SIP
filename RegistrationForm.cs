@@ -325,6 +325,7 @@ namespace SIPSample
                     }
                 }
             });
+            _mainForm.LogCall($"Incoming call from {callerDisplayName} ({caller}) at {DateTime.Now}");
             return 0;
         }
 
@@ -346,6 +347,7 @@ namespace SIPSample
             {
                 ListBoxSIPLog.Items.Add($"Call answered by {calleeDisplayName}");
             }));
+            _mainForm.LogCall($"Call answered for session {sessionId} at {DateTime.Now}");
             return 0;
         }
 
@@ -355,6 +357,7 @@ namespace SIPSample
             {
                 ListBoxSIPLog.Items.Add($"Call failed: {reason}");
             }));
+            _mainForm.LogCall($"Call failed for session {sessionId} with reason: {reason} at {DateTime.Now}");
             return 0;
         }
 
@@ -370,6 +373,7 @@ namespace SIPSample
             {
                 ListBoxSIPLog.Items.Add($"Invite session closed for session ID: {sessionId}");
             }));
+            _mainForm.LogCall($"Call closed for session {sessionId} at {DateTime.Now}");
             return 0;
         }
 
@@ -633,3 +637,4 @@ namespace SIPSample
         }
     }
 }
+

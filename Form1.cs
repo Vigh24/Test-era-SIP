@@ -1149,15 +1149,13 @@ namespace SIPSample
             _CallSessions[_CurrentlyLine].setSessionId(sessionId);
             _CallSessions[_CurrentlyLine].setSessionState(true);
             ListBoxSIPLog.Items.Add($"Line {_CurrentlyLine}: Calling {TextBoxPhoneNumber.Text}...");
+
+            // Log the dial action
+            LogCall($"Dialing {TextBoxPhoneNumber.Text} from line {_CurrentlyLine} at {DateTime.Now}");
         }
 
         private void ButtonHangUp_Click(object sender, EventArgs e)
         {
-            //if (_SIPInited == false || (checkBoxNeedRegister.Checked && (_SIPLogined == false)))
-            //{
-            //    return;
-            //}
-
             if (_CallSessions[_CurrentlyLine].getRecvCallState() == true)
             {
                 _sdkLib.rejectCall(_CallSessions[_CurrentlyLine].getSessionId(), 486);
@@ -1166,6 +1164,9 @@ namespace SIPSample
                 string Text = "Line " + _CurrentlyLine.ToString();
                 Text = Text + ": Rejected call";
                 ListBoxSIPLog.Items.Add(Text);
+
+                // Log the rejection
+                LogCall($"Rejected call on line {_CurrentlyLine} at {DateTime.Now}");
 
                 return;
             }
@@ -1178,6 +1179,9 @@ namespace SIPSample
                 string Text = "Line " + _CurrentlyLine.ToString();
                 Text = Text + ": Hang up";
                 ListBoxSIPLog.Items.Add(Text);
+
+                // Log the hang up
+                LogCall($"Hung up call on line {_CurrentlyLine} at {DateTime.Now}");
             }
         }
 

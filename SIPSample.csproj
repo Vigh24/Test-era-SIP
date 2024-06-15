@@ -182,6 +182,9 @@
     <EmbeddedResource Include="LicenseForm.resx">
       <DependentUpon>LicenseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LogsForm.resx">
+      <DependentUpon>LogsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegistrationForm.resx">
       <DependentUpon>RegistrationForm.cs</DependentUpon>
     </EmbeddedResource>

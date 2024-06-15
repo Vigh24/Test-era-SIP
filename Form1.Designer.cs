@@ -2,7 +2,6 @@
 {
     partial class Form1
     {
-        private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonLogs;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -31,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.ButtonLogs = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.ButtonSettings = new System.Windows.Forms.Button();
@@ -141,16 +139,6 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ButtonLogs
-            // 
-            this.ButtonLogs.Location = new System.Drawing.Point(143, 3);
-            this.ButtonLogs.Name = "ButtonLogs";
-            this.ButtonLogs.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
-            this.ButtonLogs.Size = new System.Drawing.Size(50, 32);
-            this.ButtonLogs.TabIndex = 133;
-            this.ButtonLogs.Values.Text = "Logs";
-            this.ButtonLogs.Click += new System.EventHandler(this.ButtonLogs_Click);
             // 
             // linkLabel2
             // 
@@ -1245,24 +1233,30 @@
             // kryptonPalette1
             // 
             this.kryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Global;
+            this.kryptonPalette1.ButtonSpecs.FormClose.Orientation = ComponentFactory.Krypton.Toolkit.PaletteButtonOrientation.Inherit;
             this.kryptonPalette1.ButtonSpecs.FormClose.Style = ComponentFactory.Krypton.Toolkit.PaletteButtonStyle.Standalone;
+            this.kryptonPalette1.ButtonSpecs.FormMax.Orientation = ComponentFactory.Krypton.Toolkit.PaletteButtonOrientation.Inherit;
             this.kryptonPalette1.ButtonSpecs.FormMax.Style = ComponentFactory.Krypton.Toolkit.PaletteButtonStyle.Standalone;
+            this.kryptonPalette1.ButtonSpecs.FormMin.Orientation = ComponentFactory.Krypton.Toolkit.PaletteButtonOrientation.Inherit;
             this.kryptonPalette1.ButtonSpecs.FormMin.Style = ComponentFactory.Krypton.Toolkit.PaletteButtonStyle.Standalone;
             this.kryptonPalette1.FormStyles.FormMain.StateCommon.Back.Color1 = System.Drawing.Color.White;
             this.kryptonPalette1.FormStyles.FormMain.StateCommon.Back.Color2 = System.Drawing.Color.White;
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonPalette1.FormStyles.FormMain.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonPalette1.FormStyles.FormMain.StateCommon.Border.Rounding = 8;
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             // 
             // kryptonDropButton1
             // 
-            this.kryptonDropButton1.Location = new System.Drawing.Point(199, 3);
+            this.kryptonDropButton1.Location = new System.Drawing.Point(199, 10);
             this.kryptonDropButton1.Name = "kryptonDropButton1";
             this.kryptonDropButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
-            this.kryptonDropButton1.Size = new System.Drawing.Size(16, 33);
+            this.kryptonDropButton1.Size = new System.Drawing.Size(16, 25);
             this.kryptonDropButton1.Splitter = false;
             this.kryptonDropButton1.TabIndex = 132;
             this.kryptonDropButton1.Values.Text = "Settings";
@@ -1275,7 +1269,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(227, 391);
-            this.Controls.Add(this.ButtonLogs);
             this.Controls.Add(this.kryptonDropButton1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ButtonSettings);

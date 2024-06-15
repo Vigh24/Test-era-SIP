@@ -325,6 +325,7 @@ namespace SIPSample
                     }
                 }
             });
+            _mainForm.LogCall($"Incoming call from {callerDisplayName} ({caller}) at {DateTime.Now}");
             return 0;
         }
 
@@ -346,6 +347,7 @@ namespace SIPSample
             {
                 ListBoxSIPLog.Items.Add($"Call answered by {calleeDisplayName}");
             }));
+            _mainForm.LogCall($"Call answered for session {sessionId} at {DateTime.Now}");
             return 0;
         }
 

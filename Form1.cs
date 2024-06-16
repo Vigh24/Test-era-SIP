@@ -3156,5 +3156,14 @@ namespace SIPSample
             LogsForm logsForm = new LogsForm(_callLogs);
             logsForm.Show();
         }
+
+        private void ButtonContacts_Click(object sender, EventArgs e)
+        {
+            ContactsForm contactsForm = new ContactsForm();
+            if (contactsForm.ShowDialog() == DialogResult.OK)
+            {
+                TextBoxPhoneNumber.Text = contactsForm.SelectedContactNumber;
+            }
+        }
     }
 }

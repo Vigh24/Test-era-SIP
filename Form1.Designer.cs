@@ -3,6 +3,7 @@
     partial class Form1
     {
         private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonLogs;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonContacts;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -129,6 +130,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonDropButton1 = new ComponentFactory.Krypton.Toolkit.KryptonDropButton();
+            this.ButtonContacts = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarSpeaker)).BeginInit();
@@ -144,7 +146,8 @@
             // 
             // ButtonLogs
             // 
-            this.ButtonLogs.Location = new System.Drawing.Point(123, 6);
+            this.ButtonLogs.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.ButtonSpec;
+            this.ButtonLogs.Location = new System.Drawing.Point(108, 6);
             this.ButtonLogs.Name = "ButtonLogs";
             this.ButtonLogs.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
             this.ButtonLogs.Size = new System.Drawing.Size(70, 29);
@@ -1268,6 +1271,18 @@
             this.kryptonDropButton1.Values.Text = "Settings";
             this.kryptonDropButton1.Click += new System.EventHandler(this.kryptonDropButton1_Click);
             // 
+            // ButtonContacts
+            // 
+            this.ButtonContacts.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.ButtonSpec;
+            this.ButtonContacts.Location = new System.Drawing.Point(12, 6);
+            this.ButtonContacts.Name = "ButtonContacts";
+            this.ButtonContacts.Palette = this.kryptonPalette1;
+            this.ButtonContacts.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.ButtonContacts.Size = new System.Drawing.Size(90, 29);
+            this.ButtonContacts.TabIndex = 0;
+            this.ButtonContacts.Values.Text = "Contacts";
+            this.ButtonContacts.Click += new System.EventHandler(this.ButtonContacts_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1275,6 +1290,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(227, 391);
+            this.Controls.Add(this.ButtonContacts);
             this.Controls.Add(this.ButtonLogs);
             this.Controls.Add(this.kryptonDropButton1);
             this.Controls.Add(this.pictureBox1);

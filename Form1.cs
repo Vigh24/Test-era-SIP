@@ -481,8 +481,10 @@ namespace SIPSample
             // Set initial label text
             LabelUsername.Text = "Not Registered";
 
-            // Add event handler for the toggle button
-            ButtonToggleMute.Click += ButtonToggleMute_Click;
+            // Ensure single event handler attachment
+            ButtonToggleMute.Click -= ButtonToggleMute_Click; // Remove any existing handler
+            ButtonToggleMute.Click += ButtonToggleMute_Click; // Attach the handler
+            Console.WriteLine("ButtonToggleMute_Click event handler attached.");
 
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
@@ -3189,7 +3191,9 @@ namespace SIPSample
             }
 
             _isMuted = !_isMuted; // Toggle the mute state
+            Console.WriteLine($"Attempting to mute microphone: {_isMuted}");
             _sdkLib.muteMicrophone(_isMuted); // Mute or unmute the microphone
+            Console.WriteLine($"Microphone muted: {_isMuted}");
 
             // Update the button text based on the mute state
             ButtonToggleMute.Text = _isMuted ? "Unmute" : "Mute";

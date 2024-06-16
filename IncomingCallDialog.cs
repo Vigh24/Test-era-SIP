@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SIPSample
+namespace EratronicsPhone
 {
     public partial class IncomingCallDialog : Form
     {

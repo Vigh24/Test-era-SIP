@@ -11,7 +11,7 @@ using Microsoft.Win32;
 using System.IO;
 using System.Management; // Add reference to System.Management
 
-namespace SIPSample
+namespace EratronicsPhone
 {
     public partial class LicenseForm : Form
     {

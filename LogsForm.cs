@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
 
-namespace SIPSample
+namespace EratronicsPhone
 {
     public partial class LogsForm : KryptonForm
     {

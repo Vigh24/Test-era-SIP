@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace SIPSample
+namespace EratronicsPhone
 {
     public partial class ContactsForm : Form
     {

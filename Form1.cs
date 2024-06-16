@@ -13,7 +13,7 @@ using System.Drawing;
 using Microsoft.Win32;
 using ComponentFactory.Krypton.Toolkit;
 
-namespace SIPSample
+namespace EratronicsPhone
 {
     public partial class Form1 : KryptonForm, SIPCallbackEvents
     {

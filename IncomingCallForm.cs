@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using PortSIP;
 
-namespace SIPSample
+namespace EratronicsPhone
 {
     public partial class IncomingCallForm : Form
     {

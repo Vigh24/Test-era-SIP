@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SIPSample
+namespace EratronicsPhone
 {
     partial class videoScreen
     {

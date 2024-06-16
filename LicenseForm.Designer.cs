@@ -1,4 +1,4 @@
-﻿namespace SIPSample
+﻿namespace EratronicsPhone
 {
     partial class LicenseForm
     {

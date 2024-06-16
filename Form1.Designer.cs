@@ -1,4 +1,4 @@
-﻿namespace SIPSample
+﻿namespace EratronicsPhone
 {
     partial class Form1
     {
@@ -255,7 +255,7 @@
             // 
             this.CheckBoxAA.AutoSize = true;
             this.CheckBoxAA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxAA.Location = new System.Drawing.Point(20, 301);
+            this.CheckBoxAA.Location = new System.Drawing.Point(20, 302);
             this.CheckBoxAA.Name = "CheckBoxAA";
             this.CheckBoxAA.Size = new System.Drawing.Size(86, 17);
             this.CheckBoxAA.TabIndex = 124;
@@ -379,7 +379,7 @@
             this.ButtonHangUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHangUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonHangUp.ForeColor = System.Drawing.Color.White;
-            this.ButtonHangUp.Image = global::SIPSample.Properties.Resources.v910_ning_04_ai_2__1_;
+            this.ButtonHangUp.Image = global::EratronicsPhone.Properties.Resources.v910_ning_04_ai_2__1_;
             this.ButtonHangUp.Location = new System.Drawing.Point(148, 237);
             this.ButtonHangUp.Name = "ButtonHangUp";
             this.ButtonHangUp.Size = new System.Drawing.Size(63, 58);
@@ -397,7 +397,7 @@
             this.ButtonDial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonDial.ForeColor = System.Drawing.Color.Transparent;
-            this.ButtonDial.Image = global::SIPSample.Properties.Resources.v910_ning_04_ai_1_;
+            this.ButtonDial.Image = global::EratronicsPhone.Properties.Resources.v910_ning_04_ai_1_;
             this.ButtonDial.Location = new System.Drawing.Point(17, 236);
             this.ButtonDial.Name = "ButtonDial";
             this.ButtonDial.Size = new System.Drawing.Size(63, 58);
@@ -1240,7 +1240,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SIPSample.Properties.Resources.WhatsApp_Image_2024_06_05_at_11_37_50_AM;
+            this.pictureBox1.Image = global::EratronicsPhone.Properties.Resources.WhatsApp_Image_2024_06_05_at_11_37_50_AM;
             this.pictureBox1.Location = new System.Drawing.Point(114, 366);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(108, 28);

@@ -2,7 +2,7 @@
 using PortSIP;
 using System.Windows.Forms;
 
-namespace SIPSample
+namespace EratronicsPhone
 {
     public partial class AudioCodecsForm : Form
     {

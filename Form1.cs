@@ -489,6 +489,12 @@ namespace SIPSample
             // Set initial button image
             ButtonToggleMute.Image = Properties.Resources.mute;
 
+            // Remove hover effect and animation
+            ButtonToggleMute.FlatStyle = FlatStyle.Flat;
+            ButtonToggleMute.FlatAppearance.BorderSize = 0;
+            ButtonToggleMute.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            ButtonToggleMute.FlatAppearance.MouseDownBackColor = Color.Transparent;
+
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
             TextBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)

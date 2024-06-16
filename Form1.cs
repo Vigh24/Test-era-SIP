@@ -96,17 +96,24 @@ namespace SIPSample
             }
         }
 
-        public void SetSIPLogined(bool logined)
+        public void SetSIPLogined(bool logined, string username = "")
         {
             _SIPLogined = logined;
             if (_SIPLogined)
             {
                 pictureBoxStatus.Image = Properties.Resources.image2; //Registered image
+                LabelUsername.Text = username; // Update with the username
             }
             else
             {
                 pictureBoxStatus.Image = Properties.Resources.image1;
+                LabelUsername.Text = "Not Registered"; // Update to "Not Registered"
             }
+        }
+
+        public void UpdateUsername(string username)
+        {
+            LabelUsername.Text = username;
         }
 
         private void InitializeContextMenu()
@@ -469,6 +476,9 @@ namespace SIPSample
             _registrationForm = new RegistrationForm(this, _sdkLib);
             ButtonDial.MouseEnter += ButtonDial_MouseEnter;
             ButtonDial.MouseLeave += ButtonDial_MouseLeave;
+
+            // Set initial label text
+            LabelUsername.Text = "Not Registered";
 
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;

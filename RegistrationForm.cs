@@ -227,6 +227,9 @@ namespace SIPSample
 
             // Save settings after successful registration
             SaveSettings();
+
+            // Update the username in Form1
+            _mainForm.SetSIPLogined(true, TextBoxUserName.Text);
         }
 
         private void SaveSettings()

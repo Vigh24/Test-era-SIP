@@ -43,6 +43,7 @@
             // 
             // ButtonAddContact
             // 
+            this.ButtonAddContact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAddContact.Location = new System.Drawing.Point(220, 10);
             this.ButtonAddContact.Name = "ButtonAddContact";
             this.ButtonAddContact.Size = new System.Drawing.Size(75, 23);
@@ -53,6 +54,7 @@
             // 
             // ButtonDeleteContact
             // 
+            this.ButtonDeleteContact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDeleteContact.Location = new System.Drawing.Point(220, 40);
             this.ButtonDeleteContact.Name = "ButtonDeleteContact";
             this.ButtonDeleteContact.Size = new System.Drawing.Size(75, 23);

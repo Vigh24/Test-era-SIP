@@ -131,6 +131,7 @@
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonDropButton1 = new ComponentFactory.Krypton.Toolkit.KryptonDropButton();
             this.ButtonContacts = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.LabelUsername = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarSpeaker)).BeginInit();
@@ -1239,7 +1240,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SIPSample.Properties.Resources.WhatsApp_Image_2024_06_05_at_11_37_50_AM;
-            this.pictureBox1.Location = new System.Drawing.Point(114, 364);
+            this.pictureBox1.Location = new System.Drawing.Point(114, 366);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(108, 28);
             this.pictureBox1.TabIndex = 130;
@@ -1283,6 +1284,16 @@
             this.ButtonContacts.Values.Text = "Contacts";
             this.ButtonContacts.Click += new System.EventHandler(this.ButtonContacts_Click);
             // 
+            // LabelUsername
+            // 
+            this.LabelUsername.AutoSize = true;
+            this.LabelUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LabelUsername.Location = new System.Drawing.Point(32, 371);
+            this.LabelUsername.Name = "LabelUsername";
+            this.LabelUsername.Size = new System.Drawing.Size(35, 13);
+            this.LabelUsername.TabIndex = 134;
+            this.LabelUsername.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1290,6 +1301,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(227, 391);
+            this.Controls.Add(this.LabelUsername);
             this.Controls.Add(this.ButtonContacts);
             this.Controls.Add(this.ButtonLogs);
             this.Controls.Add(this.kryptonDropButton1);
@@ -1472,6 +1484,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private ComponentFactory.Krypton.Toolkit.KryptonDropButton kryptonDropButton1;
+        private System.Windows.Forms.Label LabelUsername;
     }
 }
 

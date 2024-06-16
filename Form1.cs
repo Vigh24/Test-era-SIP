@@ -486,6 +486,9 @@ namespace SIPSample
             ButtonToggleMute.Click += ButtonToggleMute_Click; // Attach the handler
             Console.WriteLine("ButtonToggleMute_Click event handler attached.");
 
+            // Set initial button image
+            ButtonToggleMute.Image = Properties.Resources.mute;
+
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
             TextBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
@@ -3196,7 +3199,8 @@ namespace SIPSample
             Console.WriteLine($"Microphone muted: {_isMuted}");
 
             // Update the button text based on the mute state
-            ButtonToggleMute.Text = _isMuted ? "Unmute" : "Mute";
+            // Update the button image based on the mute state
+            ButtonToggleMute.Image = _isMuted ? Properties.Resources.unmute : Properties.Resources.mute;
         }
     }
 }

@@ -1303,12 +1303,13 @@
             // 
             // ButtonToggleMute
             // 
-            this.ButtonToggleMute.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ButtonToggleMute.Location = new System.Drawing.Point(74, 257);
+            this.ButtonToggleMute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToggleMute.ForeColor = System.Drawing.Color.Transparent;
+            this.ButtonToggleMute.Location = new System.Drawing.Point(88, 243);
             this.ButtonToggleMute.Name = "ButtonToggleMute";
-            this.ButtonToggleMute.Size = new System.Drawing.Size(75, 23);
+            this.ButtonToggleMute.Size = new System.Drawing.Size(48, 44);
             this.ButtonToggleMute.TabIndex = 135;
-            this.ButtonToggleMute.Text = "Mute";
+            this.ButtonToggleMute.Text = "\r\n";
             this.ButtonToggleMute.UseVisualStyleBackColor = true;
             this.ButtonToggleMute.Click += new System.EventHandler(this.ButtonToggleMute_Click);
             // 

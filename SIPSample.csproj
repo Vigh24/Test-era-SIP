@@ -285,6 +285,8 @@
     <Content Include="portsip_sdk.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\mute.png" />
+    <None Include="Resources\unmute.png" />
     <None Include="Resources\v910-ning-04-ai%282%29%281%29.png" />
     <None Include="Resources\v910-ning-04-ai%281%29.png" />
     <None Include="Resources\WhatsApp Image 2024-06-13 at 6.12.46 PM%282%29.jpeg" />

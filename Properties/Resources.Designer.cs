@@ -163,6 +163,16 @@ namespace SIPSample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mute {
+            get {
+                object obj = ResourceManager.GetObject("mute", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap phone_call_removebg_preview_1_ {
             get {
                 object obj = ResourceManager.GetObject("phone-call-removebg-preview(1)", resourceCulture);
@@ -216,6 +226,16 @@ namespace SIPSample.Properties {
         internal static System.Drawing.Bitmap telephone_call_removebg_preview_1__1_ {
             get {
                 object obj = ResourceManager.GetObject("telephone-call-removebg-preview(1)(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unmute {
+            get {
+                object obj = ResourceManager.GetObject("unmute", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

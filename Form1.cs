@@ -45,6 +45,7 @@ namespace SIPSample
         private bool _vp8Enabled;
         private bool _vp9Enabled;
         private bool isExpanded = false; // Track the current state
+        private bool _isMuted = false; // Field to keep track of the mute state
         private int _CurrentlyLine = LINE_BASE;
         private AudioCodecsForm _audioCodecsForm;
         private PictureBox pictureBoxStatus; // Declare the PictureBox here
@@ -479,6 +480,9 @@ namespace SIPSample
 
             // Set initial label text
             LabelUsername.Text = "Not Registered";
+
+            // Add event handler for the toggle button
+            ButtonToggleMute.Click += ButtonToggleMute_Click;
 
             // Resize and reposition the TextBoxPhoneNumber
             TextBoxPhoneNumber.Dock = DockStyle.None;
@@ -3174,6 +3178,21 @@ namespace SIPSample
             {
                 TextBoxPhoneNumber.Text = contactsForm.SelectedContactNumber;
             }
+        }
+
+        private void ButtonToggleMute_Click(object sender, EventArgs e)
+        {
+            if (_SIPInited == false)
+            {
+                MessageBox.Show("Please initialize the SDK first.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            _isMuted = !_isMuted; // Toggle the mute state
+            _sdkLib.muteMicrophone(_isMuted); // Mute or unmute the microphone
+
+            // Update the button text based on the mute state
+            ButtonToggleMute.Text = _isMuted ? "Unmute" : "Mute";
         }
     }
 }

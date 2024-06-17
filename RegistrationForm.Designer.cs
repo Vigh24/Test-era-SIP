@@ -25,6 +25,7 @@
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ComboBoxTransport = new System.Windows.Forms.ComboBox();
             this.TextBoxUserName = new System.Windows.Forms.TextBox();
             this.TextBoxPassword = new System.Windows.Forms.TextBox();
@@ -42,6 +43,7 @@
             this.LabelServerPort = new System.Windows.Forms.Label();
             this.LabelStunServer = new System.Windows.Forms.Label();
             this.LabelStunPort = new System.Windows.Forms.Label();
+            this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.SuspendLayout();
             // 
             // ComboBoxTransport
@@ -106,6 +108,7 @@
             // 
             // ButtonRegister
             // 
+            this.ButtonRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRegister.Location = new System.Drawing.Point(12, 248);
             this.ButtonRegister.Name = "ButtonRegister";
             this.ButtonRegister.Size = new System.Drawing.Size(75, 23);
@@ -116,6 +119,7 @@
             // 
             // ButtonDeregister
             // 
+            this.ButtonDeregister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDeregister.Location = new System.Drawing.Point(100, 248);
             this.ButtonDeregister.Name = "ButtonDeregister";
             this.ButtonDeregister.Size = new System.Drawing.Size(75, 23);
@@ -189,6 +193,21 @@
             this.LabelStunPort.Text = "Stun Port";
             this.LabelStunPort.Visible = false;
             // 
+            // kryptonPalette1
+            // 
+            this.kryptonPalette1.BasePaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Global;
+            this.kryptonPalette1.ButtonSpecs.FormClose.Style = ComponentFactory.Krypton.Toolkit.PaletteButtonStyle.Standalone;
+            this.kryptonPalette1.ButtonSpecs.FormMax.Style = ComponentFactory.Krypton.Toolkit.PaletteButtonStyle.Standalone;
+            this.kryptonPalette1.ButtonSpecs.FormMin.Style = ComponentFactory.Krypton.Toolkit.PaletteButtonStyle.Standalone;
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Back.Color1 = System.Drawing.Color.White;
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Back.Color2 = System.Drawing.Color.White;
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonPalette1.FormStyles.FormMain.StateCommon.Border.Rounding = 8;
+            this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            // 
             // RegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,11 +233,15 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "RegistrationForm";
+            this.Palette = this.kryptonPalette1;
+            this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RegistrationForm";
+            this.Text = "Registration";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+        private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
     }
 }

@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
-using System.Management; // Add reference to System.Management
+using System.Management;
+using ComponentFactory.Krypton.Toolkit;// Add reference to System.Management
 
 namespace EratronicsPhone
 {
-    public partial class LicenseForm : Form
+    public partial class LicenseForm : KryptonForm
     {
         public bool IsActivated { get; private set; } = false; // Public property to track if the license is activated
         public bool IsTrialStarted { get; private set; } = false; // Public property to track if the trial is started

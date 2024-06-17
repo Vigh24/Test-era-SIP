@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 using PortSIP;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace EratronicsPhone
 {
-    public partial class IncomingCallForm : Form
+    public partial class IncomingCallForm : KryptonForm
     {
         private int _sessionId;
         private PortSIPLib _sdkLib;

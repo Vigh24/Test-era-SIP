@@ -132,7 +132,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "TransferCallForm";
-            this.Text = "TransferCallForm";
+            this.Text = "TransferCall";
             this.Load += new System.EventHandler(this.TransferCallForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

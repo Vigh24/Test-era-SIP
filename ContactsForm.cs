@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace EratronicsPhone
 {
-    public partial class ContactsForm : Form
+    public partial class ContactsForm : KryptonForm
     {
         private List<Contact> contacts = new List<Contact>();
         private System.Windows.Forms.ListBox ListBoxContacts;
@@ -108,6 +109,11 @@ namespace EratronicsPhone
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+        }
+
+        private void kryptonPalette1_PalettePaint(object sender, ComponentFactory.Krypton.Toolkit.PaletteLayoutEventArgs e)
+        {
+
         }
     }
 }

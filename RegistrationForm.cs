@@ -3,10 +3,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using PortSIP;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace EratronicsPhone
 {
-    public partial class RegistrationForm : Form, SIPCallbackEvents
+    public partial class RegistrationForm : KryptonForm, SIPCallbackEvents
     {
         private Form1 _mainForm;
         private PortSIPLib _sdkLib;

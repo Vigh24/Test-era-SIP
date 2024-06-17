@@ -502,7 +502,7 @@ namespace EratronicsPhone
 
             // Initialize PictureBox
             pictureBoxStatus = new PictureBox();
-            pictureBoxStatus.Size = new Size(28, 28); // Set the desired size
+            pictureBoxStatus.Size = new Size(22, 22); // Set the desired size
             pictureBoxStatus.Location = new Point(7, 368); // Set the desired location
             this.Controls.Add(pictureBoxStatus);
 

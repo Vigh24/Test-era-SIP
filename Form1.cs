@@ -51,6 +51,8 @@ namespace EratronicsPhone
         private AudioCodecsForm _audioCodecsForm;
         private PictureBox pictureBoxStatus; // Declare the PictureBox here
         private KryptonContextMenu kryptonContextMenu1;
+        private Button btnAutoAnswer;
+        private bool autoAnswerEnabled = false;
 
 
 
@@ -111,6 +113,11 @@ namespace EratronicsPhone
                 pictureBoxStatus.Image = Properties.Resources.image1;
                 LabelUsername.Text = "Not Registered"; // Update to "Not Registered"
             }
+        }
+
+        public bool AutoAnswerEnabled
+        {
+            get { return autoAnswerEnabled; }
         }
 
         public void UpdateUsername(string username)
@@ -478,6 +485,23 @@ namespace EratronicsPhone
             _registrationForm = new RegistrationForm(this, _sdkLib);
             ButtonDial.MouseEnter += ButtonDial_MouseEnter;
             ButtonDial.MouseLeave += ButtonDial_MouseLeave;
+
+            btnAutoAnswer = new Button();
+            btnAutoAnswer.Text = "AA";
+            btnAutoAnswer.Location = new Point(131, 332); // Adjust location as needed
+            btnAutoAnswer.Size = new Size(41, 23);
+            btnAutoAnswer.Click += BtnAutoAnswer_Click;
+
+            // Set the button style to flat
+            btnAutoAnswer.FlatStyle = FlatStyle.Flat;
+            btnAutoAnswer.FlatAppearance.BorderSize = 1; // Set border size (optional)
+            btnAutoAnswer.FlatAppearance.BorderColor = Color.Black; // Set border color (optional)
+            btnAutoAnswer.FlatAppearance.MouseDownBackColor = Color.Gray; // Color when the mouse is down
+            btnAutoAnswer.FlatAppearance.MouseOverBackColor = Color.Silver; // Color when the mouse is over the button
+
+            // Set the default foreground color
+            btnAutoAnswer.ForeColor = SystemColors.ActiveCaptionText; // Use system color for text
+            this.Controls.Add(btnAutoAnswer);
 
             // Initialize the ToolTip
             toolTip1 = new ToolTip();
@@ -3229,6 +3253,23 @@ namespace EratronicsPhone
             // Update the button text based on the mute state
             // Update the button image based on the mute state
             ButtonToggleMute.Image = _isMuted ? Properties.Resources.unmute : Properties.Resources.mute;
+        }
+
+        private void BtnAutoAnswer_Click(object sender, EventArgs e)
+        {
+            autoAnswerEnabled = !autoAnswerEnabled;
+            if (autoAnswerEnabled)
+            {
+                btnAutoAnswer.Text = "AA";
+                btnAutoAnswer.BackColor = Color.Green; // Set to green when enabled
+                btnAutoAnswer.ForeColor = Color.White; // Set text color to white for better contrast
+            }
+            else
+            {
+                btnAutoAnswer.Text = "AA";
+                btnAutoAnswer.BackColor = Color.Red; // Set to red when disabled
+                btnAutoAnswer.ForeColor = Color.Black; // Revert text color to black
+            }
         }
     }
 }

@@ -1307,6 +1307,7 @@
             this.CheckBoxAA.TabIndex = 124;
             this.CheckBoxAA.Text = "Auto Answer";
             this.CheckBoxAA.UseVisualStyleBackColor = true;
+            this.CheckBoxAA.Visible = false;
             // 
             // Form1
             // 

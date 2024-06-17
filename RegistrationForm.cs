@@ -310,7 +310,6 @@ namespace EratronicsPhone
         {
             this.Invoke((MethodInvoker)delegate
             {
-                // Check if Do Not Disturb is enabled
                 if (_mainForm.CheckBoxDND.Checked)
                 {
                     _sdkLib.rejectCall(sessionId, 486); // Automatically reject the call
@@ -318,19 +317,16 @@ namespace EratronicsPhone
                 }
                 else
                 {
-                    // Always show the IncomingCallForm
                     IncomingCallForm incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib);
                     incomingCallForm.Show();
 
-                    // Check if Auto Answer is enabled
-                    if (_mainForm.CheckBoxAA.Checked)
+                    if (_mainForm.AutoAnswerEnabled) // Use the AutoAnswerEnabled property from Form1
                     {
                         incomingCallForm.AutoAnswerCall();
                     }
                     else
                     {
-                        // Play a ringing tone if there is no early media
-                        if (!existsAudio) // Assuming 'existsAudio' indicates the presence of early media
+                        if (!existsAudio)
                         {
                             System.Media.SoundPlayer player = new System.Media.SoundPlayer("C:\\Users\\Administrator\\Downloads\\call.wav");
                             player.Play();

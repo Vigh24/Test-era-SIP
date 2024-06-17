@@ -310,7 +310,7 @@ namespace EratronicsPhone
         {
             this.Invoke((MethodInvoker)delegate
             {
-                if (_mainForm.CheckBoxDND.Checked)
+                if (_mainForm.IsDNDActive) // Use the IsDNDActive property from Form1
                 {
                     _sdkLib.rejectCall(sessionId, 486); // Automatically reject the call
                     MessageBox.Show("Call rejected due to DND mode.");

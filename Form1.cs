@@ -52,6 +52,7 @@ namespace EratronicsPhone
         private PictureBox pictureBoxStatus; // Declare the PictureBox here
         private KryptonContextMenu kryptonContextMenu1;
         private Button btnAutoAnswer;
+        private bool _isDNDActive = false; // Field to track DND state
         private bool autoAnswerEnabled = false;
 
 
@@ -118,6 +119,11 @@ namespace EratronicsPhone
         public bool AutoAnswerEnabled
         {
             get { return autoAnswerEnabled; }
+        }
+
+        public bool IsDNDActive
+        {
+            get { return _isDNDActive; }
         }
 
         public void UpdateUsername(string username)
@@ -503,6 +509,19 @@ namespace EratronicsPhone
             btnAutoAnswer.ForeColor = SystemColors.ActiveCaptionText; // Use system color for text
             this.Controls.Add(btnAutoAnswer);
 
+            //Button DND
+            Button btnToggleDND = new Button();
+            btnToggleDND.Text = "DND Off";
+            btnToggleDND.Location = new Point(173, 332); // Adjust the location as needed
+            btnToggleDND.Size = new Size(41, 23);
+            btnToggleDND.Click += BtnToggleDND_Click;
+
+            // Set the button style to flat
+            btnToggleDND.FlatStyle = FlatStyle.Flat;
+            btnToggleDND.FlatAppearance.BorderSize = 1; // Remove the border to enhance the flat appearance
+            btnToggleDND.ForeColor = SystemColors.ActiveCaptionText; // Set the foreground color to ActiveCaptionText
+            this.Controls.Add(btnToggleDND);
+
             // Initialize the ToolTip
             toolTip1 = new ToolTip();
 
@@ -551,7 +570,7 @@ namespace EratronicsPhone
             // Initialize PictureBox
             pictureBoxStatus = new PictureBox();
             pictureBoxStatus.Size = new Size(22, 22); // Set the desired size
-            pictureBoxStatus.Location = new Point(7, 368); // Set the desired location
+            pictureBoxStatus.Location = new Point(7, 370); // Set the desired location
             this.Controls.Add(pictureBoxStatus);
 
             // Load initial image
@@ -3271,6 +3290,16 @@ namespace EratronicsPhone
                 btnAutoAnswer.Text = "AA";
                 btnAutoAnswer.BackColor = Color.Red; // Set to red when disabled
                 btnAutoAnswer.ForeColor = Color.Black; // Revert text color to black
+            }
+        }
+
+        private void BtnToggleDND_Click(object sender, EventArgs e)
+        {
+            _isDNDActive = !_isDNDActive; // Toggle the DND state
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                btn.Text = _isDNDActive ? "DND On" : "DND Off";
             }
         }
     }

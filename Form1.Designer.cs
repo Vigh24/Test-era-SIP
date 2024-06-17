@@ -261,6 +261,7 @@
             this.CheckBoxDND.TabIndex = 123;
             this.CheckBoxDND.Text = "Do not disturb";
             this.CheckBoxDND.UseVisualStyleBackColor = true;
+            this.CheckBoxDND.Visible = false;
             this.CheckBoxDND.CheckedChanged += new System.EventHandler(this.CheckBoxDND_CheckedChanged);
             // 
             // CheckBoxSDP
@@ -1279,7 +1280,7 @@
             // 
             this.LabelUsername.AutoSize = true;
             this.LabelUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.LabelUsername.Location = new System.Drawing.Point(31, 374);
+            this.LabelUsername.Location = new System.Drawing.Point(31, 375);
             this.LabelUsername.Name = "LabelUsername";
             this.LabelUsername.Size = new System.Drawing.Size(35, 13);
             this.LabelUsername.TabIndex = 134;

@@ -520,6 +520,8 @@ namespace EratronicsPhone
             toolTip1.SetToolTip(this.ButtonTransfer, "Transfer call");
             //Attend Transfer Hover
             toolTip1.SetToolTip(this.button24, "Atend Transfer");
+            //Attend AutoAnswer Hover
+            toolTip1.SetToolTip(this.btnAutoAnswer, "Auto Answer");
 
 
 

@@ -23,6 +23,7 @@ namespace EratronicsPhone
         private RegistrationForm _registrationForm;
         private LicenseForm _licenseForm;
         private List<string> _callLogs = new List<string>();
+        private ToolTip toolTip1;
 
 
         private Session[] _CallSessions = new Session[MAX_LINES];
@@ -477,6 +478,27 @@ namespace EratronicsPhone
             _registrationForm = new RegistrationForm(this, _sdkLib);
             ButtonDial.MouseEnter += ButtonDial_MouseEnter;
             ButtonDial.MouseLeave += ButtonDial_MouseLeave;
+
+            // Initialize the ToolTip
+            toolTip1 = new ToolTip();
+
+            // Set up the delays for the ToolTip.
+            toolTip1.AutoPopDelay = 5000;    // The time period (in milliseconds) the ToolTip remains visible if the pointer is stationary on a control with specified ToolTip text.
+            toolTip1.InitialDelay = 1000;    // The time delay (in milliseconds) before the ToolTip appears.
+            toolTip1.ReshowDelay = 500;      // The time delay (in milliseconds) before subsequent ToolTip windows appear as the pointer moves from one control to another.
+
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            toolTip1.ShowAlways = true;
+
+            // Set up the ToolTip text for the ButtonHold.
+            toolTip1.SetToolTip(this.ButtonHold, "Hold");
+            // Assuming toolTip1 is already initialized and configured
+            toolTip1.SetToolTip(this.ButtonTransfer, "Transfer call");
+            //Attend Transfer Hover
+            toolTip1.SetToolTip(this.button24, "Atend Transfer");
+
+
+
 
             // Set initial label text
             LabelUsername.Text = "Not Registered";

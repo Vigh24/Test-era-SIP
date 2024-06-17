@@ -327,6 +327,15 @@ namespace EratronicsPhone
                     {
                         incomingCallForm.AutoAnswerCall();
                     }
+                    else
+                    {
+                        // Play a ringing tone if there is no early media
+                        if (!existsAudio) // Assuming 'existsAudio' indicates the presence of early media
+                        {
+                            System.Media.SoundPlayer player = new System.Media.SoundPlayer("C:\\Users\\Administrator\\Downloads\\call.wav");
+                            player.Play();
+                        }
+                    }
                 }
             });
             _mainForm.LogCall($"Incoming call from {callerDisplayName} ({caller}) at {DateTime.Now}");

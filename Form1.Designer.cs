@@ -40,7 +40,6 @@
             this.checkBoxMakeVideo = new System.Windows.Forms.CheckBox();
             this.checkBoxPRACK = new System.Windows.Forms.CheckBox();
             this.CheckBoxConf = new System.Windows.Forms.CheckBox();
-            this.CheckBoxAA = new System.Windows.Forms.CheckBox();
             this.CheckBoxDND = new System.Windows.Forms.CheckBox();
             this.CheckBoxSDP = new System.Windows.Forms.CheckBox();
             this.button24 = new System.Windows.Forms.Button();
@@ -133,6 +132,7 @@
             this.ButtonContacts = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.LabelUsername = new System.Windows.Forms.Label();
             this.ButtonToggleMute = new System.Windows.Forms.Button();
+            this.CheckBoxAA = new System.Windows.Forms.CheckBox();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarSpeaker)).BeginInit();
@@ -251,17 +251,6 @@
             this.CheckBoxConf.Visible = false;
             this.CheckBoxConf.CheckedChanged += new System.EventHandler(this.CheckBoxConf_CheckedChanged);
             // 
-            // CheckBoxAA
-            // 
-            this.CheckBoxAA.AutoSize = true;
-            this.CheckBoxAA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxAA.Location = new System.Drawing.Point(20, 302);
-            this.CheckBoxAA.Name = "CheckBoxAA";
-            this.CheckBoxAA.Size = new System.Drawing.Size(86, 17);
-            this.CheckBoxAA.TabIndex = 124;
-            this.CheckBoxAA.Text = "Auto Answer";
-            this.CheckBoxAA.UseVisualStyleBackColor = true;
-            // 
             // CheckBoxDND
             // 
             this.CheckBoxDND.AutoSize = true;
@@ -290,11 +279,11 @@
             // 
             this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button24.Location = new System.Drawing.Point(130, 332);
+            this.button24.Location = new System.Drawing.Point(89, 332);
             this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(92, 23);
+            this.button24.Size = new System.Drawing.Size(41, 23);
             this.button24.TabIndex = 120;
-            this.button24.Text = "Attend Transfer";
+            this.button24.Text = "AT";
             this.button24.UseVisualStyleBackColor = true;
             this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
@@ -327,23 +316,24 @@
             // 
             this.ButtonTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonTransfer.ForeColor = System.Drawing.Color.Black;
-            this.ButtonTransfer.Location = new System.Drawing.Point(71, 332);
+            this.ButtonTransfer.Location = new System.Drawing.Point(49, 332);
             this.ButtonTransfer.Name = "ButtonTransfer";
-            this.ButtonTransfer.Size = new System.Drawing.Size(56, 23);
+            this.ButtonTransfer.Size = new System.Drawing.Size(39, 23);
             this.ButtonTransfer.TabIndex = 113;
-            this.ButtonTransfer.Text = "Transfer";
+            this.ButtonTransfer.Text = "T";
             this.ButtonTransfer.UseVisualStyleBackColor = true;
             this.ButtonTransfer.Click += new System.EventHandler(this.ButtonTransfer_Click);
             // 
             // ButtonHold
             // 
+            this.ButtonHold.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonHold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ButtonHold.Location = new System.Drawing.Point(12, 332);
             this.ButtonHold.Name = "ButtonHold";
-            this.ButtonHold.Size = new System.Drawing.Size(55, 23);
+            this.ButtonHold.Size = new System.Drawing.Size(36, 23);
             this.ButtonHold.TabIndex = 112;
-            this.ButtonHold.Text = "Hold";
+            this.ButtonHold.Text = "HLD";
             this.ButtonHold.UseVisualStyleBackColor = true;
             this.ButtonHold.Click += new System.EventHandler(this.ButtonHold_Click);
             // 
@@ -1307,6 +1297,17 @@
             this.ButtonToggleMute.UseVisualStyleBackColor = true;
             this.ButtonToggleMute.Click += new System.EventHandler(this.ButtonToggleMute_Click);
             // 
+            // CheckBoxAA
+            // 
+            this.CheckBoxAA.AutoSize = true;
+            this.CheckBoxAA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.CheckBoxAA.Location = new System.Drawing.Point(20, 302);
+            this.CheckBoxAA.Name = "CheckBoxAA";
+            this.CheckBoxAA.Size = new System.Drawing.Size(86, 17);
+            this.CheckBoxAA.TabIndex = 124;
+            this.CheckBoxAA.Text = "Auto Answer";
+            this.CheckBoxAA.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1483,7 +1484,6 @@
         private System.Windows.Forms.CheckBox checkBoxANS;
         private System.Windows.Forms.CheckBox checkBoxPRACK;
         internal System.Windows.Forms.CheckBox CheckBoxConf;
-        internal System.Windows.Forms.CheckBox CheckBoxAA;
         internal System.Windows.Forms.CheckBox CheckBoxDND;
         internal System.Windows.Forms.CheckBox CheckBoxSDP;
         internal System.Windows.Forms.CheckBox checkBoxAnswerVideo;
@@ -1500,6 +1500,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDropButton kryptonDropButton1;
         private System.Windows.Forms.Label LabelUsername;
         private System.Windows.Forms.Button ButtonToggleMute;
+        internal System.Windows.Forms.CheckBox CheckBoxAA;
     }
 }
 

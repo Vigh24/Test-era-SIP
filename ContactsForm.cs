@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using ComponentFactory.Krypton.Toolkit;
+using System.Runtime.Serialization;
 
 namespace EratronicsPhone
 {
@@ -44,7 +45,7 @@ namespace EratronicsPhone
             using (var fs = new FileStream("contacts.bin", FileMode.Create))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(fs, contacts);
+                formatter.Serialize(fs, contacts); // Ensure contacts is a List<Contact>
             }
         }
 
@@ -55,24 +56,21 @@ namespace EratronicsPhone
             {
                 using (var fs = new FileStream(filePath, FileMode.Open))
                 {
-                    // Check if the file is not empty
-                    if (fs.Length > 0)
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    formatter.Binder = new NamespaceChangeBinder(); // Use the custom binder
+                    try
                     {
-                        BinaryFormatter formatter = new BinaryFormatter();
-                        contacts = (List<Contact>)formatter.Deserialize(fs);
+                        contacts = (List<Contact>)formatter.Deserialize(fs); // Ensure this is a List<Contact>
                     }
-                    else
+                    catch (InvalidCastException e)
                     {
-                        // Optionally handle the case where the file is empty
-                        // For example, initialize contacts as an empty list or display a message
-                        contacts = new List<Contact>();
+                        MessageBox.Show("The data format is incorrect: " + e.Message);
+                        contacts = new List<Contact>(); // Default to an empty list if there's an error
                     }
                 }
             }
             else
             {
-                // Handle the case where the file does not exist
-                // For example, initialize contacts as an empty list or display a message
                 contacts = new List<Contact>();
             }
         }
@@ -114,6 +112,35 @@ namespace EratronicsPhone
         private void kryptonPalette1_PalettePaint(object sender, ComponentFactory.Krypton.Toolkit.PaletteLayoutEventArgs e)
         {
 
+        }
+    }
+
+    // Custom serialization binder
+    public class NamespaceChangeBinder : SerializationBinder
+    {
+        public override Type BindToType(string assemblyName, string typeName)
+        {
+            // Check if the type is an array
+            if (typeName.Contains("[]"))
+            {
+                // Handle array types specifically
+                typeName = typeName.Replace("[]", "");
+                Type elementType = BindToBaseType(typeName, assemblyName);
+                return elementType != null ? elementType.MakeArrayType() : null;
+            }
+            else
+            {
+                return BindToBaseType(typeName, assemblyName);
+            }
+        }
+
+        private Type BindToBaseType(string typeName, string assemblyName)
+        {
+            if (typeName.Contains("SIPSample.Contact"))
+            {
+                return typeof(EratronicsPhone.Contact); // Redirect to the current Contact class
+            }
+            return Type.GetType($"{typeName}, {assemblyName}");
         }
     }
 }

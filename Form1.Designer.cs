@@ -255,7 +255,7 @@
             // 
             this.CheckBoxDND.AutoSize = true;
             this.CheckBoxDND.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxDND.Location = new System.Drawing.Point(126, 302);
+            this.CheckBoxDND.Location = new System.Drawing.Point(123, 442);
             this.CheckBoxDND.Name = "CheckBoxDND";
             this.CheckBoxDND.Size = new System.Drawing.Size(92, 17);
             this.CheckBoxDND.TabIndex = 123;
@@ -694,7 +694,7 @@
             // 
             // TrackBarSpeaker
             // 
-            this.TrackBarSpeaker.Location = new System.Drawing.Point(930, 402);
+            this.TrackBarSpeaker.Location = new System.Drawing.Point(491, 364);
             this.TrackBarSpeaker.Maximum = 255;
             this.TrackBarSpeaker.Name = "TrackBarSpeaker";
             this.TrackBarSpeaker.Size = new System.Drawing.Size(10, 45);
@@ -1302,7 +1302,7 @@
             // 
             this.CheckBoxAA.AutoSize = true;
             this.CheckBoxAA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CheckBoxAA.Location = new System.Drawing.Point(20, 302);
+            this.CheckBoxAA.Location = new System.Drawing.Point(34, 442);
             this.CheckBoxAA.Name = "CheckBoxAA";
             this.CheckBoxAA.Size = new System.Drawing.Size(86, 17);
             this.CheckBoxAA.TabIndex = 124;
@@ -1316,7 +1316,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(227, 399);
+            this.ClientSize = new System.Drawing.Size(221, 398);
             this.Controls.Add(this.ButtonToggleMute);
             this.Controls.Add(this.LabelUsername);
             this.Controls.Add(this.ButtonContacts);

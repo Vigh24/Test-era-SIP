@@ -53,6 +53,7 @@ namespace EratronicsPhone
         private KryptonContextMenu kryptonContextMenu1;
         private Button btnAutoAnswer;
         private bool _isDNDActive = false; // Field to track DND state
+        private KryptonTrackBar kryptonTrackBarSpeaker;
         private bool autoAnswerEnabled = false;
 
 
@@ -524,6 +525,17 @@ namespace EratronicsPhone
             btnToggleDND.ForeColor = SystemColors.ActiveCaptionText; // Set the foreground color to ActiveCaptionText
             this.Controls.Add(btnToggleDND);
 
+            kryptonTrackBarSpeaker = new KryptonTrackBar();
+            kryptonTrackBarSpeaker.Location = new Point(60, 300); // Adjust location as needed
+            kryptonTrackBarSpeaker.Size = new Size(150, 10); // Adjust size as needed
+            kryptonTrackBarSpeaker.Minimum = 0;
+            kryptonTrackBarSpeaker.Maximum = 255;
+            kryptonTrackBarSpeaker.TickStyle = TickStyle.TopLeft; // Set TickStyle to TopLeft
+            kryptonTrackBarSpeaker.PaletteMode = PaletteMode.ProfessionalSystem; // Set Visuals to Professional System
+            kryptonTrackBarSpeaker.ValueChanged += KryptonTrackBarSpeaker_ValueChanged;
+
+            this.Controls.Add(kryptonTrackBarSpeaker);
+
             // Initialize the ToolTip
             toolTip1 = new ToolTip();
 
@@ -678,6 +690,14 @@ namespace EratronicsPhone
             notifyIcon.ContextMenuStrip = contextMenuStrip;
         }
 
+        private void KryptonTrackBarSpeaker_ValueChanged(object sender, EventArgs e)
+        {
+            if (_SIPInited)
+            {
+                _sdkLib.setSpeakerVolume(kryptonTrackBarSpeaker.Value);
+            }
+        }
+
         private void NotifyIcon_DoubleClick(object sender, EventArgs e)
         {
             this.Show();
@@ -705,6 +725,8 @@ namespace EratronicsPhone
                 base.OnFormClosing(e);
             }
         }
+
+
 
         private void deRegisterFromServer()
         {

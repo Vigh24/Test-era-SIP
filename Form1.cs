@@ -491,6 +491,8 @@ namespace EratronicsPhone
             _registrationForm = new RegistrationForm(this, _sdkLib);
             ButtonDial.MouseEnter += ButtonDial_MouseEnter;
             ButtonDial.MouseLeave += ButtonDial_MouseLeave;
+            this.Shown += new EventHandler(this.Form1_Shown);
+            this.Activated += new EventHandler(this.Form1_Activated);
 
             btnAutoAnswer = new Button();
             btnAutoAnswer.Text = "AA";
@@ -614,6 +616,16 @@ namespace EratronicsPhone
                     Environment.Exit(0); // Forcefully exit if Application.Exit fails
                 }
             }
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            TextBoxPhoneNumber.Focus();
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            TextBoxPhoneNumber.Focus();
         }
 
         private bool CheckLicenseValidity()

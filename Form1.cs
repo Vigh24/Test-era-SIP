@@ -1280,6 +1280,10 @@ namespace EratronicsPhone
                 MessageBox.Show("Failed to initiate the call.", "Call Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            else
+            {
+                _lastDialedNumber = TextBoxPhoneNumber.Text; // Update the last dialed number after a successful call initiation
+            }
 
             // Update session state
             _CallSessions[_CurrentlyLine].setSessionId(sessionId);

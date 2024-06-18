@@ -133,6 +133,7 @@
             this.LabelUsername = new System.Windows.Forms.Label();
             this.ButtonToggleMute = new System.Windows.Forms.Button();
             this.CheckBoxAA = new System.Windows.Forms.CheckBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarSpeaker)).BeginInit();
@@ -144,6 +145,7 @@
             this.groupBox9.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonLogs
@@ -280,7 +282,7 @@
             // 
             this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button24.Location = new System.Drawing.Point(89, 332);
+            this.button24.Location = new System.Drawing.Point(89, 352);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(41, 23);
             this.button24.TabIndex = 120;
@@ -317,7 +319,7 @@
             // 
             this.ButtonTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonTransfer.ForeColor = System.Drawing.Color.Black;
-            this.ButtonTransfer.Location = new System.Drawing.Point(49, 332);
+            this.ButtonTransfer.Location = new System.Drawing.Point(49, 352);
             this.ButtonTransfer.Name = "ButtonTransfer";
             this.ButtonTransfer.Size = new System.Drawing.Size(39, 23);
             this.ButtonTransfer.TabIndex = 113;
@@ -330,7 +332,7 @@
             this.ButtonHold.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonHold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ButtonHold.Location = new System.Drawing.Point(12, 332);
+            this.ButtonHold.Location = new System.Drawing.Point(12, 352);
             this.ButtonHold.Name = "ButtonHold";
             this.ButtonHold.Size = new System.Drawing.Size(36, 23);
             this.ButtonHold.TabIndex = 112;
@@ -1232,7 +1234,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::EratronicsPhone.Properties.Resources.WhatsApp_Image_2024_06_05_at_11_37_50_AM;
-            this.pictureBox1.Location = new System.Drawing.Point(114, 372);
+            this.pictureBox1.Location = new System.Drawing.Point(114, 387);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(108, 28);
             this.pictureBox1.TabIndex = 130;
@@ -1280,7 +1282,7 @@
             // 
             this.LabelUsername.AutoSize = true;
             this.LabelUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.LabelUsername.Location = new System.Drawing.Point(31, 375);
+            this.LabelUsername.Location = new System.Drawing.Point(31, 393);
             this.LabelUsername.Name = "LabelUsername";
             this.LabelUsername.Size = new System.Drawing.Size(35, 13);
             this.LabelUsername.TabIndex = 134;
@@ -1310,13 +1312,23 @@
             this.CheckBoxAA.UseVisualStyleBackColor = true;
             this.CheckBoxAA.Visible = false;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::EratronicsPhone.Properties.Resources.speaker_1_;
+            this.pictureBox2.Location = new System.Drawing.Point(12, 306);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox2.TabIndex = 136;
+            this.pictureBox2.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(221, 398);
+            this.ClientSize = new System.Drawing.Size(221, 416);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.ButtonToggleMute);
             this.Controls.Add(this.LabelUsername);
             this.Controls.Add(this.ButtonContacts);
@@ -1397,6 +1409,7 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1503,6 +1516,7 @@
         private System.Windows.Forms.Label LabelUsername;
         private System.Windows.Forms.Button ButtonToggleMute;
         internal System.Windows.Forms.CheckBox CheckBoxAA;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

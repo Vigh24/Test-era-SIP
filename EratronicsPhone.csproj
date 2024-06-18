@@ -285,6 +285,9 @@
     <Content Include="portsip_sdk.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\speaker%281%29.png" />
+    <None Include="Resources\volume%281%291.png" />
+    <None Include="Resources\volume%281%29.png" />
     <None Include="Resources\image2.png" />
     <None Include="Resources\image1.png" />
     <None Include="Resources\mute.png" />

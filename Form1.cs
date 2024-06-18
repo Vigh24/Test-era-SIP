@@ -497,7 +497,7 @@ namespace EratronicsPhone
 
             btnAutoAnswer = new Button();
             btnAutoAnswer.Text = "AA";
-            btnAutoAnswer.Location = new Point(131, 332); // Adjust location as needed
+            btnAutoAnswer.Location = new Point(131, 352); // Adjust location as needed
             btnAutoAnswer.Size = new Size(41, 23);
             btnAutoAnswer.Click += BtnAutoAnswer_Click;
 
@@ -515,7 +515,7 @@ namespace EratronicsPhone
             //Button DND
             Button btnToggleDND = new Button();
             btnToggleDND.Text = "DND Off";
-            btnToggleDND.Location = new Point(173, 332); // Adjust the location as needed
+            btnToggleDND.Location = new Point(173, 352); // Adjust the location as needed
             btnToggleDND.Size = new Size(41, 23);
             btnToggleDND.Click += BtnToggleDND_Click;
 
@@ -526,7 +526,7 @@ namespace EratronicsPhone
             this.Controls.Add(btnToggleDND);
 
             kryptonTrackBarSpeaker = new KryptonTrackBar();
-            kryptonTrackBarSpeaker.Location = new Point(60, 300); // Adjust location as needed
+            kryptonTrackBarSpeaker.Location = new Point(60, 309); // Adjust location as needed
             kryptonTrackBarSpeaker.Size = new Size(150, 10); // Adjust size as needed
             kryptonTrackBarSpeaker.Minimum = 0;
             kryptonTrackBarSpeaker.Maximum = 255;
@@ -584,7 +584,7 @@ namespace EratronicsPhone
             // Initialize PictureBox
             pictureBoxStatus = new PictureBox();
             pictureBoxStatus.Size = new Size(22, 22); // Set the desired size
-            pictureBoxStatus.Location = new Point(7, 370); // Set the desired location
+            pictureBoxStatus.Location = new Point(7, 390); // Set the desired location
             this.Controls.Add(pictureBoxStatus);
 
             // Load initial image

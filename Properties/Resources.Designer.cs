@@ -63,16 +63,6 @@ namespace EratronicsPhone.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap call_green_big {
-            get {
-                object obj = ResourceManager.GetObject("call_green_big", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap call_red_big {
             get {
                 object obj = ResourceManager.GetObject("call_red_big", resourceCulture);
@@ -213,6 +203,16 @@ namespace EratronicsPhone.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap speaker_1_ {
+            get {
+                object obj = ResourceManager.GetObject("speaker(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap telephone_call_1_ {
             get {
                 object obj = ResourceManager.GetObject("telephone-call(1)", resourceCulture);
@@ -256,6 +256,16 @@ namespace EratronicsPhone.Properties {
         internal static System.Drawing.Bitmap v910_ning_04_ai_2__1_ {
             get {
                 object obj = ResourceManager.GetObject("v910-ning-04-ai(2)(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap volume_1_ {
+            get {
+                object obj = ResourceManager.GetObject("volume(1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

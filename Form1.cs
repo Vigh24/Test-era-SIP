@@ -56,6 +56,10 @@ namespace EratronicsPhone
         private KryptonTrackBar kryptonTrackBarSpeaker;
         private bool autoAnswerEnabled = false;
         private string _lastDialedNumber = "";
+        private System.Windows.Forms.Timer callTimer;
+        private DateTime callStartTime;
+        private Label labelCallDuration;
+        private Label labelDialedNumber;
 
 
 
@@ -118,6 +122,39 @@ namespace EratronicsPhone
             }
         }
 
+        public void StartCallTimer()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(StartCallTimer));
+            }
+            else
+            {
+                callStartTime = DateTime.Now;
+                callTimer.Start();
+            }
+        }
+
+        public void StopCallTimer()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(StopCallTimer));
+            }
+            else
+            {
+                if (callTimer.Enabled)
+                {
+                    callTimer.Stop();
+                    labelCallDuration.Text = "Call Ended";
+                }
+                else
+                {
+                    
+                }
+            }
+        }
+
         public bool AutoAnswerEnabled
         {
             get { return autoAnswerEnabled; }
@@ -132,6 +169,8 @@ namespace EratronicsPhone
         {
             LabelUsername.Text = username;
         }
+
+
 
         private void InitializeContextMenu()
         {
@@ -495,6 +534,26 @@ namespace EratronicsPhone
             ButtonDial.MouseLeave += ButtonDial_MouseLeave;
             this.Shown += new EventHandler(this.Form1_Shown);
             this.Activated += new EventHandler(this.Form1_Activated);
+
+            callTimer = new System.Windows.Forms.Timer();
+            callTimer.Interval = 1000; // Update every second
+            callTimer.Tick += CallTimer_Tick;
+
+            // Initialize labels for dialed number and call duration
+            labelDialedNumber = new Label();
+            labelDialedNumber.Visible = false;
+            labelCallDuration = new Label();
+            labelCallDuration.AutoSize = true;
+            // Set properties for labels or add them via Designer
+            labelDialedNumber.SetBounds(19, 295, 100, 20); // Set position and size appropriately
+            labelCallDuration.Location = new Point(59, 295);
+            labelCallDuration.Text = "Call Duration: 00:00:00";
+
+            // Ensure the label is visible and properly formatted
+            labelCallDuration.Visible = true;
+            labelCallDuration.ForeColor = Color.Black; // Set color for visibility
+            this.Controls.Add(labelDialedNumber);
+            this.Controls.Add(labelCallDuration);
 
             btnAutoAnswer = new Button();
             btnAutoAnswer.Text = "AA";
@@ -1283,6 +1342,7 @@ namespace EratronicsPhone
             else
             {
                 _lastDialedNumber = TextBoxPhoneNumber.Text; // Update the last dialed number after a successful call initiation
+                labelDialedNumber.Text = "Dialed Number: " + TextBoxPhoneNumber.Text; // Display the dialed number
             }
 
             // Update session state
@@ -1292,6 +1352,12 @@ namespace EratronicsPhone
 
             // Log the dial action
             LogCall($"Dialing {TextBoxPhoneNumber.Text} from line {_CurrentlyLine} at {DateTime.Now}");
+        }
+
+        private void CallTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan duration = DateTime.Now - callStartTime;
+            labelCallDuration.Text = "Call Duration: " + duration.ToString(@"hh\:mm\:ss");
         }
 
         private void ButtonHangUp_Click(object sender, EventArgs e)
@@ -1308,6 +1374,9 @@ namespace EratronicsPhone
                 // Log the rejection
                 LogCall($"Rejected call on line {_CurrentlyLine} at {DateTime.Now}");
 
+                // Stop the timer
+                StopCallTimer();
+
                 return;
             }
 
@@ -1322,6 +1391,9 @@ namespace EratronicsPhone
 
                 // Log the hang up
                 LogCall($"Hung up call on line {_CurrentlyLine} at {DateTime.Now}");
+
+                // Stop the timer
+                StopCallTimer();
             }
         }
 
@@ -2222,15 +2294,15 @@ namespace EratronicsPhone
 
 
         public Int32 onInviteAnswered(Int32 sessionId,
-                                             String callerDisplayName,
-                                             String caller,
-                                             String calleeDisplayName,
-                                             String callee,
-                                             String audioCodecNames,
-                                             String videoCodecNames,
-                                             Boolean existsAudio,
-                                             Boolean existsVideo,
-                                             StringBuilder sipMessage)
+                              String callerDisplayName,
+                              String caller,
+                              String calleeDisplayName,
+                              String callee,
+                              String audioCodecNames,
+                              String videoCodecNames,
+                              Boolean existsAudio,
+                              Boolean existsVideo,
+                              StringBuilder sipMessage)
         {
             int i = findSession(sessionId);
             if (i == -1)
@@ -2249,7 +2321,6 @@ namespace EratronicsPhone
                 // for example: "g.729#GSM#AMR", "H264#H263", you have to parse them by yourself.
             }
 
-
             _CallSessions[i].setSessionState(true);
 
             string Text = "Line " + i.ToString();
@@ -2267,6 +2338,10 @@ namespace EratronicsPhone
             {
                 _CallSessions[i].setReferCall(false, 0);
             }
+
+            // Start the call timer
+            callStartTime = DateTime.Now;
+            callTimer.Start();
 
             return 0;
         }
@@ -2440,6 +2515,13 @@ namespace EratronicsPhone
             ListBoxSIPLog.Invoke(new MethodInvoker(delegate
             {
                 ListBoxSIPLog.Items.Add(Text);
+            }));
+
+            // Stop the call timer
+            callTimer.Stop();
+            labelCallDuration.Invoke(new MethodInvoker(delegate
+            {
+                labelCallDuration.Text = "Call Ended";
             }));
 
             return 0;

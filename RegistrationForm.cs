@@ -355,6 +355,7 @@ namespace EratronicsPhone
             this.Invoke(new MethodInvoker(delegate
             {
                 ListBoxSIPLog.Items.Add($"Call answered by {calleeDisplayName}");
+                _mainForm.StartCallTimer();  // Assuming StartCallTimer is a method in Form1 that starts the timer
             }));
             _mainForm.LogCall($"Call answered for session {sessionId} at {DateTime.Now}");
             return 0;
@@ -380,6 +381,7 @@ namespace EratronicsPhone
             this.Invoke(new MethodInvoker(delegate
             {
                 ListBoxSIPLog.Items.Add($"Invite session closed for session ID: {sessionId}");
+                _mainForm.StopCallTimer();  // Assuming StopCallTimer is a method in Form1 that stops the timer
             }));
             return 0;
         }
@@ -644,3 +646,4 @@ namespace EratronicsPhone
         }
     }
 }
+

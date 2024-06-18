@@ -55,6 +55,7 @@ namespace EratronicsPhone
         private bool _isDNDActive = false; // Field to track DND state
         private KryptonTrackBar kryptonTrackBarSpeaker;
         private bool autoAnswerEnabled = false;
+        private string _lastDialedNumber = "";
 
 
 
@@ -1254,8 +1255,15 @@ namespace EratronicsPhone
             // Check if the phone number is empty
             if (string.IsNullOrWhiteSpace(TextBoxPhoneNumber.Text))
             {
-                MessageBox.Show("The phone number is empty.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                if (!string.IsNullOrEmpty(_lastDialedNumber))
+                {
+                    TextBoxPhoneNumber.Text = _lastDialedNumber; // Set the last dialed number
+                }
+                else
+                {
+                    MessageBox.Show("The phone number is empty and there is no last dialed number to redial.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
             }
 
             // Ensure at least one audio codec is enabled

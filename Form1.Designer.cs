@@ -1242,7 +1242,7 @@
             // 
             // kryptonDropButton1
             // 
-            this.kryptonDropButton1.Location = new System.Drawing.Point(199, 6);
+            this.kryptonDropButton1.Location = new System.Drawing.Point(202, 6);
             this.kryptonDropButton1.Name = "kryptonDropButton1";
             this.kryptonDropButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
             this.kryptonDropButton1.Size = new System.Drawing.Size(16, 29);
@@ -1256,7 +1256,6 @@
             this.ButtonContacts.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.ButtonSpec;
             this.ButtonContacts.Location = new System.Drawing.Point(12, 6);
             this.ButtonContacts.Name = "ButtonContacts";
-            this.ButtonContacts.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.ButtonContacts.Size = new System.Drawing.Size(90, 29);
             this.ButtonContacts.TabIndex = 0;
             this.ButtonContacts.Values.Text = "Contacts";
@@ -1266,7 +1265,7 @@
             // 
             this.LabelUsername.AutoSize = true;
             this.LabelUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.LabelUsername.Location = new System.Drawing.Point(31, 393);
+            this.LabelUsername.Location = new System.Drawing.Point(31, 395);
             this.LabelUsername.Name = "LabelUsername";
             this.LabelUsername.Size = new System.Drawing.Size(35, 13);
             this.LabelUsername.TabIndex = 134;

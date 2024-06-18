@@ -3336,6 +3336,8 @@ namespace EratronicsPhone
             if (btn != null)
             {
                 btn.Text = _isDNDActive ? "DND On" : "DND Off";
+                btn.BackColor = _isDNDActive ? Color.Red : Color.White; // Green when DND is on, White when off
+                btn.ForeColor = _isDNDActive ? Color.White : Color.Black; // White text on Green, Black text on White
             }
         }
     }

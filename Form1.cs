@@ -555,6 +555,8 @@ namespace EratronicsPhone
             toolTip1.SetToolTip(this.button24, "Atend Transfer");
             //Attend AutoAnswer Hover
             toolTip1.SetToolTip(this.btnAutoAnswer, "Auto Answer");
+            //DND Hover
+            // You dumb why do you need Hover for DND
 
 
 
@@ -3322,7 +3324,7 @@ namespace EratronicsPhone
             else
             {
                 btnAutoAnswer.Text = "AA";
-                btnAutoAnswer.BackColor = Color.Red; // Set to red when disabled
+                btnAutoAnswer.BackColor = Color.White; // Set to red when disabled
                 btnAutoAnswer.ForeColor = Color.Black; // Revert text color to black
             }
         }

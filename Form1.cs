@@ -132,6 +132,7 @@ namespace EratronicsPhone
             {
                 callStartTime = DateTime.Now;
                 callTimer.Start();
+                labelCallDuration.Visible = true;
             }
         }
 
@@ -147,10 +148,11 @@ namespace EratronicsPhone
                 {
                     callTimer.Stop();
                     labelCallDuration.Text = "Call Ended";
+                    labelCallDuration.Visible = false;
                 }
                 else
                 {
-                    
+
                 }
             }
         }
@@ -550,7 +552,7 @@ namespace EratronicsPhone
             labelCallDuration.Text = "Call Duration: 00:00:00";
 
             // Ensure the label is visible and properly formatted
-            labelCallDuration.Visible = true;
+            labelCallDuration.Visible = false;
             labelCallDuration.ForeColor = Color.Black; // Set color for visibility
             this.Controls.Add(labelDialedNumber);
             this.Controls.Add(labelCallDuration);

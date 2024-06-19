@@ -593,7 +593,7 @@ namespace EratronicsPhone
             kryptonTrackBarSpeaker.Size = new Size(150, 10); // Adjust size as needed
             kryptonTrackBarSpeaker.Minimum = 0;
             kryptonTrackBarSpeaker.Maximum = 255;
-            kryptonTrackBarSpeaker.TickStyle = TickStyle.TopLeft; // Set TickStyle to TopLeft
+            kryptonTrackBarSpeaker.TickStyle = TickStyle.None; // Set TickStyle to TopLeft
             kryptonTrackBarSpeaker.PaletteMode = PaletteMode.ProfessionalSystem; // Set Visuals to Professional System
             kryptonTrackBarSpeaker.ValueChanged += KryptonTrackBarSpeaker_ValueChanged;
 

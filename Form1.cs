@@ -560,7 +560,7 @@ namespace EratronicsPhone
 
             btnAutoAnswer = new Button();
             btnAutoAnswer.Text = "AA";
-            btnAutoAnswer.Location = new Point(131, 352); // Adjust location as needed
+            btnAutoAnswer.Location = new Point(116, 352); // Adjust location as needed
             btnAutoAnswer.Size = new Size(41, 23);
             btnAutoAnswer.Click += BtnAutoAnswer_Click;
 
@@ -578,7 +578,7 @@ namespace EratronicsPhone
             //Button DND
             Button btnToggleDND = new Button();
             btnToggleDND.Text = "DND Off";
-            btnToggleDND.Location = new Point(173, 352); // Adjust the location as needed
+            btnToggleDND.Location = new Point(158, 352); // Adjust the location as needed
             btnToggleDND.Size = new Size(41, 23);
             btnToggleDND.Click += BtnToggleDND_Click;
 

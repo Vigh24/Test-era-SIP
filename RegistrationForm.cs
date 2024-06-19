@@ -191,7 +191,7 @@ namespace EratronicsPhone
             rt = _sdkLib.setLicenseKey(licenseKey);
             if (rt == PortSIP_Errors.ECoreTrialVersionLicenseKey)
             {
-                MessageBox.Show("Thankyou for using our Softphone Application.");
+                MessageBox.Show("Thankyou for using our Eratronics Softphone Application.");
             }
             else if (rt == PortSIP_Errors.ECoreWrongLicenseKey)
             {

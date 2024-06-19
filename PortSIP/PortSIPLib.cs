@@ -3371,8 +3371,11 @@ namespace PortSIP
             return _SIPCallbackEvents.onInviteBeginingForward(forwardTo);
         }
 
+        public event Action<int> OnInviteClosedPublic;
+
         private unsafe Int32 onInviteClosed(Int32 sessionId)
         {
+            OnInviteClosedPublic?.Invoke(sessionId);
             return _SIPCallbackEvents.onInviteClosed(sessionId);
         }
 

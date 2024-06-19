@@ -16,6 +16,9 @@ namespace EratronicsPhone
             _sessionId = sessionId;
             _sdkLib = sdkLib;
             lblCaller.Text = $"Incoming call from {callerDisplayName}";
+
+            // Subscribe to the public event handler for call termination
+            _sdkLib.OnInviteClosedPublic += OnRemoteHangUp;
         }
 
         private void btnAnswer_Click(object sender, EventArgs e)
@@ -44,6 +47,26 @@ namespace EratronicsPhone
         public void AutoAnswerCall()
         {
             btnAnswer_Click(this, EventArgs.Empty);
+        }
+
+        // Event handler for remote hang up
+        private void OnRemoteHangUp(int sessionId)
+        {
+            if (sessionId == _sessionId)
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    //MessageBox.Show("Call ended by remote user.");
+                    this.Close();
+                });
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            // Unsubscribe from the public event handler when the form is closing
+            _sdkLib.OnInviteClosedPublic -= OnRemoteHangUp;
         }
     }
 }

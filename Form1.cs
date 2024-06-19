@@ -619,7 +619,7 @@ namespace EratronicsPhone
             //Attend AutoAnswer Hover
             toolTip1.SetToolTip(this.btnAutoAnswer, "Auto Answer");
             //DND Hover
-            // You dumb why do you need Hover for DND
+            
 
 
 
@@ -1479,6 +1479,15 @@ namespace EratronicsPhone
                 return;
             }
 
+            // Debugging: Log the current session state
+            Console.WriteLine($"Current Line: {_CurrentlyLine}, Session Active: {_CallSessions[_CurrentlyLine].getSessionState()}");
+
+            if (!_CallSessions[_CurrentlyLine].getSessionState())
+            {
+                MessageBox.Show("No active call to hold/unhold.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (_CallSessions[_CurrentlyLine].getSessionState() == false)
             {
                 MessageBox.Show("No active call to hold/unhold.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1508,7 +1517,7 @@ namespace EratronicsPhone
                 if (result == 0)
                 {
                     _CallSessions[_CurrentlyLine].setHoldState(true);
-                    ButtonHold.BackColor = Color.Gray; // Change to indicate hold state
+                    ButtonHold.BackColor = Color.White; // Change to indicate hold state
                     MessageBox.Show("Call is on hold.");
                 }
                 else

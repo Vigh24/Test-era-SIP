@@ -536,6 +536,7 @@ namespace EratronicsPhone
             ButtonDial.MouseLeave += ButtonDial_MouseLeave;
             this.Shown += new EventHandler(this.Form1_Shown);
             this.Activated += new EventHandler(this.Form1_Activated);
+            TextBoxPhoneNumber.KeyDown += TextBoxPhoneNumber_KeyDown;
 
             callTimer = new System.Windows.Forms.Timer();
             callTimer.Interval = 1000; // Update every second
@@ -691,6 +692,18 @@ namespace EratronicsPhone
                     Application.Exit(); // Attempt to close the application
                     Environment.Exit(0); // Forcefully exit if Application.Exit fails
                 }
+            }
+        }
+
+        private void TextBoxPhoneNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Prevent the ding sound on pressing Enter
+                e.SuppressKeyPress = true;
+
+                // Directly call the ButtonDial_Click method
+                ButtonDial_Click(sender, e);
             }
         }
 

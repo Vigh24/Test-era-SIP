@@ -224,7 +224,7 @@ namespace EratronicsPhone
             // Initialize SIP in the main form
             _mainForm.InitializeSIP();
 
-            MessageBox.Show("Registration succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Registration succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Save settings after successful registration
             SaveSettings();

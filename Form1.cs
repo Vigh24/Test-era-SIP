@@ -29,7 +29,7 @@ namespace EratronicsPhone
         private Session[] _CallSessions = new Session[MAX_LINES];
 
         private bool _SIPInited = false;
-        private bool _SIPLogined = false;
+        private static bool _SIPLogined = false;
         private bool _g711uLawEnabled;
         private bool _g711aLawEnabled;
         private bool _g729Enabled;
@@ -60,6 +60,7 @@ namespace EratronicsPhone
         private DateTime callStartTime;
         private Label labelCallDuration;
         private Label labelDialedNumber;
+        private static Form1 _instance;
 
 
 
@@ -120,6 +121,26 @@ namespace EratronicsPhone
                 pictureBoxStatus.Image = Properties.Resources.image1;
                 LabelUsername.Text = "Not Registered"; // Update to "Not Registered"
             }
+        }
+
+        public static Form1 Instance
+        {
+            get
+            {
+                if (_instance == null || _instance.IsDisposed)
+                    _instance = new Form1();
+                return _instance;
+            }
+        }
+
+        public static bool GetSIPLogined()
+        {
+            return _SIPLogined;
+        }
+
+        public static void SetSIPLogined(bool value)
+        {
+            _SIPLogined = value;
         }
 
         public void StartCallTimer()
@@ -619,7 +640,7 @@ namespace EratronicsPhone
             //Attend AutoAnswer Hover
             toolTip1.SetToolTip(this.btnAutoAnswer, "Auto Answer");
             //DND Hover
-            
+
 
 
 
@@ -3388,8 +3409,12 @@ namespace EratronicsPhone
 
         private void EditAccount_Click(object sender, EventArgs e)
         {
-            RegistrationForm registrationForm = new RegistrationForm(this, _sdkLib);
-            registrationForm.Show();
+            if (_registrationForm == null || _registrationForm.IsDisposed)
+            {
+                _registrationForm = new RegistrationForm(this, _sdkLib);
+            }
+            _registrationForm.Show();
+            _registrationForm.BringToFront();
         }
 
         private void kryptonDropButton1_Click(object sender, EventArgs e)

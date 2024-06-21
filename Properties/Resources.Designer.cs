@@ -339,5 +339,25 @@ namespace EratronicsPhone.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2024_06_20_at_4_30_35_PM_1_ {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2024-06-20 at 4.30.35 PM(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2024_06_20_at_4_39_35_PM_1_ {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2024-06-20 at 4.39.35 PM(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

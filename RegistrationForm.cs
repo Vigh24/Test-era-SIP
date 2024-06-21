@@ -12,7 +12,7 @@ namespace EratronicsPhone
         private Form1 _mainForm;
         private PortSIPLib _sdkLib;
         private bool _SIPInited = false;
-        private bool _SIPLogined = false;
+        private static bool _SIPLogined = false;
 
         private Button btnDeregister;
 
@@ -44,6 +44,12 @@ namespace EratronicsPhone
             LoadSettings();
 
             this.Shown += new EventHandler(RegistrationForm_Shown);
+        }
+
+        public RegistrationForm(Form1 mainForm)
+        {
+            InitializeComponent();
+            _mainForm = mainForm;
         }
 
         private void LoadSettings()
@@ -83,6 +89,9 @@ namespace EratronicsPhone
             {
                 MessageBox.Show("Deregistration succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _SIPLogined = false; // Update the login status
+                _SIPInited = false;
+                _mainForm.SetSIPLogined(false);
+                _mainForm.SetSIPInited(false);
             }
         }
 
@@ -99,6 +108,13 @@ namespace EratronicsPhone
 
         private void ButtonRegister_Click(object sender, EventArgs e)
         {
+            // Check if already logged in
+            if (Form1.GetSIPLogined())
+            {
+                MessageBox.Show("Already registered.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (_SIPInited)
             {
                 MessageBox.Show("SDK already initialized.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);

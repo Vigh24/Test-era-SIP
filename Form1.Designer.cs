@@ -1229,7 +1229,7 @@
             // 
             // kryptonDropButton1
             // 
-            this.kryptonDropButton1.Location = new System.Drawing.Point(202, 6);
+            this.kryptonDropButton1.Location = new System.Drawing.Point(195, 6);
             this.kryptonDropButton1.Name = "kryptonDropButton1";
             this.kryptonDropButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
             this.kryptonDropButton1.Size = new System.Drawing.Size(16, 29);
@@ -1308,12 +1308,17 @@
             // 
             // ComboBoxPhoneNumber
             // 
+            this.ComboBoxPhoneNumber.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ComboBoxPhoneNumber.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ComboBoxPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxPhoneNumber.FormattingEnabled = true;
-            this.ComboBoxPhoneNumber.Location = new System.Drawing.Point(17, 50);
+            this.ComboBoxPhoneNumber.ItemHeight = 28;
+            this.ComboBoxPhoneNumber.Location = new System.Drawing.Point(25, 50);
             this.ComboBoxPhoneNumber.MaxDropDownItems = 6;
             this.ComboBoxPhoneNumber.Name = "ComboBoxPhoneNumber";
-            this.ComboBoxPhoneNumber.Size = new System.Drawing.Size(193, 21);
+            this.ComboBoxPhoneNumber.Size = new System.Drawing.Size(169, 34);
             this.ComboBoxPhoneNumber.TabIndex = 137;
+            this.ComboBoxPhoneNumber.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBoxPhoneNumber_DrawItem);
             // 
             // Form1
             // 

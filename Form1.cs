@@ -705,9 +705,9 @@ namespace EratronicsPhone
             ButtonToggleMute.FlatAppearance.MouseDownBackColor = Color.Transparent;
 
             // Resize and reposition the TextBoxPhoneNumber
-            ComboBoxPhoneNumber.Dock = DockStyle.None;
-            ComboBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
-       
+            //ComboBoxPhoneNumber.Dock = DockStyle.None;
+            //ComboBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
+
 
             // Initialize PictureBox
             pictureBoxStatus = new PictureBox();
@@ -918,6 +918,8 @@ namespace EratronicsPhone
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            ComboBoxPhoneNumber.Size = new Size(187, 50); // Reapply size settings on form load
+
             // Create the call sessions array, allows maximum 500 lines,
             // but we just use 8 lines with this sample, we need a class to save the call sessions information
 
@@ -976,9 +978,9 @@ namespace EratronicsPhone
             ComboBoxLines.SelectedIndex = 0;
 
             // Resize and reposition the TextBoxPhoneNumber
-            ComboBoxPhoneNumber.Dock = DockStyle.None;
-            ComboBoxPhoneNumber.Size = new Size(207, 38); // Set the desired size (width, height)
-       
+            //ComboBoxPhoneNumber.Dock = DockStyle.None;
+            //ComboBoxPhoneNumber.Size = new Size(207, 38); // Set the desired size (width, height)
+
         }
 
 
@@ -1267,6 +1269,28 @@ namespace EratronicsPhone
                 Text = Text + ": UnHold - call established";
                 ListBoxSIPLog.Items.Add(Text);
             }
+        }
+
+        private void ComboBoxPhoneNumber_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            // Draw the background of the item
+            e.DrawBackground();
+
+            string text = ComboBoxPhoneNumber.Items[e.Index].ToString();
+            Font myFont = new Font("Microsoft Sans Serif", 12, FontStyle.Regular); // Ensure the font size matches your ComboBox height
+
+            // Set string format to align text center
+            StringFormat sf = new StringFormat();
+            sf.LineAlignment = StringAlignment.Center;
+            sf.Alignment = StringAlignment.Center;
+
+            // Draw the item text
+            e.Graphics.DrawString(text, myFont, Brushes.Black, e.Bounds, sf);
+
+            // Draw the focus rectangle if the item has focus
+            e.DrawFocusRectangle();
         }
 
         private void Button3_Click(object sender, EventArgs e)

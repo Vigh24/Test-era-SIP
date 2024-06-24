@@ -63,7 +63,6 @@
             this.Button5 = new System.Windows.Forms.Button();
             this.Button4 = new System.Windows.Forms.Button();
             this.Button3 = new System.Windows.Forms.Button();
-            this.TextBoxPhoneNumber = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.ComboBoxCameras = new System.Windows.Forms.ComboBox();
             this.Label14 = new System.Windows.Forms.Label();
@@ -134,6 +133,7 @@
             this.CheckBoxAA = new System.Windows.Forms.CheckBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
+            this.ComboBoxPhoneNumber = new System.Windows.Forms.ComboBox();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarMicrophone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBarSpeaker)).BeginInit();
@@ -569,20 +569,6 @@
             this.Button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.Button3.UseVisualStyleBackColor = true;
             this.Button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // TextBoxPhoneNumber
-            // 
-            this.TextBoxPhoneNumber.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.TextBoxPhoneNumber.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.TextBoxPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPhoneNumber.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.TextBoxPhoneNumber.Location = new System.Drawing.Point(12, 41);
-            this.TextBoxPhoneNumber.MaxLength = 200000;
-            this.TextBoxPhoneNumber.Multiline = true;
-            this.TextBoxPhoneNumber.Name = "TextBoxPhoneNumber";
-            this.TextBoxPhoneNumber.Size = new System.Drawing.Size(197, 38);
-            this.TextBoxPhoneNumber.TabIndex = 95;
-            this.TextBoxPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox3
             // 
@@ -1320,6 +1306,15 @@
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
             // 
+            // ComboBoxPhoneNumber
+            // 
+            this.ComboBoxPhoneNumber.FormattingEnabled = true;
+            this.ComboBoxPhoneNumber.Location = new System.Drawing.Point(17, 50);
+            this.ComboBoxPhoneNumber.MaxDropDownItems = 6;
+            this.ComboBoxPhoneNumber.Name = "ComboBoxPhoneNumber";
+            this.ComboBoxPhoneNumber.Size = new System.Drawing.Size(193, 21);
+            this.ComboBoxPhoneNumber.TabIndex = 137;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1327,6 +1322,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(230, 416);
+            this.Controls.Add(this.ComboBoxPhoneNumber);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.ButtonToggleMute);
             this.Controls.Add(this.LabelUsername);
@@ -1366,7 +1362,6 @@
             this.Controls.Add(this.ButtonHangUp);
             this.Controls.Add(this.ComboBoxLines);
             this.Controls.Add(this.ButtonDial);
-            this.Controls.Add(this.TextBoxPhoneNumber);
             this.Controls.Add(this.Button9);
             this.Controls.Add(this.Button3);
             this.Controls.Add(this.Button4);
@@ -1447,7 +1442,6 @@
         internal System.Windows.Forms.Button Button5;
         internal System.Windows.Forms.Button Button4;
         internal System.Windows.Forms.Button Button3;
-        internal System.Windows.Forms.TextBox TextBoxPhoneNumber;
         private System.Windows.Forms.GroupBox groupBox3;
         internal System.Windows.Forms.CheckBox CheckBoxMute;
         internal System.Windows.Forms.TrackBar TrackBarMicrophone;
@@ -1524,6 +1518,7 @@
         internal System.Windows.Forms.CheckBox CheckBoxAA;
         private System.Windows.Forms.PictureBox pictureBox2;
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
+        private System.Windows.Forms.ComboBox ComboBoxPhoneNumber;
     }
 }
 

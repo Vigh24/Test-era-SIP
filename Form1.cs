@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using PortSIP;
-using System.Drawing;
 using Microsoft.Win32;
 using ComponentFactory.Krypton.Toolkit;
 
@@ -45,7 +44,6 @@ namespace EratronicsPhone
         private bool _h264Enabled;
         private bool _vp8Enabled;
         private bool _vp9Enabled;
-        private bool isExpanded = false; // Track the current state
         private bool _isMuted = false; // Field to keep track of the mute state
         private int _CurrentlyLine = LINE_BASE;
         private AudioCodecsForm _audioCodecsForm;
@@ -56,6 +54,7 @@ namespace EratronicsPhone
         private KryptonTrackBar kryptonTrackBarSpeaker;
         private bool autoAnswerEnabled = false;
         private string _lastDialedNumber = "";
+        private List<string> lastDialedNumbers = new List<string>();
         private System.Windows.Forms.Timer callTimer;
         private DateTime callStartTime;
         private Label labelCallDuration;
@@ -210,6 +209,27 @@ namespace EratronicsPhone
         {
             _callLogs.Add(log);
             // Optionally, you can also write the log to a file or database here
+        }
+
+        private void UpdateLastDialedNumbers(string number)
+        {
+            if (!lastDialedNumbers.Contains(number))
+            {
+                if (lastDialedNumbers.Count >= 6)
+                {
+                    lastDialedNumbers.RemoveAt(0);  // Remove the oldest number
+                }
+                lastDialedNumbers.Add(number);  // Add the new number
+            }
+
+            // Update the ComboBox items
+            ComboBoxPhoneNumber.Items.Clear();
+            foreach (var dialedNumber in lastDialedNumbers)
+            {
+                ComboBoxPhoneNumber.Items.Add(dialedNumber);
+            }
+
+            ComboBoxPhoneNumber.Text = number;  // Set the current dialed number as the selected item
         }
 
         private byte[] GetBytes(string str)
@@ -524,6 +544,28 @@ namespace EratronicsPhone
             _sdkLib.setVideoBitrate(_CallSessions[_CurrentlyLine].getSessionId(), TrackBarVideoQuality.Value);
         }
 
+        private void DialNumber(string number)
+        {
+            // Add the dialed number to the list, remove the oldest if more than 6
+            if (!lastDialedNumbers.Contains(number))
+            {
+                if (lastDialedNumbers.Count >= 6)
+                {
+                    lastDialedNumbers.RemoveAt(0);  // Remove the oldest number
+                }
+                lastDialedNumbers.Add(number);  // Add the new number
+            }
+
+            // Update the ComboBox items
+            ComboBoxPhoneNumber.Items.Clear();
+            foreach (var dialedNumber in lastDialedNumbers)
+            {
+                ComboBoxPhoneNumber.Items.Add(dialedNumber);
+            }
+
+            ComboBoxPhoneNumber.Text = number;  // Set the current dialed number as the selected item
+        }
+
 
         // Default we just using PCMU, PCMA, and G.279
         private void InitDefaultAudioCodecs()
@@ -557,7 +599,7 @@ namespace EratronicsPhone
             ButtonDial.MouseLeave += ButtonDial_MouseLeave;
             this.Shown += new EventHandler(this.Form1_Shown);
             this.Activated += new EventHandler(this.Form1_Activated);
-            TextBoxPhoneNumber.KeyDown += TextBoxPhoneNumber_KeyDown;
+            ComboBoxPhoneNumber.KeyDown += ComboBoxPhoneNumber_KeyDown;
 
             callTimer = new System.Windows.Forms.Timer();
             callTimer.Interval = 1000; // Update every second
@@ -663,9 +705,9 @@ namespace EratronicsPhone
             ButtonToggleMute.FlatAppearance.MouseDownBackColor = Color.Transparent;
 
             // Resize and reposition the TextBoxPhoneNumber
-            TextBoxPhoneNumber.Dock = DockStyle.None;
-            TextBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
-            TextBoxPhoneNumber.Multiline = true; // Enable multiline to adjust height
+            ComboBoxPhoneNumber.Dock = DockStyle.None;
+            ComboBoxPhoneNumber.Size = new Size(273, 38); // Set the desired size (width, height)
+       
 
             // Initialize PictureBox
             pictureBoxStatus = new PictureBox();
@@ -716,26 +758,23 @@ namespace EratronicsPhone
             }
         }
 
-        private void TextBoxPhoneNumber_KeyDown(object sender, KeyEventArgs e)
+        private void ComboBoxPhoneNumber_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                // Prevent the ding sound on pressing Enter
-                e.SuppressKeyPress = true;
-
-                // Directly call the ButtonDial_Click method
-                ButtonDial_Click(sender, e);
+                DialNumber(ComboBoxPhoneNumber.Text);
+                e.Handled = true; // to prevent the sound ding
             }
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Focus();
+            ComboBoxPhoneNumber.Focus();
         }
 
         private void Form1_Activated(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Focus();
+            ComboBoxPhoneNumber.Focus();
         }
 
         private bool CheckLicenseValidity()
@@ -937,9 +976,9 @@ namespace EratronicsPhone
             ComboBoxLines.SelectedIndex = 0;
 
             // Resize and reposition the TextBoxPhoneNumber
-            TextBoxPhoneNumber.Dock = DockStyle.None;
-            TextBoxPhoneNumber.Size = new Size(207, 38); // Set the desired size (width, height)
-            TextBoxPhoneNumber.Multiline = true; // Enable multiline to adjust height
+            ComboBoxPhoneNumber.Dock = DockStyle.None;
+            ComboBoxPhoneNumber.Size = new Size(207, 38); // Set the desired size (width, height)
+       
         }
 
 
@@ -1232,7 +1271,7 @@ namespace EratronicsPhone
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "1";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "1";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 1, 160, true);
@@ -1241,7 +1280,7 @@ namespace EratronicsPhone
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "2";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "2";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 2, 160, true);
@@ -1250,7 +1289,7 @@ namespace EratronicsPhone
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "3";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "3";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 3, 160, true);
@@ -1259,7 +1298,7 @@ namespace EratronicsPhone
 
         private void Button8_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "4";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "4";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 4, 160, true);
@@ -1268,7 +1307,7 @@ namespace EratronicsPhone
 
         private void Button7_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "5";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "5";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 5, 160, true);
@@ -1277,7 +1316,7 @@ namespace EratronicsPhone
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "6";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "6";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 6, 160, true);
@@ -1286,7 +1325,7 @@ namespace EratronicsPhone
 
         private void Button11_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "7";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "7";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 7, 160, true);
@@ -1295,7 +1334,7 @@ namespace EratronicsPhone
 
         private void Button10_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "8";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "8";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 8, 160, true);
@@ -1304,7 +1343,7 @@ namespace EratronicsPhone
 
         private void Button9_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "9";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "9";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 9, 160, true);
@@ -1313,7 +1352,7 @@ namespace EratronicsPhone
 
         private void Button14_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "*";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "*";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 10, 160, true);
@@ -1322,7 +1361,7 @@ namespace EratronicsPhone
 
         private void Button13_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "0";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "0";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 0, 160, true);
@@ -1331,7 +1370,7 @@ namespace EratronicsPhone
 
         private void Button12_Click(object sender, EventArgs e)
         {
-            TextBoxPhoneNumber.Text = TextBoxPhoneNumber.Text + "#";
+            ComboBoxPhoneNumber.Text = ComboBoxPhoneNumber.Text + "#";
             if (_SIPInited == true && _CallSessions[_CurrentlyLine].getSessionState() == true)
             {
                 _sdkLib.sendDtmf(_CallSessions[_CurrentlyLine].getSessionId(), DTMF_METHOD.DTMF_RFC2833, 11, 160, true);
@@ -1348,11 +1387,11 @@ namespace EratronicsPhone
             }
 
             // Check if the phone number is empty
-            if (string.IsNullOrWhiteSpace(TextBoxPhoneNumber.Text))
+            if (string.IsNullOrWhiteSpace(ComboBoxPhoneNumber.Text))
             {
                 if (!string.IsNullOrEmpty(_lastDialedNumber))
                 {
-                    TextBoxPhoneNumber.Text = _lastDialedNumber; // Set the last dialed number
+                    ComboBoxPhoneNumber.Text = _lastDialedNumber; // Set the last dialed number
                 }
                 else
                 {
@@ -1369,7 +1408,7 @@ namespace EratronicsPhone
             }
 
             // Make the call
-            int sessionId = _sdkLib.call(TextBoxPhoneNumber.Text, true, checkBoxMakeVideo.Checked);
+            int sessionId = _sdkLib.call(ComboBoxPhoneNumber.Text, true, checkBoxMakeVideo.Checked);
             if (sessionId <= 0)
             {
                 MessageBox.Show("Failed to initiate the call.", "Call Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1377,17 +1416,18 @@ namespace EratronicsPhone
             }
             else
             {
-                _lastDialedNumber = TextBoxPhoneNumber.Text; // Update the last dialed number after a successful call initiation
-                labelDialedNumber.Text = "Dialed Number: " + TextBoxPhoneNumber.Text; // Display the dialed number
+                _lastDialedNumber = ComboBoxPhoneNumber.Text; // Update the last dialed number after a successful call initiation
+                labelDialedNumber.Text = "Dialed Number: " + ComboBoxPhoneNumber.Text; // Display the dialed number
+                UpdateLastDialedNumbers(ComboBoxPhoneNumber.Text); // Update the list of last dialed numbers
             }
 
             // Update session state
             _CallSessions[_CurrentlyLine].setSessionId(sessionId);
             _CallSessions[_CurrentlyLine].setSessionState(true);
-            ListBoxSIPLog.Items.Add($"Line {_CurrentlyLine}: Calling {TextBoxPhoneNumber.Text}...");
+            ListBoxSIPLog.Items.Add($"Line {_CurrentlyLine}: Calling {ComboBoxPhoneNumber.Text}...");
 
             // Log the dial action
-            LogCall($"Dialing {TextBoxPhoneNumber.Text} from line {_CurrentlyLine} at {DateTime.Now}");
+            LogCall($"Dialing {ComboBoxPhoneNumber.Text} from line {_CurrentlyLine} at {DateTime.Now}");
         }
 
         private void CallTimer_Tick(object sender, EventArgs e)
@@ -3433,7 +3473,7 @@ namespace EratronicsPhone
             ContactsForm contactsForm = new ContactsForm();
             if (contactsForm.ShowDialog() == DialogResult.OK)
             {
-                TextBoxPhoneNumber.Text = contactsForm.SelectedContactNumber;
+                ComboBoxPhoneNumber.Text = contactsForm.SelectedContactNumber;
             }
         }
 

@@ -9,31 +9,40 @@ namespace EratronicsPhone
     {
         private int _sessionId;
         private PortSIPLib _sdkLib;
+        private Form1 _mainForm;
+        private RegistrationForm _registrationForm;
 
-        public IncomingCallForm(int sessionId, string callerDisplayName, PortSIPLib sdkLib)
+        public event EventHandler<bool> CallStateChanged;
+
+        public IncomingCallForm(int sessionId, string callerName, PortSIPLib sdkLib, Form1 mainForm, RegistrationForm registrationForm)
         {
             InitializeComponent();
             _sessionId = sessionId;
             _sdkLib = sdkLib;
-            lblCaller.Text = $"Incoming call from {callerDisplayName}";
-
-            // Subscribe to the public event handler for call termination
-            _sdkLib.OnInviteClosedPublic += OnRemoteHangUp;
+            _mainForm = mainForm;
+            _registrationForm = registrationForm;
+            // labelCallerName.Text = $"Incoming call from: {callerName}";
         }
 
         private void btnAnswer_Click(object sender, EventArgs e)
         {
+            Console.WriteLine($"Answering call for SessionID: {_sessionId}");
             _sdkLib.answerCall(_sessionId, false); // Answer the call without video
             MessageBox.Show("Call accepted.");
-            btnHangUp.Enabled = true;
-            btnAnswer.Enabled = false;
-            btnReject.Enabled = false;
+            CallStateChanged?.Invoke(this, true);
+            _mainForm.UpdateCallState(_sessionId, true);
+            _registrationForm.UpdateCallState(_sessionId, true);
+            Console.WriteLine($"Call answered and state updated for SessionID: {_sessionId}");
+            this.Close();
         }
 
         private void btnReject_Click(object sender, EventArgs e)
         {
-            _sdkLib.rejectCall(_sessionId, 486); // Reject the call
+            _sdkLib.rejectCall(_sessionId, 486);
             MessageBox.Show("Call rejected.");
+            CallStateChanged?.Invoke(this, false);
+            _mainForm.UpdateCallState(_sessionId, false);
+            _registrationForm.UpdateCallState(_sessionId, false);
             this.Close();
         }
 
@@ -41,32 +50,21 @@ namespace EratronicsPhone
         {
             _sdkLib.hangUp(_sessionId);
             MessageBox.Show("Call ended.");
+            CallStateChanged?.Invoke(this, false);
+            _mainForm.UpdateCallState(_sessionId, false);
+            _registrationForm.UpdateCallState(_sessionId, false);
             this.Close();
         }
 
         public void AutoAnswerCall()
         {
-            btnAnswer_Click(this, EventArgs.Empty);
-        }
-
-        // Event handler for remote hang up
-        private void OnRemoteHangUp(int sessionId)
-        {
-            if (sessionId == _sessionId)
-            {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    //MessageBox.Show("Call ended by remote user.");
-                    this.Close();
-                });
-            }
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-            // Unsubscribe from the public event handler when the form is closing
-            _sdkLib.OnInviteClosedPublic -= OnRemoteHangUp;
+            Console.WriteLine($"Auto-answering call for SessionID: {_sessionId}");
+            _sdkLib.answerCall(_sessionId, false); // Answer the call without video
+            CallStateChanged?.Invoke(this, true);
+            _mainForm.UpdateCallState(_sessionId, true);
+            _registrationForm.UpdateCallState(_sessionId, true);
+            Console.WriteLine($"Call auto-answered and state updated for SessionID: {_sessionId}");
+            this.Close();
         }
     }
 }

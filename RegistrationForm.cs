@@ -324,32 +324,48 @@ namespace EratronicsPhone
 
         public int onInviteIncoming(int sessionId, string callerDisplayName, string caller, string calleeDisplayName, string callee, string audioCodecNames, string videoCodecNames, bool existsAudio, bool existsVideo, StringBuilder sipMessage)
         {
+            Console.WriteLine($"Incoming call received: SessionID = {sessionId}");
+
             this.Invoke((MethodInvoker)delegate
             {
-                if (_mainForm.IsDNDActive) // Use the IsDNDActive property from Form1
+                if (_mainForm.IsDNDActive)
                 {
-                    _sdkLib.rejectCall(sessionId, 486); // Automatically reject the call
+                    _sdkLib.rejectCall(sessionId, 486);
                     MessageBox.Show("Call rejected due to DND mode.");
                 }
                 else
                 {
-                    IncomingCallForm incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib);
-                    incomingCallForm.Show();
-
-                    if (_mainForm.AutoAnswerEnabled) // Use the AutoAnswerEnabled property from Form1
+                    // Find a free line and set the session
+                    int lineIndex = _mainForm.findFreeLineIndex();
+                    if (lineIndex != -1)
                     {
-                        incomingCallForm.AutoAnswerCall();
+                        _mainForm.SetCallSession(lineIndex, sessionId, true, existsAudio, existsVideo);
+                        Console.WriteLine($"Set session for incoming call: SessionID = {sessionId}, LineIndex = {lineIndex}");
+
+                        IncomingCallForm incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib, _mainForm, this);
+                        incomingCallForm.Show();
+
+                        if (_mainForm.AutoAnswerEnabled)
+                        {
+                            incomingCallForm.AutoAnswerCall();
+                        }
+                        else
+                        {
+                            if (!existsAudio)
+                            {
+                                System.Media.SoundPlayer player = new System.Media.SoundPlayer("C:\\Users\\Administrator\\Downloads\\call.wav");
+                                player.Play();
+                            }
+                        }
                     }
                     else
                     {
-                        if (!existsAudio)
-                        {
-                            System.Media.SoundPlayer player = new System.Media.SoundPlayer("C:\\Users\\Administrator\\Downloads\\call.wav");
-                            player.Play();
-                        }
+                        Console.WriteLine("No free line available for incoming call");
+                        _sdkLib.rejectCall(sessionId, 486);
                     }
                 }
             });
+
             _mainForm.LogCall($"Incoming call from {callerDisplayName} ({caller}) at {DateTime.Now}");
             return 0;
         }
@@ -660,6 +676,27 @@ namespace EratronicsPhone
                 base.OnFormClosing(e);
             }
         }
-    }
-}
 
+        // Add this method just before the closing brace of the RegistrationForm class
+        public void UpdateCallState(int sessionId, bool isActive)
+        {
+            // Update UI or internal state based on the call state
+            if (isActive)
+            {
+                // Call is active, update UI accordingly
+                this.Invoke(new MethodInvoker(delegate
+                {
+                    ListBoxSIPLog.Items.Add($"Call active for session ID: {sessionId}");
+                }));
+            }
+            else
+            {
+                // Call is not active, update UI accordingly
+                this.Invoke(new MethodInvoker(delegate
+                {
+                    ListBoxSIPLog.Items.Add($"Call ended for session ID: {sessionId}");
+                }));
+            }
+        }
+    } // This is the closing brace of the RegistrationForm class
+} // This is the closing brace of the namespace

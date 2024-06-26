@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PortSIP
 {
-    class Session
+    public class Session
     {
         private int mSessionId = 0;
         private bool mHoldState = false;

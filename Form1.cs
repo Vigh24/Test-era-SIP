@@ -73,17 +73,26 @@ namespace EratronicsPhone
 
         private int findSession(int sessionId)
         {
-            int index = -1;
+            Console.WriteLine($"Searching for session with ID: {sessionId}");
             for (int i = LINE_BASE; i < MAX_LINES; ++i)
             {
-                if (_CallSessions[i].getSessionId() == sessionId)
+                if (_CallSessions[i] != null)
                 {
-                    index = i;
-                    break;
+                    Console.WriteLine($"Checking session at index {i}: ID = {_CallSessions[i].getSessionId()}, State = {_CallSessions[i].getSessionState()}, RecvCallState = {_CallSessions[i].getRecvCallState()}");
+                    if (_CallSessions[i].getSessionId() == sessionId || _CallSessions[i].getRecvCallState())
+                    {
+                        Console.WriteLine($"Found session at index {i}");
+                        return i;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Session at index {i} is null");
                 }
             }
 
-            return index;
+            Console.WriteLine($"Session with ID {sessionId} not found");
+            return -1;
         }
 
         public void UpdateSdkLib(PortSIPLib sdkLib)
@@ -600,6 +609,13 @@ namespace EratronicsPhone
             this.Shown += new EventHandler(this.Form1_Shown);
             this.Activated += new EventHandler(this.Form1_Activated);
             ComboBoxPhoneNumber.KeyDown += ComboBoxPhoneNumber_KeyDown;
+
+            // Initialize _CallSessions array
+            _CallSessions = new Session[MAX_LINES];
+            for (int i = 0; i < MAX_LINES; i++)
+            {
+                _CallSessions[i] = new Session();
+            }
 
             callTimer = new System.Windows.Forms.Timer();
             callTimer.Interval = 1000; // Update every second
@@ -1567,13 +1583,13 @@ namespace EratronicsPhone
             // Debugging: Log the current session state
             Console.WriteLine($"Current Line: {_CurrentlyLine}, Session Active: {_CallSessions[_CurrentlyLine].getSessionState()}");
 
-            if (!_CallSessions[_CurrentlyLine].getSessionState())
+            if (_CurrentlyLine < LINE_BASE || _CurrentlyLine >= MAX_LINES)
             {
-                MessageBox.Show("No active call to hold/unhold.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Invalid line selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (_CallSessions[_CurrentlyLine].getSessionState() == false)
+            if (!_CallSessions[_CurrentlyLine].getSessionState())
             {
                 MessageBox.Show("No active call to hold/unhold.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -1587,6 +1603,7 @@ namespace EratronicsPhone
                 if (result == 0)
                 {
                     _CallSessions[_CurrentlyLine].setHoldState(false);
+                    ButtonHold.Text = "Hold";
                     ButtonHold.BackColor = SystemColors.Control; // Change back to default color
                     MessageBox.Show("Call is no longer on hold.");
                 }
@@ -1602,6 +1619,7 @@ namespace EratronicsPhone
                 if (result == 0)
                 {
                     _CallSessions[_CurrentlyLine].setHoldState(true);
+                    ButtonHold.Text = "Unhold";
                     ButtonHold.BackColor = Color.White; // Change to indicate hold state
                     MessageBox.Show("Call is on hold.");
                 }
@@ -2263,54 +2281,92 @@ namespace EratronicsPhone
                               Boolean existsVideo,
                               StringBuilder sipMessage)
         {
-            int index = -1;
-            for (int i = LINE_BASE; i < MAX_LINES; ++i)
-            {
-                if (_CallSessions[i].getSessionState() == false && _CallSessions[i].getRecvCallState() == false)
-                {
-                    index = i;
-                    _CallSessions[i].setRecvCallState(true);
-                    break;
-                }
-            }
+            Console.WriteLine($"Incoming call received: SessionID = {sessionId}");
+            int index = findFreeLineIndex();
 
             if (index == -1)
             {
                 _sdkLib.rejectCall(sessionId, 486);
+                Console.WriteLine("No free line available for incoming call");
                 return 0;
             }
 
             _CallSessions[index].setSessionId(sessionId);
-            string Text = "Line " + index.ToString() + ": Call incoming from " + callerDisplayName + " <" + caller + ">";
+            _CallSessions[index].setRecvCallState(true);
+            _CallSessions[index].setExistsAudio(existsAudio);
+            _CallSessions[index].setExistsVide1o(existsVideo);
+            _CallSessions[index].setSessionState(false); // Initially set to false, will be set to true when answered
+            _CurrentlyLine = index;
 
-            ListBoxSIPLog.Invoke(new MethodInvoker(delegate
-            {
-                ListBoxSIPLog.Items.Add(Text);
-            }));
+            Console.WriteLine($"New incoming call: SessionID = {sessionId}, Index = {index}");
+            Console.WriteLine($"Session ID after setting: {_CallSessions[index].getSessionId()}, RecvCallState: {_CallSessions[index].getRecvCallState()}");
 
-            // Show the dialog box for user interaction
+            LogAllSessions();
+
+            string text = $"Line {index}: Call incoming from {callerDisplayName} <{caller}>";
+
             this.Invoke((MethodInvoker)delegate
             {
-                IncomingCallDialog dialog = new IncomingCallDialog();
-                dialog.SetCallerDetails(callerDisplayName, caller);
-                dialog.AnswerClicked += (sender, args) =>
+                ListBoxSIPLog.Items.Add(text);
+
+                IncomingCallForm incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib, this, _registrationForm);
+                incomingCallForm.CallStateChanged += (s, isActive) =>
                 {
-                    _CallSessions[index].setRecvCallState(false);
-                    _CallSessions[index].setSessionState(true);
-                    _sdkLib.answerCall(sessionId, existsVideo);
-                    ListBoxSIPLog.Items.Add("Line " + index.ToString() + ": Answered call");
+                    Console.WriteLine($"Call state changed: SessionID = {sessionId}, IsActive = {isActive}, Index = {index}");
+                    UpdateCallState(sessionId, isActive);
                 };
-                dialog.RejectClicked += (sender, args) =>
-                {
-                    _sdkLib.rejectCall(sessionId, 486);
-                    ListBoxSIPLog.Items.Add("Line " + index.ToString() + ": Rejected call");
-                };
-                dialog.ShowDialog();
+                incomingCallForm.Show();
             });
 
-            // Optional: Play incoming call tone here if needed
-
             return 0;
+        }
+
+        private void LogAllSessions()
+        {
+            Console.WriteLine("Current state of all sessions:");
+            for (int i = LINE_BASE; i < MAX_LINES; ++i)
+            {
+                if (_CallSessions[i] != null)
+                {
+                    Console.WriteLine($"Index {i}: SessionID = {_CallSessions[i].getSessionId()}, State = {_CallSessions[i].getSessionState()}, RecvCallState = {_CallSessions[i].getRecvCallState()}");
+                }
+                else
+                {
+                    Console.WriteLine($"Index {i}: null");
+                }
+            }
+        }
+
+        public int findFreeLineIndex()
+        {
+            for (int i = LINE_BASE; i < MAX_LINES; i++)
+            {
+                if (_CallSessions[i] != null && !_CallSessions[i].getSessionState() && !_CallSessions[i].getRecvCallState())
+                {
+                    Console.WriteLine($"Free line found at index {i}");
+                    return i;
+                }
+            }
+            Console.WriteLine("No free line found in findFreeLineIndex()");
+            return -1;
+        }
+
+        public void SetCallSession(int lineIndex, int sessionId, bool recvCallState, bool existsAudio, bool existsVideo)
+        {
+            if (lineIndex >= LINE_BASE && lineIndex < MAX_LINES)
+            {
+                _CallSessions[lineIndex].setSessionId(sessionId);
+                _CallSessions[lineIndex].setRecvCallState(recvCallState);
+                _CallSessions[lineIndex].setExistsAudio(existsAudio);
+                _CallSessions[lineIndex].setExistsVide1o(existsVideo);
+                _CallSessions[lineIndex].setSessionState(false);
+                _CurrentlyLine = lineIndex;
+                Console.WriteLine($"Call session set: LineIndex = {lineIndex}, SessionID = {sessionId}, RecvCallState = {recvCallState}");
+            }
+            else
+            {
+                Console.WriteLine($"Invalid line index: {lineIndex}");
+            }
         }
 
         public Int32 onInviteTrying(Int32 sessionId)
@@ -3545,6 +3601,64 @@ namespace EratronicsPhone
                 btn.Text = _isDNDActive ? "DND On" : "DND Off";
                 btn.BackColor = _isDNDActive ? Color.Red : Color.White; // Green when DND is on, White when off
                 btn.ForeColor = _isDNDActive ? Color.White : Color.Black; // White text on Green, Black text on White
+            }
+        }
+
+        public void UpdateCallState(int sessionId, bool isActive)
+        {
+            Console.WriteLine($"Updating call state for session {sessionId}, isActive: {isActive}");
+
+            int lineIndex = findSession(sessionId);
+            Console.WriteLine($"Found line index: {lineIndex}");
+
+            if (lineIndex != -1 && _CallSessions[lineIndex] != null)
+            {
+                Console.WriteLine($"Before update: SessionID = {_CallSessions[lineIndex].getSessionId()}, State = {_CallSessions[lineIndex].getSessionState()}, RecvCallState = {_CallSessions[lineIndex].getRecvCallState()}");
+                _CallSessions[lineIndex].setSessionState(isActive);
+                _CallSessions[lineIndex].setRecvCallState(false);
+                _CurrentlyLine = lineIndex;
+                Console.WriteLine($"After update: SessionID = {_CallSessions[lineIndex].getSessionId()}, State = {_CallSessions[lineIndex].getSessionState()}, RecvCallState = {_CallSessions[lineIndex].getRecvCallState()}");
+
+                if (this.IsHandleCreated)
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        UpdateCallStateUI(sessionId, isActive);
+                        Console.WriteLine($"Current Line: {_CurrentlyLine}, Session Active: {isActive}");
+                    });
+                }
+                else
+                {
+                    UpdateCallStateUI(sessionId, isActive);
+                    Console.WriteLine($"Current Line: {_CurrentlyLine}, Session Active: {isActive}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Error: Unable to update call state for session {sessionId}. Line index: {lineIndex}");
+                LogAllSessions();
+            }
+        }
+
+        private void UpdateCallStateUI(int sessionId, bool isActive)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => UpdateCallStateUI(sessionId, isActive)));
+                return;
+            }
+
+            if (isActive)
+            {
+                labelCallDuration.Visible = true;
+                StartCallTimer();
+                ButtonHold.Enabled = true;
+            }
+            else
+            {
+                StopCallTimer();
+                labelCallDuration.Visible = false;
+                ButtonHold.Enabled = false;
             }
         }
     }

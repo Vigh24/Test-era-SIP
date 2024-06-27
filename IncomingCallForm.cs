@@ -21,7 +21,7 @@ namespace EratronicsPhone
             _sdkLib = sdkLib;
             _mainForm = mainForm;
             _registrationForm = registrationForm;
-            // labelCallerName.Text = $"Incoming call from: {callerName}";
+            lblCaller.Text = $"Incoming call from: {callerName}";
         }
 
         private void btnAnswer_Click(object sender, EventArgs e)

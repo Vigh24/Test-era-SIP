@@ -1220,8 +1220,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::EratronicsPhone.Properties.Resources.WhatsApp_Image_2024_06_05_at_11_37_50_AM;
-            this.pictureBox1.Location = new System.Drawing.Point(114, 387);
+            this.pictureBox1.Image = global::EratronicsPhone.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(120, 392);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(108, 28);
             this.pictureBox1.TabIndex = 130;

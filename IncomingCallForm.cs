@@ -22,13 +22,45 @@ namespace EratronicsPhone
             _mainForm = mainForm;
             _registrationForm = registrationForm;
             lblCaller.Text = $"Incoming call from: {callerName}";
+
+            // Subscribe to the call termination event
+            _sdkLib.OnInviteClosedPublic += SdkLib_OnInviteClosed;
+        }
+
+        private void SdkLib_OnInviteClosed(int sessionId)
+        {
+            if (sessionId == _sessionId)
+            {
+                // Close the form if the call is terminated
+                this.Invoke((MethodInvoker)delegate
+                {
+                    MessageBox.Show("The caller has hung up.");
+                    CallStateChanged?.Invoke(this, false);
+                    _mainForm.UpdateCallState(_sessionId, false);
+                    _registrationForm.UpdateCallState(_sessionId, false);
+                    this.Close();
+                });
+            }
+        }
+
+        public void HandleCallTerminated(int sessionId)
+        {
+            if (sessionId == _sessionId)
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    MessageBox.Show("The caller has hung up.");
+                    CallStateChanged?.Invoke(this, false);
+                    _mainForm.UpdateCallState(_sessionId, false);
+                    _registrationForm.UpdateCallState(_sessionId, false);
+                    this.Close();
+                });
+            }
         }
 
         private void btnAnswer_Click(object sender, EventArgs e)
         {
-            Console.WriteLine($"Answering call for SessionID: {_sessionId}");
             _sdkLib.answerCall(_sessionId, false); // Answer the call without video
-            MessageBox.Show("Call accepted.");
             CallStateChanged?.Invoke(this, true);
             _mainForm.UpdateCallState(_sessionId, true);
             _registrationForm.UpdateCallState(_sessionId, true);
@@ -65,6 +97,13 @@ namespace EratronicsPhone
             _registrationForm.UpdateCallState(_sessionId, true);
             Console.WriteLine($"Call auto-answered and state updated for SessionID: {_sessionId}");
             this.Close();
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            // Unsubscribe from the call termination event when the form is closed
+            _sdkLib.OnInviteClosedPublic -= SdkLib_OnInviteClosed;
+            base.OnFormClosed(e);
         }
     }
 }

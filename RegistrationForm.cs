@@ -13,6 +13,7 @@ namespace EratronicsPhone
         private PortSIPLib _sdkLib;
         private bool _SIPInited = false;
         private static bool _SIPLogined = false;
+        private IncomingCallForm _incomingCallForm; // Add this reference
 
         private Button btnDeregister;
 
@@ -414,6 +415,9 @@ namespace EratronicsPhone
             {
                 ListBoxSIPLog.Items.Add($"Invite session closed for session ID: {sessionId}");
                 _mainForm.StopCallTimer();  // Assuming StopCallTimer is a method in Form1 that stops the timer
+
+                // Notify the IncomingCallForm if it exists
+                _incomingCallForm?.HandleCallTerminated(sessionId);
             }));
             return 0;
         }
@@ -697,6 +701,12 @@ namespace EratronicsPhone
                     ListBoxSIPLog.Items.Add($"Call ended for session ID: {sessionId}");
                 }));
             }
+        }
+
+        public void ShowIncomingCallForm(int sessionId, string callerDisplayName)
+        {
+            _incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib, _mainForm, this);
+            _incomingCallForm.Show();
         }
     } // This is the closing brace of the RegistrationForm class
 } // This is the closing brace of the namespace

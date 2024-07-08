@@ -600,6 +600,7 @@ namespace EratronicsPhone
         public Form1()
         {
             InitializeComponent();
+            SetAutoStart(true); // Enable auto start by default or based on a saved setting
             InitializeContextMenu();
             CheckLicenseAndShowLicenseForm();
             _sdkLib = new PortSIPLib(this);
@@ -862,6 +863,23 @@ namespace EratronicsPhone
         {
             notifyIcon.Visible = false;
             Application.Exit();
+        }
+
+        private void SetAutoStart(bool enable)
+        {
+            string appName = "EratronicsPhone";
+            string appPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
+
+            if (enable)
+            {
+                key.SetValue(appName, $"\"{appPath}\"");
+            }
+            else
+            {
+                key.DeleteValue(appName, false);
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)

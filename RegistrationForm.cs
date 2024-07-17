@@ -13,7 +13,7 @@ namespace EratronicsPhone
         private PortSIPLib _sdkLib;
         private bool _SIPInited = false;
         private static bool _SIPLogined = false;
-        private IncomingCallForm _incomingCallForm; // Add this reference
+        private IncomingCallForm _incomingCallForm;
 
         private Button btnDeregister;
 
@@ -41,7 +41,7 @@ namespace EratronicsPhone
             ComboBoxTransport.Items.Add("PERS");
             ComboBoxTransport.SelectedIndex = 0; // Default to UDP
 
-            // Load settings
+            // Load settings immediately
             LoadSettings();
 
             this.Shown += new EventHandler(RegistrationForm_Shown);
@@ -77,18 +77,18 @@ namespace EratronicsPhone
         {
             if (!_SIPInited)
             {
-                MessageBox.Show("SIP is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AutoClosingMessageBox.Show("SIP is not initialized.", "Error", 3000);
                 return;
             }
 
             int rt = _sdkLib.unRegisterServer(1000); // Adjust the timeout as needed
             if (rt != 0)
             {
-                MessageBox.Show($"Failed to deregister. Error code: {rt}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AutoClosingMessageBox.Show($"Failed to deregister. Error code: {rt}", "Error", 3000);
             }
             else
             {
-                MessageBox.Show("Deregistration succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AutoClosingMessageBox.Show("Deregistration succeeded.", "Information", 3000);
                 _SIPLogined = false; // Update the login status
                 _SIPInited = false;
                 _mainForm.SetSIPLogined(false);
@@ -109,24 +109,29 @@ namespace EratronicsPhone
 
         private void ButtonRegister_Click(object sender, EventArgs e)
         {
+            PerformRegistration();
+        }
+
+        private void PerformRegistration()
+        {
             // Check if already logged in
             if (Form1.GetSIPLogined())
             {
-                MessageBox.Show("Already registered.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AutoClosingMessageBox.Show("Already registered.", "Warning", 3000);
                 return;
             }
 
             if (_SIPInited)
             {
-                MessageBox.Show("SDK already initialized.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AutoClosingMessageBox.Show("SDK already initialized.", "Warning", 3000);
                 return;
             }
 
             // Debugging: Check if any TextBox is null
-            if (TextBoxUserName == null) MessageBox.Show("TextBoxUserName is null");
-            if (TextBoxPassword == null) MessageBox.Show("TextBoxPassword is null");
-            if (TextBoxServer == null) MessageBox.Show("TextBoxServer is null");
-            if (TextBoxServerPort == null) MessageBox.Show("TextBoxServerPort is null");
+            if (TextBoxUserName == null) AutoClosingMessageBox.Show("TextBoxUserName is null", "Error", 3000);
+            if (TextBoxPassword == null) AutoClosingMessageBox.Show("TextBoxPassword is null", "Error", 3000);
+            if (TextBoxServer == null) AutoClosingMessageBox.Show("TextBoxServer is null", "Error", 3000);
+            if (TextBoxServerPort == null) AutoClosingMessageBox.Show("TextBoxServerPort is null", "Error", 3000);
 
             // Ensure all TextBoxes are initialized and not empty
             if (TextBoxUserName == null || string.IsNullOrWhiteSpace(TextBoxUserName.Text) ||
@@ -134,23 +139,23 @@ namespace EratronicsPhone
                 TextBoxServer == null || string.IsNullOrWhiteSpace(TextBoxServer.Text) ||
                 TextBoxServerPort == null || string.IsNullOrWhiteSpace(TextBoxServerPort.Text))
             {
-                MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AutoClosingMessageBox.Show("Please fill in all required fields.", "Error", 3000);
                 return;
             }
 
             int SIPServerPort;
             if (!int.TryParse(TextBoxServerPort.Text, out SIPServerPort))
             {
-                MessageBox.Show("Invalid Server Port.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AutoClosingMessageBox.Show("Invalid Server Port.", "Error", 3000);
                 return;
             }
 
             int StunServerPort = 0;
             if (!string.IsNullOrWhiteSpace(TextBoxStunPort.Text))
             {
-                if (!int.TryParse(TextBoxStunPort.Text, out StunServerPort) || StunServerPort > 65535 || StunServerPort <= 0)
+                if (!int.TryParse(TextBoxStunPort.Text, out StunServerPort) || StunServerPort > 65535 || StunServerPort < 0)
                 {
-                    MessageBox.Show("The Stun server port is out of range.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    AutoClosingMessageBox.Show("The Stun server port is out of range.", "Information", 3000);
                     return;
                 }
             }
@@ -176,7 +181,7 @@ namespace EratronicsPhone
                     transportType = TRANSPORT_TYPE.TRANSPORT_PERS;
                     break;
                 default:
-                    MessageBox.Show("The transport is wrong.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    AutoClosingMessageBox.Show("The transport is wrong.", "Information", 3000);
                     return;
             }
 
@@ -188,7 +193,7 @@ namespace EratronicsPhone
 
             if (rt != 0)
             {
-                MessageBox.Show($"Failed to initialize SDK. Error code: {rt}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AutoClosingMessageBox.Show($"Failed to initialize SDK. Error code: {rt}", "Error", 3000);
                 return;
             }
 
@@ -199,7 +204,7 @@ namespace EratronicsPhone
             if (rt != 0)
             {
                 _sdkLib.unInitialize();
-                MessageBox.Show($"Failed to set user information. Error code: {rt}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AutoClosingMessageBox.Show($"Failed to set user information. Error code: {rt}", "Error", 3000);
                 return;
             }
 
@@ -208,16 +213,16 @@ namespace EratronicsPhone
             rt = _sdkLib.setLicenseKey(licenseKey);
             if (rt == PortSIP_Errors.ECoreTrialVersionLicenseKey)
             {
-                MessageBox.Show("Thankyou for using our Eratronics Softphone Application.");
+                //AutoClosingMessageBox.Show("Thank you for using our Eratronics Softphone Application.", "Registration Successful", 1000); // 3000 ms = 3 seconds
             }
             else if (rt == PortSIP_Errors.ECoreWrongLicenseKey)
             {
-                MessageBox.Show("The wrong license key was detected, please check with sales@portsip.com or support@portsip.com");
+                AutoClosingMessageBox.Show("The wrong license key was detected, please check with sales@portsip.com or support@portsip.com", "Error", 3000);
             }
             else if (rt != 0)
             {
                 _sdkLib.unInitialize();
-                MessageBox.Show($"Failed to set license key. Error code: {rt}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AutoClosingMessageBox.Show($"Failed to set license key. Error code: {rt}", "Error", 3000);
                 return;
             }
 
@@ -226,12 +231,12 @@ namespace EratronicsPhone
             if (rt != 0)
             {
                 _sdkLib.unInitialize();
-                MessageBox.Show($"Failed to register with the server. Error code: {rt}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AutoClosingMessageBox.Show($"Failed to register with the server. Error code: {rt}", "Error", 3000);
                 return;
             }
 
             _SIPLogined = true;
-            MessageBox.Show("Registration succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //AutoClosingMessageBox.Show("Registration succeeded.", "Information", 1000);
 
             // After successful registration, update the main form's _sdkLib instance
             _mainForm.UpdateSdkLib(_sdkLib);
@@ -241,13 +246,14 @@ namespace EratronicsPhone
             // Initialize SIP in the main form
             _mainForm.InitializeSIP();
 
-            //MessageBox.Show("Registration succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             // Save settings after successful registration
             SaveSettings();
 
             // Update the username in Form1
             _mainForm.SetSIPLogined(true, TextBoxUserName.Text);
+
+            // Optionally, you can hide the registration form here
+            this.Hide();
         }
 
         private void SaveSettings()
@@ -299,11 +305,29 @@ namespace EratronicsPhone
 
         public int onRegisterSuccess(string statusText, int statusCode, StringBuilder sipMessage)
         {
-            this.Invoke(new MethodInvoker(delegate
+            if (this.IsHandleCreated)
             {
-                ListBoxSIPLog.Items.Add("Registration succeeded");
-            }));
-            _SIPLogined = true;
+                this.Invoke((MethodInvoker)delegate
+                {
+                    AutoClosingMessageBox.Show("Thank you for using our Eratronics Softphone Application.", "Registration Successful", 3000);
+
+                    _SIPLogined = true;
+                    _SIPInited = true;
+                    _mainForm.SetSIPLogined(true, UserName);
+                    _mainForm.SetSIPInited(true);
+                    _mainForm.InitializeSIP();
+                    this.Hide();
+                });
+            }
+            else
+            {
+                // Handle the case when the form is not yet created
+                _SIPLogined = true;
+                _SIPInited = true;
+                _mainForm.SetSIPLogined(true, UserName);
+                _mainForm.SetSIPInited(true);
+                _mainForm.InitializeSIP();
+            }
             return 0;
         }
 
@@ -327,12 +351,12 @@ namespace EratronicsPhone
         {
             Console.WriteLine($"Incoming call received: SessionID = {sessionId}");
 
-            this.Invoke((MethodInvoker)delegate
+            Action handleIncomingCall = () =>
             {
                 if (_mainForm.IsDNDActive)
                 {
                     _sdkLib.rejectCall(sessionId, 486);
-                    MessageBox.Show("Call rejected due to DND mode.");
+                    AutoClosingMessageBox.Show("Call rejected due to DND mode.", "Information", 3000);
                 }
                 else
                 {
@@ -365,7 +389,18 @@ namespace EratronicsPhone
                         _sdkLib.rejectCall(sessionId, 486);
                     }
                 }
-            });
+            };
+
+            if (this.IsHandleCreated)
+            {
+                this.Invoke(handleIncomingCall);
+            }
+            else
+            {
+                // If the form handle is not created, we need to handle this differently
+                // One option is to use BeginInvoke on the main form, which should be created
+                _mainForm.BeginInvoke(handleIncomingCall);
+            }
 
             _mainForm.LogCall($"Incoming call from {callerDisplayName} ({caller}) at {DateTime.Now}");
             return 0;
@@ -385,11 +420,17 @@ namespace EratronicsPhone
 
         public int onInviteAnswered(int sessionId, string callerDisplayName, string caller, string calleeDisplayName, string callee, string audioCodecNames, string videoCodecNames, bool existsAudio, bool existsVideo, StringBuilder sipMessage)
         {
-            this.Invoke(new MethodInvoker(delegate
+            Console.WriteLine($"Call answered: SessionID = {sessionId}, Caller = {callerDisplayName}, Callee = {calleeDisplayName}");
+
+            InvokeOnUIThread(() =>
             {
-                ListBoxSIPLog.Items.Add($"Call answered by {calleeDisplayName}");
+                if (ListBoxSIPLog != null && ListBoxSIPLog.IsHandleCreated)
+                {
+                    ListBoxSIPLog.Items.Add($"Call answered by {calleeDisplayName}");
+                }
                 _mainForm.StartCallTimer();  // Assuming StartCallTimer is a method in Form1 that starts the timer
-            }));
+            });
+
             _mainForm.LogCall($"Call answered for session {sessionId} at {DateTime.Now}");
             return 0;
         }
@@ -411,23 +452,57 @@ namespace EratronicsPhone
 
         public int onInviteClosed(int sessionId)
         {
-            this.Invoke(new MethodInvoker(delegate
-            {
-                ListBoxSIPLog.Items.Add($"Invite session closed for session ID: {sessionId}");
-                _mainForm.StopCallTimer();  // Assuming StopCallTimer is a method in Form1 that stops the timer
+            Console.WriteLine($"Call closed: SessionID = {sessionId}");
 
-                // Notify the IncomingCallForm if it exists
-                _incomingCallForm?.HandleCallTerminated(sessionId);
-            }));
+            Action handleClosedCall = () =>
+            {
+                if (ListBoxSIPLog != null && ListBoxSIPLog.IsHandleCreated)
+                {
+                    ListBoxSIPLog.Items.Add("Call closed");
+                }
+                _mainForm.UpdateCallState(sessionId, false);
+            };
+
+            if (this.InvokeRequired)
+            {
+                if (this.IsHandleCreated)
+                {
+                    this.Invoke(handleClosedCall);
+                }
+                else
+                {
+                    // If RegistrationForm's handle is not created, use the main form
+                    _mainForm.BeginInvoke(handleClosedCall);
+                }
+            }
+            else
+            {
+                handleClosedCall();
+            }
+
             return 0;
         }
 
         public int onInviteConnected(int sessionId)
         {
-            this.Invoke(new MethodInvoker(delegate
+            Console.WriteLine($"Call connected: SessionID = {sessionId}");
+
+            Action handleConnectedCall = () =>
             {
                 ListBoxSIPLog.Items.Add("Call connected");
-            }));
+                _mainForm.UpdateCallState(sessionId, true);
+            };
+
+            if (this.IsHandleCreated)
+            {
+                this.Invoke(handleConnectedCall);
+            }
+            else
+            {
+                // If the RegistrationForm handle is not created, use the main form
+                _mainForm.BeginInvoke(handleConnectedCall);
+            }
+
             return 0;
         }
 
@@ -478,31 +553,78 @@ namespace EratronicsPhone
 
         public int onTransferTrying(int sessionId)
         {
-            this.Invoke(new MethodInvoker(delegate
+            Console.WriteLine($"Transfer trying: SessionID = {sessionId}");
+
+            Action handleTransferTrying = () =>
             {
-                ListBoxSIPLog.Items.Add($"Transfer trying for session ID: {sessionId}");
-            }));
+                if (ListBoxSIPLog != null && ListBoxSIPLog.IsHandleCreated)
+                {
+                    ListBoxSIPLog.Items.Add($"Transfer trying for session ID: {sessionId}");
+                }
+            };
+
+            if (this.InvokeRequired)
+            {
+                if (this.IsHandleCreated)
+                {
+                    this.Invoke(handleTransferTrying);
+                }
+                else
+                {
+                    // If RegistrationForm's handle is not created, use the main form
+                    _mainForm.BeginInvoke(handleTransferTrying);
+                }
+            }
+            else
+            {
+                handleTransferTrying();
+            }
+
             return 0;
         }
 
         public int onTransferRinging(int sessionId)
         {
-            this.Invoke(new MethodInvoker(delegate
+            Console.WriteLine($"Transfer ringing: SessionID = {sessionId}");
+
+            InvokeOnUIThread(() =>
             {
-                ListBoxSIPLog.Items.Add($"Transfer ringing for session ID: {sessionId}");
-            }));
+                if (ListBoxSIPLog != null && ListBoxSIPLog.IsHandleCreated)
+                {
+                    ListBoxSIPLog.Items.Add($"Transfer ringing for session ID: {sessionId}");
+                }
+            });
+
             return 0;
         }
 
         public int onACTVTransferSuccess(int sessionId)
         {
-            // Implementation code here
+            Console.WriteLine($"ACTV Transfer success: SessionID = {sessionId}");
+
+            InvokeOnUIThread(() =>
+            {
+                if (ListBoxSIPLog != null && ListBoxSIPLog.IsHandleCreated)
+                {
+                    ListBoxSIPLog.Items.Add($"ACTV Transfer success for session ID: {sessionId}");
+                }
+            });
+
             return 0;
         }
 
         public int onACTVTransferFailure(int sessionId, string reason, int code)
         {
-            // Implementation code here
+            Console.WriteLine($"ACTV Transfer failure: SessionID = {sessionId}, Reason = {reason}, Code = {code}");
+
+            InvokeOnUIThread(() =>
+            {
+                if (ListBoxSIPLog != null && ListBoxSIPLog.IsHandleCreated)
+                {
+                    ListBoxSIPLog.Items.Add($"ACTV Transfer failure for session ID: {sessionId}, Reason: {reason}, Code: {code}");
+                }
+            });
+
             return 0;
         }
 
@@ -681,32 +803,100 @@ namespace EratronicsPhone
             }
         }
 
-        // Add this method just before the closing brace of the RegistrationForm class
-        public void UpdateCallState(int sessionId, bool isActive)
+        private void InvokeOnUIThread(Action action)
         {
-            // Update UI or internal state based on the call state
-            if (isActive)
+            if (this.InvokeRequired)
             {
-                // Call is active, update UI accordingly
-                this.Invoke(new MethodInvoker(delegate
+                if (this.IsHandleCreated)
                 {
-                    ListBoxSIPLog.Items.Add($"Call active for session ID: {sessionId}");
-                }));
+                    this.Invoke(action);
+                }
+                else
+                {
+                    // If RegistrationForm's handle is not created, use the main form
+                    _mainForm.BeginInvoke(action);
+                }
             }
             else
             {
-                // Call is not active, update UI accordingly
-                this.Invoke(new MethodInvoker(delegate
-                {
-                    ListBoxSIPLog.Items.Add($"Call ended for session ID: {sessionId}");
-                }));
+                action();
             }
+        }
+
+        public void UpdateCallState(int sessionId, bool isActive)
+        {
+            Action updateUI = () =>
+            {
+                if (isActive)
+                {
+                    // Call is active, update UI accordingly
+                    if (ListBoxSIPLog != null && ListBoxSIPLog.IsHandleCreated)
+                    {
+                        ListBoxSIPLog.Items.Add($"Call active for session ID: {sessionId}");
+                    }
+                }
+                else
+                {
+                    // Call is not active, update UI accordingly
+                    if (ListBoxSIPLog != null && ListBoxSIPLog.IsHandleCreated)
+                    {
+                        ListBoxSIPLog.Items.Add($"Call ended for session ID: {sessionId}");
+                    }
+                }
+            };
+
+            if (this.InvokeRequired)
+            {
+                if (this.IsHandleCreated)
+                {
+                    this.Invoke(updateUI);
+                }
+                else
+                {
+                    // If RegistrationForm's handle is not created, use the main form
+                    _mainForm.BeginInvoke(updateUI);
+                }
+            }
+            else
+            {
+                updateUI();
+            }
+
+            // Update the main form's call state
+            _mainForm.UpdateCallState(sessionId, isActive);
         }
 
         public void ShowIncomingCallForm(int sessionId, string callerDisplayName)
         {
             _incomingCallForm = new IncomingCallForm(sessionId, callerDisplayName, _sdkLib, _mainForm, this);
             _incomingCallForm.Show();
+        }
+
+        public void AutoRegisterSilently()
+        {
+            LoadSettings();
+
+            if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(ServerAddress))
+            {
+                // Populate the form fields with saved data
+                TextBoxUserName.Text = UserName;
+                TextBoxPassword.Text = Password;
+                TextBoxServer.Text = ServerAddress;
+                TextBoxServerPort.Text = ServerPort.ToString();
+                TextBoxStunServer.Text = StunServer;
+                TextBoxStunPort.Text = StunServerPort > 0 ? StunServerPort.ToString() : "";
+
+                // Trigger the registration process silently
+                PerformRegistration();
+            }
+            else
+            {
+                // If we don't have saved credentials, show the form
+                this.BeginInvoke(new Action(() => {
+                    this.Show();
+                    AutoClosingMessageBox.Show("Please enter your SIP account details and click Register.", "Registration Required", 3000);
+                }));
+            }
         }
     } // This is the closing brace of the RegistrationForm class
 } // This is the closing brace of the namespace

@@ -117,6 +117,7 @@
     <Compile Include="AudioCodecsForm.Designer.cs">
       <DependentUpon>AudioCodecsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AutoClosingMessageBox.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="ContactsForm.cs">
       <SubType>Form</SubType>

@@ -282,8 +282,7 @@ namespace EratronicsPhone
             {
                 _registrationForm = new RegistrationForm(this, _sdkLib);
             }
-            _registrationForm.Show();
-            _registrationForm.BringToFront();
+            _registrationForm.AutoRegisterSilently(); // Changed from AutoRegister to AutoRegisterSilently
         }
 
 
@@ -1015,6 +1014,18 @@ namespace EratronicsPhone
             //ComboBoxPhoneNumber.Dock = DockStyle.None;
             //ComboBoxPhoneNumber.Size = new Size(207, 38); // Set the desired size (width, height)
 
+            // Add this at the end of the Form1_Load method
+            if (!_SIPLogined)
+            {
+                PerformAutoRegistration();
+            }
+
+        }
+
+        private void PerformAutoRegistration()
+        {
+            _registrationForm = new RegistrationForm(this, _sdkLib);
+            _registrationForm.AutoRegisterSilently();
         }
 
 

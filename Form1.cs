@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using PortSIP;
+using System.Net;
+using System.IO;
+using System.Diagnostics;
+using Newtonsoft.Json;
 using Microsoft.Win32;
 using ComponentFactory.Krypton.Toolkit;
 
@@ -1019,6 +1023,8 @@ namespace EratronicsPhone
             {
                 PerformAutoRegistration();
             }
+
+            CheckForUpdates();
 
         }
 
@@ -3689,6 +3695,71 @@ namespace EratronicsPhone
                 labelCallDuration.Visible = false;
                 ButtonHold.Enabled = false;
             }
+        }
+
+        public class GitHubRelease
+        {
+            public string tag_name { get; set; }
+            public string html_url { get; set; }
+            public bool prerelease { get; set; }
+            public List<GitHubAsset> assets { get; set; }
+        }
+
+        public class GitHubAsset
+        {
+            public string browser_download_url { get; set; }
+        }
+
+        private void CheckForUpdates()
+        {
+            string url = "https://api.github.com/repos/Vigh24/Test-era-SIP/releases/latest";
+            using (WebClient client = new WebClient())
+            {
+                client.Headers.Add("User-Agent", "request");
+                try
+                {
+                    string json = client.DownloadString(url);
+                    GitHubRelease latestRelease = JsonConvert.DeserializeObject<GitHubRelease>(json);
+
+                    string latestVersion = "1.1.0"; 
+                    Console.WriteLine($"Fetched Version from GitHub: {latestVersion}");
+
+                    Version currentVersion = new Version(Application.ProductVersion);
+                    Version onlineVersion = new Version(latestVersion.Trim());
+
+                    Console.WriteLine($"Current Version: {currentVersion}, Online Version: {onlineVersion}");
+
+                    if (onlineVersion > currentVersion)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Update available. Would you like to update now?", "Update Available", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            DownloadAndInstallUpdate(latestRelease.assets[0].browser_download_url);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No update required.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to check for updates: {ex.Message}");
+                }
+            }
+        }
+
+        private void DownloadAndInstallUpdate(string downloadUrl)
+        {
+            string tempFile = Path.Combine(Path.GetTempPath(), "Eratronics.Softphone.msi");
+            using (WebClient client = new WebClient())
+            {
+                client.DownloadFile(downloadUrl, tempFile);
+            }
+
+            // Start the installer
+            Process.Start(tempFile);
+            Application.Exit();
         }
     }
 }

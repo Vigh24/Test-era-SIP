@@ -34,14 +34,9 @@ namespace EratronicsPhone
 
             TextBoxPassword.PasswordChar = '*';
 
-            // Populate the ComboBox with transport options
-            ComboBoxTransport.Items.Add("UDP");
-            ComboBoxTransport.Items.Add("TLS");
-            ComboBoxTransport.Items.Add("TCP");
-            ComboBoxTransport.Items.Add("PERS");
-            ComboBoxTransport.SelectedIndex = 0; // Default to UDP
+            ComboBoxTransport.Items.AddRange(new object[] { "UDP", "TLS", "TCP", "PERS" });
+            ComboBoxTransport.SelectedIndex = 0;
 
-            // Load settings immediately
             LoadSettings();
 
             this.Shown += new EventHandler(RegistrationForm_Shown);
@@ -61,6 +56,25 @@ namespace EratronicsPhone
             ServerPort = int.TryParse(Properties.Settings.Default.ServerPort, out int serverPort) ? serverPort : 0;
             StunServer = Properties.Settings.Default.StunServer;
             StunServerPort = int.TryParse(Properties.Settings.Default.StunServerPort, out int stunServerPort) ? stunServerPort : 0;
+
+            // Populate the form fields with the loaded settings
+            TextBoxUserName.Text = UserName;
+            TextBoxPassword.Text = Password;
+            TextBoxServer.Text = ServerAddress;
+            TextBoxServerPort.Text = ServerPort > 0 ? ServerPort.ToString() : "";
+            TextBoxStunServer.Text = StunServer;
+            TextBoxStunPort.Text = StunServerPort > 0 ? StunServerPort.ToString() : "";
+        }
+
+        private void SaveSettings()
+        {
+            Properties.Settings.Default.UserName = TextBoxUserName.Text;
+            Properties.Settings.Default.Password = TextBoxPassword.Text;
+            Properties.Settings.Default.ServerAddress = TextBoxServer.Text;
+            Properties.Settings.Default.ServerPort = TextBoxServerPort.Text;
+            Properties.Settings.Default.StunServer = TextBoxStunServer.Text;
+            Properties.Settings.Default.StunServerPort = TextBoxStunPort.Text;
+            Properties.Settings.Default.Save();
         }
 
         private void InitializeDeregisterButton()
@@ -98,7 +112,6 @@ namespace EratronicsPhone
 
         private void RegistrationForm_Shown(object sender, EventArgs e)
         {
-            // Repopulate fields if properties have values
             TextBoxUserName.Text = UserName;
             TextBoxPassword.Text = Password;
             TextBoxServer.Text = ServerAddress;
@@ -256,15 +269,33 @@ namespace EratronicsPhone
             this.Hide();
         }
 
-        private void SaveSettings()
+        public void AutoRegisterSilently()
         {
-            Properties.Settings.Default.UserName = TextBoxUserName.Text;
-            Properties.Settings.Default.Password = TextBoxPassword.Text;
-            Properties.Settings.Default.ServerAddress = TextBoxServer.Text;
-            Properties.Settings.Default.ServerPort = TextBoxServerPort.Text;
-            Properties.Settings.Default.StunServer = TextBoxStunServer.Text;
-            Properties.Settings.Default.StunServerPort = TextBoxStunPort.Text;
-            Properties.Settings.Default.Save();
+            LoadSettings();
+
+            if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(ServerAddress))
+            {
+                // Perform registration without showing the form
+                PerformRegistration();
+            }
+            else
+            {
+                // Show the form on the UI thread when it's safe to do so
+                ShowRegistrationForm();
+            }
+        }
+
+        private void ShowRegistrationForm()
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(ShowRegistrationForm));
+            }
+            else
+            {
+                this.Show();
+                MessageBox.Show("Please enter your SIP account details and click Register.", "Registration Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void TextBoxUserName_TextChanged(object sender, EventArgs e)
@@ -872,31 +903,6 @@ namespace EratronicsPhone
             _incomingCallForm.Show();
         }
 
-        public void AutoRegisterSilently()
-        {
-            LoadSettings();
 
-            if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(ServerAddress))
-            {
-                // Populate the form fields with saved data
-                TextBoxUserName.Text = UserName;
-                TextBoxPassword.Text = Password;
-                TextBoxServer.Text = ServerAddress;
-                TextBoxServerPort.Text = ServerPort.ToString();
-                TextBoxStunServer.Text = StunServer;
-                TextBoxStunPort.Text = StunServerPort > 0 ? StunServerPort.ToString() : "";
-
-                // Trigger the registration process silently
-                PerformRegistration();
-            }
-            else
-            {
-                // If we don't have saved credentials, show the form
-                this.BeginInvoke(new Action(() => {
-                    this.Show();
-                    AutoClosingMessageBox.Show("Please enter your SIP account details and click Register.", "Registration Required", 3000);
-                }));
-            }
-        }
     } // This is the closing brace of the RegistrationForm class
 } // This is the closing brace of the namespace

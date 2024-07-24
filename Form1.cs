@@ -65,6 +65,13 @@ namespace EratronicsPhone
         private Label labelDialedNumber;
         private static Form1 _instance;
 
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string ServerAddress { get; set; }
+        public int ServerPort { get; set; }
+        public string StunServer { get; set; }
+        public int StunServerPort { get; set; }
+
 
 
 
@@ -279,17 +286,6 @@ namespace EratronicsPhone
 
             return localIP.ToString();
         }
-
-        private void ShowRegistrationForm()
-        {
-            if (_registrationForm == null || _registrationForm.IsDisposed)
-            {
-                _registrationForm = new RegistrationForm(this, _sdkLib);
-            }
-            _registrationForm.AutoRegisterSilently(); // Changed from AutoRegister to AutoRegisterSilently
-        }
-
-
 
         private void ButtonAudioCodecs_Click(object sender, EventArgs e)
         {
@@ -1018,20 +1014,42 @@ namespace EratronicsPhone
             //ComboBoxPhoneNumber.Dock = DockStyle.None;
             //ComboBoxPhoneNumber.Size = new Size(207, 38); // Set the desired size (width, height)
 
-            // Add this at the end of the Form1_Load method
+            LoadSettings();
             if (!_SIPLogined)
             {
-                PerformAutoRegistration();
+                this.BeginInvoke(new Action(PerformAutoRegistration));
             }
 
             CheckForUpdates();
 
         }
 
+        private void LoadSettings()
+        {
+            UserName = Properties.Settings.Default.UserName;
+            Password = Properties.Settings.Default.Password;
+            ServerAddress = Properties.Settings.Default.ServerAddress;
+            ServerPort = int.TryParse(Properties.Settings.Default.ServerPort, out int port) ? port : 0;
+            StunServer = Properties.Settings.Default.StunServer;
+            StunServerPort = int.TryParse(Properties.Settings.Default.StunServerPort, out int stunPort) ? stunPort : 0;
+        }
+
+        private void InitializeSIPConnection()
+        {
+            // Use the loaded settings to initialize your SIP connection
+            // This method should contain the logic to connect to the SIP server
+            // using the saved credentials and settings
+        }
+
         private void PerformAutoRegistration()
         {
-            _registrationForm = new RegistrationForm(this, _sdkLib);
-            _registrationForm.AutoRegisterSilently();
+            if (_registrationForm == null || _registrationForm.IsDisposed)
+            {
+                _registrationForm = new RegistrationForm(this, _sdkLib);
+            }
+
+            // Use BeginInvoke to ensure the form is fully initialized before calling AutoRegisterSilently
+            this.BeginInvoke(new Action(() => _registrationForm.AutoRegisterSilently()));
         }
 
 
@@ -3721,7 +3739,7 @@ namespace EratronicsPhone
                     string json = client.DownloadString(url);
                     GitHubRelease latestRelease = JsonConvert.DeserializeObject<GitHubRelease>(json);
 
-                    string latestVersion = "1.1.0"; 
+                    string latestVersion = latestRelease.tag_name.TrimStart('v');
                     Console.WriteLine($"Fetched Version from GitHub: {latestVersion}");
 
                     Version currentVersion = new Version(Application.ProductVersion);
@@ -3731,10 +3749,19 @@ namespace EratronicsPhone
 
                     if (onlineVersion > currentVersion)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Update available. Would you like to update now?", "Update Available", MessageBoxButtons.YesNo);
+                        string message = $"A new version of Eratronics Softphone (v{onlineVersion}) is available. Would you like to update now?\n\nCurrent version: {currentVersion}";
+                        DialogResult dialogResult = MessageBox.Show(message, "Eratronics Softphone - Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            DownloadAndInstallUpdate(latestRelease.assets[0].browser_download_url);
+                            GitHubAsset msiAsset = latestRelease.assets.FirstOrDefault(a => a.browser_download_url.EndsWith(".msi"));
+                            if (msiAsset != null)
+                            {
+                                DownloadAndInstallUpdate(msiAsset.browser_download_url);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Update file not found.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                     else
@@ -3744,22 +3771,49 @@ namespace EratronicsPhone
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Failed to check for updates: {ex.Message}");
+                    MessageBox.Show($"Failed to check for updates: {ex.Message}", "Update Check Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void DownloadAndInstallUpdate(string downloadUrl)
         {
-            string tempFile = Path.Combine(Path.GetTempPath(), "Eratronics.Softphone.msi");
-            using (WebClient client = new WebClient())
-            {
-                client.DownloadFile(downloadUrl, tempFile);
-            }
+            string tempMsi = Path.Combine(Path.GetTempPath(), "EratronicsSoftphone_new.msi");
+            string logFile = Path.Combine(Path.GetTempPath(), "EratronicsSoftphone_install.log");
 
-            // Start the installer
-            Process.Start(tempFile);
-            Application.Exit();
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadFile(downloadUrl, tempMsi);
+                }
+
+                string batchPath = Path.Combine(Path.GetTempPath(), "update.bat");
+                using (StreamWriter sw = new StreamWriter(batchPath))
+                {
+                    sw.WriteLine("@echo off");
+                    sw.WriteLine($"msiexec /i \"{tempMsi}\" /qn PRESERVESETTINGS=1 /L*V \"{logFile}\"");
+                    sw.WriteLine("timeout /t 30 /nobreak > NUL");
+                    sw.WriteLine($"start \"\" \"{Application.ExecutablePath}\"");
+                    sw.WriteLine($"del \"{tempMsi}\"");
+                    sw.WriteLine($"del \"%~f0\"");
+                }
+
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = batchPath,
+                    CreateNoWindow = true,
+                    UseShellExecute = true,
+                    Verb = "runas"
+                };
+                Process.Start(psi);
+
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Update failed: {ex.Message}", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

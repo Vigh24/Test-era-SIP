@@ -380,7 +380,6 @@
             this.ButtonHangUp.TabIndex = 108;
             this.ButtonHangUp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ButtonHangUp.UseVisualStyleBackColor = false;
-            this.ButtonHangUp.Visible = false;
             this.ButtonHangUp.Click += new System.EventHandler(this.ButtonHangUp_Click);
             // 
             // ButtonDial
@@ -399,7 +398,6 @@
             this.ButtonDial.TabIndex = 108;
             this.ButtonDial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ButtonDial.UseVisualStyleBackColor = false;
-            this.ButtonDial.Visible = false;
             this.ButtonDial.Click += new System.EventHandler(this.ButtonDial_Click);
             // 
             // Button12

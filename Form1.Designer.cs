@@ -1316,13 +1316,12 @@
             // 
             this.ComboBoxPhoneNumber.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ComboBoxPhoneNumber.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ComboBoxPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxPhoneNumber.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxPhoneNumber.FormattingEnabled = true;
-            this.ComboBoxPhoneNumber.ItemHeight = 28;
+            this.ComboBoxPhoneNumber.ItemHeight = 30;
             this.ComboBoxPhoneNumber.Location = new System.Drawing.Point(25, 50);
-            this.ComboBoxPhoneNumber.MaxDropDownItems = 6;
             this.ComboBoxPhoneNumber.Name = "ComboBoxPhoneNumber";
-            this.ComboBoxPhoneNumber.Size = new System.Drawing.Size(169, 34);
+            this.ComboBoxPhoneNumber.Size = new System.Drawing.Size(169, 36);
             this.ComboBoxPhoneNumber.TabIndex = 137;
             this.ComboBoxPhoneNumber.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBoxPhoneNumber_DrawItem);
             // 

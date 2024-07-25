@@ -1342,24 +1342,41 @@ namespace EratronicsPhone
 
         private void ComboBoxPhoneNumber_DrawItem(object sender, DrawItemEventArgs e)
         {
-            if (e.Index < 0) return;
+            if (e.Index < 0)
+                return;
 
-            // Draw the background of the item
-            e.DrawBackground();
+            ComboBox combo = sender as ComboBox;
+            if (combo != null)
+            {
+                e.DrawBackground();
 
-            string text = ComboBoxPhoneNumber.Items[e.Index].ToString();
-            Font myFont = new Font("Microsoft Sans Serif", 12, FontStyle.Regular); // Ensure the font size matches your ComboBox height
+                Rectangle bounds = e.Bounds;
+                string text = combo.Items[e.Index].ToString();
 
-            // Set string format to align text center
-            StringFormat sf = new StringFormat();
-            sf.LineAlignment = StringAlignment.Center;
-            sf.Alignment = StringAlignment.Center;
+                // Choose the color based on the item state
+                Color textColor = (e.State & DrawItemState.Selected) == DrawItemState.Selected
+                    ? Color.White  // Selected item text color
+                    : Color.Black; // Normal item text color
 
-            // Draw the item text
-            e.Graphics.DrawString(text, myFont, Brushes.Black, e.Bounds, sf);
+                Color backColor = (e.State & DrawItemState.Selected) == DrawItemState.Selected
+                    ? Color.LightBlue  // Selected item background color
+                    : Color.White;     // Normal item background color
 
-            // Draw the focus rectangle if the item has focus
-            e.DrawFocusRectangle();
+                // Fill the background
+                using (SolidBrush backBrush = new SolidBrush(backColor))
+                {
+                    e.Graphics.FillRectangle(backBrush, bounds);
+                }
+
+                // Draw the text
+                TextRenderer.DrawText(e.Graphics, text, e.Font, bounds, textColor, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
+
+                // If the item has focus, draw a focus rectangle
+                if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
+                {
+                    ControlPaint.DrawFocusRectangle(e.Graphics, bounds);
+                }
+            }
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -3815,5 +3832,7 @@ namespace EratronicsPhone
                 MessageBox.Show($"Update failed: {ex.Message}", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

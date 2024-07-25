@@ -290,6 +290,9 @@
     <Content Include="portsip_sdk.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="ringtone.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Resources\logo.jpeg" />
     <None Include="Resources\speaker%281%29.png" />
     <None Include="Resources\volume%281%291.png" />

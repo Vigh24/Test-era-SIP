@@ -3792,8 +3792,8 @@ namespace EratronicsPhone
                 using (StreamWriter sw = new StreamWriter(batchPath))
                 {
                     sw.WriteLine("@echo off");
-                    sw.WriteLine($"msiexec /i \"{tempMsi}\" /qn PRESERVESETTINGS=1 /L*V \"{logFile}\"");
-                    sw.WriteLine("timeout /t 30 /nobreak > NUL");
+                    sw.WriteLine($"msiexec /i \"{tempMsi}\" /qn PRESERVESETTINGS=1 REBOOT=ReallySuppress /L*V \"{logFile}\"");
+                    sw.WriteLine("timeout /t 60 /nobreak > NUL");
                     sw.WriteLine($"start \"\" \"{Application.ExecutablePath}\"");
                     sw.WriteLine($"del \"{tempMsi}\"");
                     sw.WriteLine($"del \"%~f0\"");
@@ -3802,7 +3802,7 @@ namespace EratronicsPhone
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
                     FileName = batchPath,
-                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden,
                     UseShellExecute = true,
                     Verb = "runas"
                 };

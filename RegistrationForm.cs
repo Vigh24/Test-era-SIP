@@ -107,7 +107,21 @@ namespace EratronicsPhone
                 _SIPInited = false;
                 _mainForm.SetSIPLogined(false);
                 _mainForm.SetSIPInited(false);
+                EnableInputFields(); // Enable the input fields after deregistration
             }
+        }
+
+        private void EnableInputFields()
+        {
+            TextBoxUserName.Enabled = true;
+            TextBoxPassword.Enabled = true;
+            TextBoxServer.Enabled = true;
+            TextBoxServerPort.Enabled = true;
+            TextBoxStunServer.Enabled = true;
+            TextBoxStunPort.Enabled = true;
+            ComboBoxTransport.Enabled = true;
+            ButtonRegister.Enabled = true;
+            btnDeregister.Enabled = false; // Disable the deregister button
         }
 
         private void RegistrationForm_Shown(object sender, EventArgs e)
@@ -125,19 +139,19 @@ namespace EratronicsPhone
             PerformRegistration();
         }
 
-        private void PerformRegistration()
+        private bool PerformRegistration()
         {
             // Check if already logged in
             if (Form1.GetSIPLogined())
             {
                 AutoClosingMessageBox.Show("Already registered.", "Warning", 3000);
-                return;
+                return false;
             }
 
             if (_SIPInited)
             {
                 AutoClosingMessageBox.Show("SDK already initialized.", "Warning", 3000);
-                return;
+                return false;
             }
 
             // Debugging: Check if any TextBox is null
@@ -153,14 +167,14 @@ namespace EratronicsPhone
                 TextBoxServerPort == null || string.IsNullOrWhiteSpace(TextBoxServerPort.Text))
             {
                 AutoClosingMessageBox.Show("Please fill in all required fields.", "Error", 3000);
-                return;
+                return false;
             }
 
             int SIPServerPort;
             if (!int.TryParse(TextBoxServerPort.Text, out SIPServerPort))
             {
                 AutoClosingMessageBox.Show("Invalid Server Port.", "Error", 3000);
-                return;
+                return false;
             }
 
             int StunServerPort = 0;
@@ -169,7 +183,7 @@ namespace EratronicsPhone
                 if (!int.TryParse(TextBoxStunPort.Text, out StunServerPort) || StunServerPort > 65535 || StunServerPort < 0)
                 {
                     AutoClosingMessageBox.Show("The Stun server port is out of range.", "Information", 3000);
-                    return;
+                    return false;
                 }
             }
 
@@ -195,7 +209,7 @@ namespace EratronicsPhone
                     break;
                 default:
                     AutoClosingMessageBox.Show("The transport is wrong.", "Information", 3000);
-                    return;
+                    return false;
             }
 
             // Initialize the SDK
@@ -207,7 +221,7 @@ namespace EratronicsPhone
             if (rt != 0)
             {
                 AutoClosingMessageBox.Show($"Failed to initialize SDK. Error code: {rt}", "Error", 3000);
-                return;
+                return false;
             }
 
             _SIPInited = true;
@@ -218,7 +232,7 @@ namespace EratronicsPhone
             {
                 _sdkLib.unInitialize();
                 AutoClosingMessageBox.Show($"Failed to set user information. Error code: {rt}", "Error", 3000);
-                return;
+                return false;
             }
 
             // Set the license key
@@ -236,7 +250,7 @@ namespace EratronicsPhone
             {
                 _sdkLib.unInitialize();
                 AutoClosingMessageBox.Show($"Failed to set license key. Error code: {rt}", "Error", 3000);
-                return;
+                return false;
             }
 
             // Register with the server
@@ -245,7 +259,7 @@ namespace EratronicsPhone
             {
                 _sdkLib.unInitialize();
                 AutoClosingMessageBox.Show($"Failed to register with the server. Error code: {rt}", "Error", 3000);
-                return;
+                return false;
             }
 
             _SIPLogined = true;
@@ -267,6 +281,8 @@ namespace EratronicsPhone
 
             // Optionally, you can hide the registration form here
             this.Hide();
+
+            return true;
         }
 
         public void AutoRegisterSilently()
@@ -276,7 +292,11 @@ namespace EratronicsPhone
             if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(ServerAddress))
             {
                 // Perform registration without showing the form
-                PerformRegistration();
+                if (PerformRegistration())
+                {
+                    DisableInputFields();
+                    btnDeregister.Enabled = true;
+                }
             }
             else
             {
@@ -347,6 +367,8 @@ namespace EratronicsPhone
                     _mainForm.SetSIPLogined(true, UserName);
                     _mainForm.SetSIPInited(true);
                     _mainForm.InitializeSIP();
+                    DisableInputFields();
+                    btnDeregister.Enabled = true; // Enable the deregister button
                     this.Hide();
                 });
             }
@@ -903,6 +925,16 @@ namespace EratronicsPhone
             _incomingCallForm.Show();
         }
 
-
+        private void DisableInputFields()
+        {
+            TextBoxUserName.Enabled = false;
+            TextBoxPassword.Enabled = false;
+            TextBoxServer.Enabled = false;
+            TextBoxServerPort.Enabled = false;
+            TextBoxStunServer.Enabled = false;
+            TextBoxStunPort.Enabled = false;
+            ComboBoxTransport.Enabled = false;
+            ButtonRegister.Enabled = false;
+        }
     } // This is the closing brace of the RegistrationForm class
 } // This is the closing brace of the namespace

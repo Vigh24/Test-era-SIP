@@ -27,6 +27,8 @@ namespace EratronicsPhone
         private LicenseForm _licenseForm;
         private List<string> _callLogs = new List<string>();
         private ToolTip toolTip1;
+        private const string WindowMessage = "EratronicsPhoneShowWindow";
+        private static readonly int WM_SHOWME = RegisterWindowMessage(WindowMessage);
 
 
         private Session[] _CallSessions = new Session[MAX_LINES];
@@ -853,9 +855,7 @@ namespace EratronicsPhone
 
         private void NotifyIcon_DoubleClick(object sender, EventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            notifyIcon.Visible = false;
+            ShowAndActivate();
         }
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
@@ -888,12 +888,20 @@ namespace EratronicsPhone
                 e.Cancel = true;
                 this.Hide();
                 notifyIcon.Visible = true;
-                notifyIcon.ShowBalloonTip(1000, "Eratronics Softphone", "The application is still running in the system tray.", ToolTipIcon.Info);
             }
             else
             {
                 base.OnFormClosing(e);
             }
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == WM_SHOWME)
+            {
+                ShowAndActivate();
+            }
+            base.WndProc(ref m);
         }
 
 
@@ -1057,7 +1065,12 @@ namespace EratronicsPhone
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            deRegisterFromServer();
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+                notifyIcon.Visible = true;
+            }
         }
 
         //private void Button1_Click(object sender, EventArgs e)
@@ -3832,6 +3845,20 @@ namespace EratronicsPhone
                 MessageBox.Show($"Update failed: {ex.Message}", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void ShowAndActivate()
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                WindowState = FormWindowState.Normal;
+            }
+            Show();
+            BringToFront();
+            Activate();
+        }
+
+        [DllImport("user32")]
+        private static extern int RegisterWindowMessage(string message);
 
 
     }

@@ -29,7 +29,8 @@ namespace EratronicsPhone
         private ToolTip toolTip1;
         private const string WindowMessage = "EratronicsPhoneShowWindow";
         private static readonly int WM_SHOWME = RegisterWindowMessage(WindowMessage);
-
+        private DateTime _lastUpdateCheck = DateTime.MinValue;
+        private readonly TimeSpan _updateCheckCooldown = TimeSpan.FromMinutes(1); // Check every 30 minutes
 
         private Session[] _CallSessions = new Session[MAX_LINES];
 
@@ -1029,6 +1030,7 @@ namespace EratronicsPhone
             }
 
             CheckForUpdates();
+            PerformUpdateCheck();
 
         }
 
@@ -3773,7 +3775,7 @@ namespace EratronicsPhone
                     Console.WriteLine($"Fetched Version from GitHub: {latestVersion}");
 
                     Version currentVersion = new Version(Application.ProductVersion);
-                    Version onlineVersion = new Version(latestVersion.Trim());
+                    Version onlineVersion = new Version(latestVersion);
 
                     Console.WriteLine($"Current Version: {currentVersion}, Online Version: {onlineVersion}");
 
@@ -3855,6 +3857,23 @@ namespace EratronicsPhone
             Show();
             BringToFront();
             Activate();
+
+            // Check for updates when restored
+            PerformUpdateCheck();
+        }
+
+        private void PerformUpdateCheck()
+        {
+            if (DateTime.Now - _lastUpdateCheck < _updateCheckCooldown)
+            {
+                return; // Skip check if it's too soon
+            }
+
+            Task.Run(() =>
+            {
+                CheckForUpdates();
+                _lastUpdateCheck = DateTime.Now;
+            });
         }
 
         [DllImport("user32")]

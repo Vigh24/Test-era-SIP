@@ -1251,12 +1251,12 @@
             // LabelUsername
             // 
             this.LabelUsername.AutoSize = true;
-            this.LabelUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.LabelUsername.Location = new System.Drawing.Point(31, 395);
+            this.LabelUsername.Location = new System.Drawing.Point(31, 395); // Adjust as needed
             this.LabelUsername.Name = "LabelUsername";
-            this.LabelUsername.Size = new System.Drawing.Size(35, 13);
-            this.LabelUsername.TabIndex = 134;
-            this.LabelUsername.Text = "label1";
+            this.LabelUsername.Size = new System.Drawing.Size(55, 13);
+            this.LabelUsername.TabIndex = 138; // Adjust if needed
+            this.LabelUsername.Text = ""; // Set to empty initially
+            this.LabelUsername.Visible = false; // Initially hidden
             // 
             // ButtonToggleMute
             // 

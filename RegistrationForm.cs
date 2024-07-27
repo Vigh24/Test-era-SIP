@@ -282,6 +282,9 @@ namespace EratronicsPhone
             // Optionally, you can hide the registration form here
             this.Hide();
 
+            // After successful registration
+            _mainForm.UpdateUsername(UserName); // Assuming UserName is the variable holding the registered username
+
             return true;
         }
 
@@ -369,6 +372,11 @@ namespace EratronicsPhone
                     _mainForm.InitializeSIP();
                     DisableInputFields();
                     btnDeregister.Enabled = true; // Enable the deregister button
+
+                    // Update the username in the main form
+                    _mainForm.UpdateUsername(UserName);
+
+                    // Hide this form
                     this.Hide();
                 });
             }
@@ -380,6 +388,9 @@ namespace EratronicsPhone
                 _mainForm.SetSIPLogined(true, UserName);
                 _mainForm.SetSIPInited(true);
                 _mainForm.InitializeSIP();
+
+                // Update the username in the main form
+                _mainForm.UpdateUsername(UserName);
             }
             return 0;
         }

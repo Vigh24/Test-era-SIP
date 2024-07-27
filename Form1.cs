@@ -212,7 +212,17 @@ namespace EratronicsPhone
 
         public void UpdateUsername(string username)
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => UpdateUsername(username)));
+                return;
+            }
+
             LabelUsername.Text = username;
+            LabelUsername.Font = new Font(LabelUsername.Font.FontFamily, 9f); // Ensure font size
+            LabelUsername.ForeColor = Color.Black; // Ensure text color
+            LabelUsername.Visible = true;
+            LabelUsername.BringToFront();
         }
 
 
@@ -703,7 +713,13 @@ namespace EratronicsPhone
             //DND Hover
 
 
-
+            LabelUsername = new Label();
+            LabelUsername.AutoSize = true;
+            LabelUsername.Location = new Point(31, 395); // Adjust as needed
+            LabelUsername.Font = new Font(LabelUsername.Font.FontFamily, 9f); // Reduced font size
+            LabelUsername.ForeColor = Color.Black; // Set text color to black
+            LabelUsername.Visible = false; // Initially hidden
+            this.Controls.Add(LabelUsername);
 
 
             // Set initial label text
@@ -3860,6 +3876,18 @@ namespace EratronicsPhone
 
             // Check for updates when restored
             PerformUpdateCheck();
+        }
+
+        public void ClearUsername()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(ClearUsername));
+                return;
+            }
+
+            LabelUsername.Text = "";
+            LabelUsername.Visible = false;
         }
 
         private void PerformUpdateCheck()
